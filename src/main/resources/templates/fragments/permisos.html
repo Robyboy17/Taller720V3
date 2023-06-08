@@ -1,0 +1,9 @@
+<div th:fragment="permisos">
+  <div sec:authorize="isAuthenticated()">
+    <h2>Estos son tus permisos</h2>
+    <hr class="my-4">
+  </div>
+  <div  class="my-4 d-flex justify-content-center">
+    <span th:each="permiso : ${#authentication.principal.getAuthorities()}" style="padding: 0.5em; margin : 1em;" span class="badge text-bg-primary" th:text="${permiso}"></span>
+  </div>
+</div>

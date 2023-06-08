@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FAQs</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-5">Preguntas Frecuentes</h1>
+
+    <div class="accordion" id="faqAccordion">
+
+      <div class="card">
+        <div class="card-header" id="faqHeading1">
+          <h2 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+              ¿Cómo puedo crear un nuevo taller en el sistema?
+            </button>
+          </h2>
+        </div>
+        <div id="faqCollapse1" class="collapse show" aria-labelledby="faqHeading1" data-parent="#faqAccordion">
+          <div class="card-body">
+            Para crear un nuevo taller, ve a la sección "Talleres" en el menú principal y haz clic en el botón "Crear Taller". Luego, completa el formulario con la información del taller y haz clic en "Guardar" para crearlo.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="faqHeading2">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+              ¿Cómo puedo programar una cita con un cliente?
+            </button>
+          </h2>
+        </div>
+        <div id="faqCollapse2" class="collapse" aria-labelledby="faqHeading2" data-parent="#faqAccordion">
+          <div class="card-body">
+            Para programar una cita con un cliente, ve a la sección "Agenda" en el menú principal y haz clic en el botón "Crear Cita". Luego, selecciona al cliente, el taller y la fecha y hora deseadas y haz clic en "Guardar" para programar la cita.
+          </div>
+        </div>
+      </div>
+
+      <!-- Agregar más preguntas y respuestas aquí -->
+
+      <div class="container">
+        <h1>Añadir Pregunta</h1>
+
+        <form action="servlet" method="get">
+        <div class="form-group">
+            <label> Usuario: </label>
+            <input type="text" name="user"/>
+        </div>
+            <label> Mensaje: </label>
+            <input type="text" name="msg" />
+            <input type="submit" value="Enviar" />
+        </form>
+
+        <form>
+          <div class="form-group">
+            <label for="pregunta">Pregunta:</label>
+            <input type="text" class="form-control" id="pregunta" placeholder="Ingrese su pregunta">
+          </div>
+          
+          <button type="submit" class="btn btn-primary">Agregar Pregunta</button>
+        </form>
+      </div>
+    
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </div>
+  </div>
+</body>
+</html>
+

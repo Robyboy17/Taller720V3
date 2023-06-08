@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Todas las entidades</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container">
+    <h1>Todas las entidades</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="rol : ${entities}">
+            <td th:text="${rol.id}"></td>
+            <td th:text="${rol.name}"></td>
+            <td>
+                <a th:href="@{/roles/{id}(id=${rol.id})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/roles/delete/{id}(id=${rol.id})}" class="btn btn-danger">Eliminar</a>
+            </td> <!-- Columna para los botones de edición y eliminación -->
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

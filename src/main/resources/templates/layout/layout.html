@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--/*  Each token will be replaced by their respective titles in the resulting page. */-->
+  <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Task List</title>
+  <meta charset="UTF-8">
+  <title>Bienvenido</title>
+  <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+  <link href="/webjars/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+</head>
+<body>
+<!--/* Standard layout can be mixed with Layout Dialect */-->
+<div th:replace="fragments/header :: header">
+</div>
+<div class="container" >
+  <div layout:fragment="content">
+  </div>
+  <div class="jumbotron">
+    <h1 class="display-4">SpringBoot</h1>
+    <p class="lead">Esta es la página principal de la aplicación</p>
+    <hr class="my-4">
+    <div class="alert alert-success d-flex align-items-center" role="alert">
+      <i class="mx-auto bi-balloon-heart" style="font-size: 8em"></i>
+    </div>
+    <p class="alert alert-dark" th:if="${mensaje != null}"  th:text="${mensaje}"></p>
+  </div>
+</div>
+<div th:replace="fragments/footer :: footer">&copy; 2014 The Static Templates</div>
+<!-- Cargamos el script de Bootstrap al final del archivo para mejorar la velocidad de carga -->
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
+

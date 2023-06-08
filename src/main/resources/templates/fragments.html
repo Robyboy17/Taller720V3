@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul sec:authorize="!isAuthenticated()" class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/login}">Login</a>
+        </li>
+      </ul>
+      <ul sec:authorize="isAuthenticated()" class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" sec:authorize="hasAuthority('ROLE_ADMIN')">
+          <a class="nav-link" th:href="@{/usuarios/all}">Usuarios</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasAuthority('ROLE_ADMIN')">
+          <a class="nav-link" th:href="@{/usuarios/paginados?numeroPagina=0&tamanoPagina=20}">Usuarios
+            Paginados</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasAuthority('ROLE_ADMIN')">
+          <a class="nav-link" th:href="@{/roles/all}">Roles</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasAuthority('ROLE_ADMIN')">
+          <a class="nav-link" th:href="@{/permisos/all}">Permisos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/empresas/all}">Empresa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/empleados/all}">Empleados</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/notificaciones}">Notificaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/files}">Ficheros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/calendario}">Calendario</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+      </ul>
+      <div class="dropdown">
+        <button th:text="#{navbar.language}" class="btn btn-secondary dropdown-toggle" type="button"
+                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Dropdown button
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" th:text="#{navbar.spanish}" th:href="@{/lang/es}">Action</a></li>
+          <li><a class="dropdown-item" th:text="#{navbar.english}" th:href="@{/lang/en}">Another action</a>
+          </li>
+        </ul>
+      </div>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<footer th:fragment="footer">
+  <div class="container text-center">
+    <h2><span>&copy; EOI</span></h2>
+  </div>
+</footer>
+
+
+<div th:fragment="modal" class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false"
+     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center mb-3">
+          <div class="image-container mx-auto">
+            <img th:src="${#authentication.principal.imageUrl}" alt="User Image"
+                 class="rounded-circle user-image">
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Información del usuario</h5>
+            <div class="card-text">
+              <p><strong>Nombre de usuario:</strong> <span
+                      th:text="${#authentication.principal.username}"></span></p>
+              <p><strong>Nombre:</strong> <span th:text="${#authentication.principal.nombre}"></span></p>
+              <p><strong>Apellido:</strong> <span th:text="${#authentication.principal.apellido}"></span>
+              </p>
+              <p><strong>Email:</strong> <span th:text="${#authentication.principal.email}"></span></p>
+            </div>
+          </div>
+        </div>
+        <div th:replace="~{fragments/permisos :: permisos}">&copy; EOI</div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:fragment="tablaUsuarios(entities,mostrarTarjetas)">
+
+  <div th:if="${mostrarTarjetas}" th:each="usuario : ${entities}" th:insert="~{fragments :: tarjeta(usuario=${usuario})}"></div>
+  <table th:unless="${mostrarTarjetas}" class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Fecha de Nacimiento</th>
+      <th>Acciones</th> <!-- Nueva columna para las acciones -->
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr  th:each="usuario : ${entities}">
+
+      <td th:text="${usuario.id}"></td>
+      <td th:text="${usuario.username}"></td>
+      <td th:text="${usuario.nombre}"></td>
+      <td th:text="${usuario.apellido}"></td>
+      <td th:text="${usuario.fechaNacimiento}"></td>
+      <td>
+        <a th:href="@{/usuarios/{id}(id=${usuario.id})}" class="btn btn-primary">Editar</a>
+        <a onclick="return confirm('Deseas eliminar el usuario?');" th:href="@{/usuarios/delete/{id}(id=${usuario.id})}" class="btn btn-danger">Eliminar</a>
+      </td> <!-- Columna para los botones de edición y eliminación -->
+    </tr>
+    </tbody>
+  </table>
+  <a th:href="@{/usuarios/ }" class="btn btn-alert">Nuevo</a>
+</div>
+
+
+
+<div th:fragment="tablaClientes(entities,mostrarTarjetas)">
+
+  <div th:if="${mostrarTarjetas}" th:each="usuario : ${entities}" th:insert="~{fragments :: tarjeta(usuario=${usuario})}"></div>
+  <table th:unless="${mostrarTarjetas}" class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Acciones</th> <!-- Nueva columna para las acciones -->
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr  th:each="usuario : ${entities}">
+
+      <td th:text="${usuario.id}"></td>
+      <td th:text="${usuario.nombre}"></td>
+      <td th:text="${usuario.apellido}"></td>
+      <td>
+        <a th:href="@{/clientes/{id}(id=${cliente.id})}" class="btn btn-primary">Editar</a>
+        <a onclick="return confirm('Deseas eliminar el usuario?');" th:href="@{/clientes/delete/{id}(id=${cliente.id})}" class="btn btn-danger">Eliminar</a>
+      </td> <!-- Columna para los botones de edición y eliminación -->
+    </tr>
+    </tbody>
+  </table>
+  <a th:href="@{/clientes/create }" class="btn btn-alert">Nuevo</a>
+</div>
+
+
+
+<div th:fragment="tarjeta(usuario)" class="card" style="width: 18rem;">
+  <img src="/images/Example.svg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title" th:text="${usuario.nombre + ' ' + usuario.apellido}"></h5>
+    <p class="card-text" th:text="${usuario.fechaNacimiento}"></p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+<div th:fragment="tablaReparacion(entities,mostrar)">
+
+  <div th:if="${mostrar}" th:each="reparacion : ${entities}" th:insert="~{fragments :: tarjeta(reparacion=${reparacion})}"></div>
+  <table th:unless="${mostrar}" class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>name</th>
+
+      <th>Acciones</th> <!-- Nueva columna para las acciones -->
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr  th:each="reparacion : ${entities}">
+
+      <td th:text="${reparacion.id}"></td>
+      <td th:text="${reparacion.name}"></td>
+
+      <td>
+        <a th:href="@{/reparaciones/{id}(id=${reparacion.id})}" class="btn btn-primary">Editar</a>
+        <a onclick="return confirm('Deseas eliminar la reparacion?');" th:href="@{/reparacion/delete/{id}(id=${reparacion.id})}" class="btn btn-danger">Eliminar</a>
+      </td> <!-- Columna para los botones de edición y eliminación -->
+    </tr>
+    </tbody>
+  </table>
+  <a th:href="@{/reparaciones/ }" class="btn btn-alert">Nuevo</a>
+</div>
+
