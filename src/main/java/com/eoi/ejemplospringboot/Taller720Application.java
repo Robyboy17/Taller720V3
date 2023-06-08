@@ -4,7 +4,6 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 /**
  * Clase principal de la aplicación Spring Boot.
@@ -18,7 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @AutoConfiguration
-public class EjemplospringbootApplication {
+public class Taller720Application {
 
 	/**
 	 * Punto de entrada principal de la aplicación.
@@ -27,7 +26,7 @@ public class EjemplospringbootApplication {
 	 * @Author Alejandro Teixeira Muñoz
 	 */
 	public static void main(String[] args) {
-		SpringApplication.run(EjemplospringbootApplication.class, args);
+		SpringApplication.run(Taller720Application.class, args);
 	}
 
 
