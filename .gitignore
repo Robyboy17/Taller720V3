@@ -33,3 +33,4 @@ build/
 .vscode/
 /RunSonar.run/ejemplospringboot [sonar_sonar].run.xml
 /RunSonar.run/
+/src/main/resources/application-rob.yml
