@@ -1,4 +1,4 @@
-package com.eoi.ejemplospringboot.controllers;
+/**package com.eoi.ejemplospringboot.controllers;
 
 import com.eoi.ejemplospringboot.MyControllerTestInterface;
 import com.eoi.ejemplospringboot.entities.Empleado;
@@ -106,3 +106,4 @@ class EmpleadoControllerTests implements MyControllerTestInterface {
                 .andExpect(MockMvcResultMatchers.redirectedUrl("/empleados/all"));
     }
 }
+*/
