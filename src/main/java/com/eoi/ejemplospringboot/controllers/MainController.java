@@ -28,7 +28,9 @@ public class MainController {
         return "holamundo.html";
     }
 
-
-
+    @GetMapping("/login")
+    public String login(Model model) {
+        return "usuarios/login";
+    }
 
 }
