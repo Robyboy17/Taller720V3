@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/usuarios")
 public class UsuarioContreoller {
@@ -40,26 +42,34 @@ public class UsuarioContreoller {
         return "redirect:/usuarios/all";
     }
     // Create
+    @GetMapping("new")
+    public String addUsuarioForm(Model model) {
+        model.addAttribute("usuario", new Usuario());
+        return "usuarios/user-create";
+    }
 
-//    @GetMapping("addUsuarioForm")
-//    public String addUsuarioForm() {
-//
-//    }
+    @PostMapping("/create")
+    public String createUsuario(@ModelAttribute("usuario") Usuario usuario) {
+        usuarioService.createUsuario(usuario);
+        return "redirect:/usuarios/all";
+    }
 
     // Update
-//    @GetMapping("/update/{id}")
-//    public String updateUsuarioPage(
-//            @PathVariable("id") Integer id, Model model) {
-//        model.addAttribute("entity", usuarioService.findById(id));
-//        return "usuarios/user-update";
-//    }
-//
-//    @PutMapping("")
-//    public String updateUsuario(@ModelAttribute Usuario usuario, Model model) {
-//        Usuario updatedEntity = usuarioService.updateUsuario(usuario);
-//        model.addAttribute("entity", updatedEntity);
-//        return "usuarios/user-update";
-//    }
+    @GetMapping("/update/{id}")
+    public String updateUsuarioPage(
+            @PathVariable("id") Integer id, Model model) {
+        model.addAttribute("entity", usuarioService.findById(id));
+        Optional<Usuario> usuario = usuarioService.findById(id);
+        if (usuario.isPresent()) {
+            model.addAttribute("usuario", usuario.get());
+        return "usuarios/user-update";
+    }
 
+    @PutMapping("")
+    public String updateUsuario(@ModelAttribute Usuario usuario, Model model) {
+        Usuario updatedEntity = usuarioService.updateUsuario(usuario);
+        model.addAttribute("entity", updatedEntity);
+        return "usuarios/user-update";
+    }
 
 }
