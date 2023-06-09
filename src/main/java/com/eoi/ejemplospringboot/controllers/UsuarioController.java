@@ -11,12 +11,12 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/usuarios")
-public class UsuarioContreoller {
+public class UsuarioController {
 
     private final UsuarioService usuarioService;
 
     @Autowired
-    public UsuarioContreoller(UsuarioService usuarioService) {
+    public UsuarioController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
     }
 
@@ -28,14 +28,9 @@ public class UsuarioContreoller {
         return "usuarios/all-users";
     }
     // Show
-    @GetMapping("{id}")
-    public String getUsuarioById(
-            @PathVariable Integer id, Model model) {
-        model.addAttribute("entity", usuarioService.findById(id));
-        return "usuarios/user-create";
-    }
+
     // Delete
-    @GetMapping("delete/{id}")
+    @GetMapping("{id}/delete")
     public String deleteUsuarioById(
             @PathVariable("id") Integer id) {
         usuarioService.deleteUsuarioById(id);
@@ -54,22 +49,19 @@ public class UsuarioContreoller {
         return "redirect:/usuarios/all";
     }
 
-    // Update
-    @GetMapping("/update/{id}")
-    public String updateUsuarioPage(
+    // Update & Show
+    @GetMapping("/{id}")
+    public String updateUsuarioForm(
             @PathVariable("id") Integer id, Model model) {
         model.addAttribute("entity", usuarioService.findById(id));
         Optional<Usuario> usuario = usuarioService.findById(id);
-        if (usuario.isPresent()) {
-            model.addAttribute("usuario", usuario.get());
+        usuario.ifPresent(value -> model.addAttribute("usuario", value));
         return "usuarios/user-update";
     }
-
-    @PutMapping("")
-    public String updateUsuario(@ModelAttribute Usuario usuario, Model model) {
-        Usuario updatedEntity = usuarioService.updateUsuario(usuario);
-        model.addAttribute("entity", updatedEntity);
-        return "usuarios/user-update";
+    @PostMapping("/{id}")
+    public String updateUsuario(@ModelAttribute Usuario usuario){
+        usuarioService.updateUsuario(usuario);
+        return "redirect:/usuarios/all";
     }
 
 }

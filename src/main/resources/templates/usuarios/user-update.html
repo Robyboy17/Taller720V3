@@ -8,7 +8,7 @@
 <body>
 <div class="container">
     <h1>Editar Usuario</h1>
-    <form th:object="${entity}" th:action="@{/usuarios/update}" method="PUT" th:method="PUT">
+    <form th:object="${usuario}" method="POST" th:method="POST">
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input type="text" class="form-control" id="username" name="username" th:field="*{username}">
