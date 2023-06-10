@@ -8,7 +8,6 @@ import java.util.Optional;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     Optional<Usuario> findByUsername(String username);
-
     Optional<Usuario> findByEmail(String email);
     @Query("Select count(id) from Usuario where email= ?1 and password = ?2")
     Integer repValidarPassword(String email, String password);
