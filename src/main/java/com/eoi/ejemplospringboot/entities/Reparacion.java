@@ -29,8 +29,8 @@ public class Reparacion {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Usuario> usuarios;
 
-    @ManyToOne
-    private Cliente cliente;
+//    @ManyToOne
+//    private Cliente cliente;
 
 //    @ManyToOne
 //    private Coche coche;
@@ -44,11 +44,12 @@ public class Reparacion {
     @Column
     private String duracion;
 
-    @Column
+    @Column(name = "fecha_inicio")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDateTime fechaDeInicio;
 
-    @Column
+
+    @Column(name = "fecha_fin")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDateTime fechaDeFin;
 
