@@ -25,6 +25,9 @@
         <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
           <a class="nav-link" th:href="@{/roles/all}">Roles</a>
         </li>
+        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+          <a class="nav-link" th:href="@{/combustibles/all}">Combustibles</a>
+        </li>
         <li class="nav-item" sec:authorize="hasRole('ROLE_USUARIO')">
           <a class="nav-link" th:href="@{/roles/all}">Reparaciones</a>
         </li>

@@ -33,7 +33,7 @@ public class CombustibleController {
     public String deleteCombustibleById(
             @PathVariable("id") Long id) {
         combustibleService.deleteCombustibleById(id);
-        return "combustibles/all-combustibles";
+        return "redirect:/combustibles/all";
     }
 
     // Create
@@ -41,7 +41,7 @@ public class CombustibleController {
     public String addCombutibleForm(
             Model model) {
         model.addAttribute("combustible", new Combustible());
-        return "combustiles/all-combustibles";
+        return "combustibles/combustible-create";
     }
 
     @PostMapping("/create")
@@ -58,13 +58,13 @@ public class CombustibleController {
         model.addAttribute("entity", combustibleService.findById(id));
         Optional<Combustible> combustible = combustibleService.findById(id);
         combustible.ifPresent(value -> model.addAttribute("combustible", value));
-        return "combustibles/combustible-uptade";
+        return "combustibles/combustible-update";
     }
 
     @PostMapping("/{id}")
     public String updateCombustible(@ModelAttribute Combustible combustible) {
         combustibleService.updateCombustible(combustible);
-        return "redirect:/combustible/all";
+        return "redirect:/combustibles/all";
     }
 
 }

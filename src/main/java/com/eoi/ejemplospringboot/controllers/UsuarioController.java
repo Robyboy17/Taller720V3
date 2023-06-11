@@ -44,7 +44,8 @@ public class UsuarioController {
     }
 
     @PostMapping("/create")
-    public String createUsuario(@ModelAttribute("usuario") Usuario usuario) {
+    public String createUsuario(
+            @ModelAttribute("usuario") Usuario usuario) {
         usuarioService.createUsuario(usuario);
         return "redirect:/usuarios/all";
     }
