@@ -33,7 +33,7 @@ public class ReparacionController {
     public String deleteReparacionById(
             @PathVariable("id") Integer id) {
         reparacionService.deleteReparacionById(id);
-        return "redirect:/reparacion/all";
+        return "redirect:/reparaciones/all";
     }
 
     @GetMapping("/{id}")
