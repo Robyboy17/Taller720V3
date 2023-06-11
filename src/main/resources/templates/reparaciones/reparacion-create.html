@@ -8,7 +8,7 @@
 <body>
 <div class="container">
     <h1>Crear Usuario</h1>
-    <form th:object="${reparacion}" th:action="@{/reparacion/create}" method="POST" th:method="POST">
+    <form th:object="${reparacion}" th:action="@{/templates/reparaciones/create}" method="POST" th:method="POST">
         <div class="mb-3">
             <label for="descripcion" class="form-label">Descripción</label>
             <input type="text" class="form-control" id="descripcion" name="descripcion" th:field="*{descripcion}">
