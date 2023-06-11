@@ -27,7 +27,6 @@ public class UsuarioController {
         model.addAttribute("entities",usuarioService.findAll());
         return "usuarios/all-users";
     }
-    // Show
 
     // Delete
     @GetMapping("{id}/delete")

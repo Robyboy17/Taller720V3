@@ -29,14 +29,14 @@
           <a class="nav-link" th:href="@{/roles/all}">Reparaciones</a>
         </li>
         <li class="nav-item" sec:authorize="!isAuthenticated()">
-          <form th:action="@{/login}" method="post">
+          <a th:href="@{/login}">
             <div><input class="btn btn-primary" type="submit" value="Sign In"/></div>
-          </form>
+          </a>
         </li>
         <li class="nav-item" sec:authorize="isAuthenticated()">
-          <form th:action="@{/logout}" method="post">
+          <a th:href="@{/usuarios/logout}">
             <div><input class="btn btn-primary" type="submit" value="Sign out"/></div>
-          </form>
+          </a>
         </li>
       </ul>
     </div>
