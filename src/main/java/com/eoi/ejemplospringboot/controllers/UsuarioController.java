@@ -35,6 +35,7 @@ public class UsuarioController {
         usuarioService.deleteUsuarioById(id);
         return "redirect:/usuarios/all";
     }
+
     // Create
     @GetMapping("new")
     public String addUsuarioForm(Model model) {
@@ -58,7 +59,7 @@ public class UsuarioController {
         return "usuarios/user-update";
     }
     @PostMapping("/{id}")
-    public String updateUsuario(@ModelAttribute Usuario usuario){
+    public String updateUsuario(@ModelAttribute Usuario usuario) {
         usuarioService.updateUsuario(usuario);
         return "redirect:/usuarios/all";
     }
