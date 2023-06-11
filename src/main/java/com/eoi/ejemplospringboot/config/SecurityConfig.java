@@ -59,6 +59,7 @@ https://www.baeldung.com/spring-security-csrf
                 .requestMatchers("/fonts/**").permitAll()
                 .requestMatchers("/*").permitAll()
                 .requestMatchers("/reparaciones/**").permitAll()
+                .requestMatchers("/reparaciones/**").permitAll()
                 .requestMatchers( HttpMethod.POST,"/**").permitAll()
                 .anyRequest().authenticated()
 
