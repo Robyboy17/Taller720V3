@@ -5,27 +5,34 @@
     <title>Title</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script th:inline="javascript">
-        $(document).ready(function() {
-            $('#marca').on('change', function() {
-                var marcaId = $(this).val();
-                if (marcaId) {
-                    $.ajax({
-                        url: '/coches/modelos',
-                        data: {
-                            'marcaId': marcaId
-                        },
-                        success: function(data) {
-                            $('#modelo').html('');
-                            $.each(data, function(index, modelo) {
-                                $('#modelo').append('<option value="' + modelo.id + '">' + modelo.nombre + '</option>');
-                            });
-                        }
-                    });
-                } else {
-                    $('#modelo').html('<option value="">Selecciona primero una marca</option>');
-                }
-            });
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            var marcaId = document.getElementById('marca').value;
+            var modeloId = document.getElementById('modelo').value;
+
+            // Seleccionar la marca y el modelo correspondientes
+            document.getElementById('marca').value = marcaId;
+            document.getElementById('modelo').value = modeloId;
+
+            // Actualizar el campo de selección de modelos al cargar la página
+            if (marcaId) {
+                $.ajax({
+                    url: '/coches/modelos',
+                    data: {
+                        'marcaId': marcaId
+                    },
+                    success: function(data) {
+                        $('#modelo').html('');
+                        $.each(data, function(index, modelo) {
+                            var option = $('<option></option>')
+                                .attr('value', modelo.id)
+                                .text(modelo.nombre)
+                                .prop('selected', modelo.id === modeloId);
+                            $('#modelo').append(option);
+                        });
+                    }
+                });
+            }
         });
     </script>
 </head>
@@ -35,88 +42,52 @@
     <form th:object="${coche}" th:action="@{/coches/{id}(id=${coche.id})}" method="post">
         <div class="mb-3">
             <label>Marca:</label>
-            <select id="marca" th:field="*{marca.id}">
+            <label for="marca"></label><select class="form-select" id="marca" th:field="*{marca.id}">
                 <option th:each="marca : ${marcas}" th:value="${marca.id}" th:text="${marca.nombre}"></option>
             </select>
         </div>
         <div class="mb-3">
             <label>Modelo:</label>
-            <select id="modelo" th:field="*{modelo.id}">
+            <label for="modelo"></label><select class="form-select" id="modelo" th:field="*{modelo.id}">
                 <option value="">Selecciona primero una marca</option>
             </select>
         </div>
         <div class="mb-3">
-            <label>Combustible:</label>
-            <select th:field="*{combustible}">
-                <option th:each="combustible : ${combustibles}" th:value="${combustible.id}" th:text="${combustible.nombre}"></option>
-            </select>
+            <label>Combustible:</label><br>
+            <label>
+                <select class="form-select" th:field="*{combustible}">
+                    <option th:each="combustible : ${combustibles}" th:value="${combustible.id}" th:text="${combustible.nombre}"></option>
+                </select>
+            </label>
         </div>
         <div class="mb-3">
-            <label for="anio" class="form-label">Año</label>
-            <input type="text" class="form-control" id="anio" name="anio" th:field="*{anio}">
+            <label for="anio" class="form-label">Año:</label>
+            <select class="form-select" id="anio" name="anio" th:field="*{anio}">
+                <option value="">Selecciona un año</option>
+                <script>
+                    var fechaActual = new Date().getFullYear();
+                    var fechaInicial = 1900; // establecer el año de inicio que desees
+
+                    for (var i = fechaActual; i >= fechaInicial; i--) {
+                        document.write('<option value="' + i + '">' + i + '</option>');
+                    }
+                </script>
+                <option th:each="year : ${years}" th:value="${year}" th:text="${year}" th:selected="${year == coche.anio}"></option>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 </div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        var marcaId = document.getElementById('marca').value;
+        var modeloId = document.getElementById('modelo').value;
+
+        // Seleccionar la marca y el modelo correspondientes
+        document.getElementById('marca').value = marcaId;
+        document.getElementById('modelo').value = modeloId;
+    });
+</script>
 </body>
 </html>
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Título</title>-->
-<!--    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />-->
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
-<!--    <script th:inline="javascript">-->
-<!--        $(document).ready(function() {-->
-<!--            $('#marca').on('change', function() {-->
-<!--                var marcaId = $(this).val();-->
-<!--                if (marcaId) {-->
-<!--                    $.ajax({-->
-<!--                        url: '/coches/modelos',-->
-<!--                        data: {-->
-<!--                            'marcaId': marcaId-->
-<!--                        },-->
-<!--                        success: function(data) {-->
-<!--                            $('#modelo').html('');-->
-<!--                            $.each(data, function(index, modelo) {-->
-<!--                                $('#modelo').append('<option value="' + modelo.id + '">' + modelo.nombre + '</option>');-->
-<!--                            });-->
-<!--                        }-->
-<!--                    });-->
-<!--                } else {-->
-<!--                    $('#modelo').html('<option value="">Selecciona primero una marca</option>');-->
-<!--                }-->
-<!--            });-->
-<!--        });-->
-<!--    </script>-->
-<!--</head>-->
-<!--<body>-->
-<!--<div class="container">-->
-<!--    <h1>Editar coche</h1>-->
-<!--    <form th:object="${coche}" th:action="@{/coches/{id}(id=${coche.id})}" method="post">-->
-<!--        <div class="mb-3">-->
-<!--            <label>Marca:</label>-->
-<!--            <select id="marca" th:field="*{marca.id}">-->
-<!--                <option th:each="marca : ${marcas}" th:value="${marca.id}" th:text="${marca.nombre}"></option>-->
-<!--            </select>-->
-<!--        </div>-->
-<!--        <div class="mb-3">-->
-<!--            <label>Modelo:</label>-->
-<!--            <select id="modelo" th:field="*{modelo.id}">-->
-<!--                <option value="">Selecciona primero una marca</option>-->
-<!--            </select>-->
-<!--        </div>-->
-<!--        <div class="mb-3">-->
-<!--            <label>Combustible:</label>-->
-<!--            <select th:field="*{combustible}">-->
-<!--                <option th:each="combustible : ${combustibles}" th:value="${combustible.id}" th:text="${combustible.nombre}"></option>-->
-<!--            </select>-->
-<!--        </div>-->
-<!--        <div class="mb-3">-->
-<!--            <label for="anio" class="form-label">Año:</label>-->
-<!--            <input type="text" class="form-control" id="anio" name="anio" th:field="*{anio}" />-->
-<!--        </div>-->
-<!--        <button type="submit" class="btn btn-primary">-->

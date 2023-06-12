@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Year;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,7 +67,6 @@ public class CocheController {
         model.addAttribute("modelos", modelos);
         model.addAttribute("marcas", marcas);
         model.addAttribute("combustibles", combustibles);
-
         return "coches/coche-create";
     }
 
@@ -84,14 +85,15 @@ public class CocheController {
     }
 
     // Update & Show
-//    @GetMapping("/{id}")
-//    public String updateCocheForm(
-//            @PathVariable("id") Long id, Model model) {
-//        model.addAttribute("entity", cocheService.findById(id));
-//        Optional<Coche> coche = cocheService.findById(id);
-//        coche.ifPresent(value -> model.addAttribute("coche", value));
-//        return "coches/coche-update";
-//    }
+
+    private List<Integer> getYears() {
+        int currentYear = Year.now().getValue();
+        List<Integer> years = new ArrayList<>();
+        for (int year = currentYear; year >= 1900; year--) {
+            years.add(year);
+        }
+        return years;
+    }
 
     @GetMapping("/{id}")
     public String updateCocheForm(
@@ -102,12 +104,15 @@ public class CocheController {
             List<Modelo> modelos = modeloRepository.findByMarcaId(Long.valueOf(coche.get().getMarca().getId()));
             List<Marca> marcas = marcaRepository.findAll();
             List<Combustible> combustibles = combustibleRepository.findAll();
+            List<Integer> years = getYears();
             model.addAttribute("modelos", modelos);
             model.addAttribute("marcas", marcas);
             model.addAttribute("combustibles", combustibles);
+            model.addAttribute("years", years);
             return "coches/coche-update";
         } else {
             // Manejar el caso en el que el coche no existe
+            // TODO pantalla not found
             return "redirect:/coches/all";
         }
     }

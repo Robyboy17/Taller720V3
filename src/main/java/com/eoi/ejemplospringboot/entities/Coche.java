@@ -26,6 +26,6 @@ public class Coche {
     @OneToOne
     private Combustible combustible;
 
-    private int anio;
+    private Integer anio;
 
 }
