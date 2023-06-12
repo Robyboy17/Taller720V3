@@ -27,7 +27,6 @@ public class UsuarioController {
         model.addAttribute("entities",usuarioService.findAll());
         return "usuarios/all-users";
     }
-    // Show
 
     // Delete
     @GetMapping("{id}/delete")
@@ -36,6 +35,7 @@ public class UsuarioController {
         usuarioService.deleteUsuarioById(id);
         return "redirect:/usuarios/all";
     }
+
     // Create
     @GetMapping("new")
     public String addUsuarioForm(Model model) {
@@ -44,7 +44,8 @@ public class UsuarioController {
     }
 
     @PostMapping("/create")
-    public String createUsuario(@ModelAttribute("usuario") Usuario usuario) {
+    public String createUsuario(
+            @ModelAttribute("usuario") Usuario usuario) {
         usuarioService.createUsuario(usuario);
         return "redirect:/usuarios/all";
     }
@@ -59,7 +60,7 @@ public class UsuarioController {
         return "usuarios/user-update";
     }
     @PostMapping("/{id}")
-    public String updateUsuario(@ModelAttribute Usuario usuario){
+    public String updateUsuario(@ModelAttribute Usuario usuario) {
         usuarioService.updateUsuario(usuario);
         return "redirect:/usuarios/all";
     }

@@ -8,8 +8,6 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.Set;
 
 /**
  * Clase que representa a un Usuario en el sistema.

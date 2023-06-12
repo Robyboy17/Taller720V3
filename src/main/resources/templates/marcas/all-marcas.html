@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Todas las entidades</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
+
+<div class="container">
+    <h1>Todas las entidades</h1>
+    <a th:href="@{/marcas/new}" class="btn btn-primary mb-2">Añadir marca</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <!-- Nueva columna para las acciones -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="marca : ${entities}">
+            <td th:text="${marca.id}"></td>
+            <td th:text="${marca.nombre}"></td>
+            <td>
+                <a th:href="@{/marcas/{id}(id=${marca.id})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/marcas/{id}/delete(id=${marca.id})}" class="btn btn-danger">Eliminar</a>
+            </td> <!-- Columna para los botones de edición y eliminación -->
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
