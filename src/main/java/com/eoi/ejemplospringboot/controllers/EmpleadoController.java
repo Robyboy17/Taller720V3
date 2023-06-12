@@ -22,7 +22,7 @@ public class EmpleadoController {
     @GetMapping("/all")
     public String getAllEmpleados(Model model) {
         model.addAttribute("entities",empleadoService.findAll());
-        return "empleado";
+        return "empleados/all-empleados";
     }
 
     // Delete
@@ -33,7 +33,7 @@ public class EmpleadoController {
         return "redirect:/empleados/all";
     }
     // Create
-    @GetMapping("new")
+    @GetMapping("/create")
     public String addEmpleadoForm(Model model) {
         model.addAttribute("empleado", new Empleado());
         return "empleados/empleado-create";
@@ -42,7 +42,7 @@ public class EmpleadoController {
     @PostMapping("/create")
     public String createEmpleado(@ModelAttribute("empleado") Empleado empleado) {
         empleadoService.createEmpleado(empleado);
-        return "redirect:/empleados/all-empleados";
+        return "redirect:/empleados/all";
     }
 
     // Update & Show
