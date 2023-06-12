@@ -3,6 +3,7 @@ package com.eoi.ejemplospringboot.controllers;
 import com.eoi.ejemplospringboot.MyControllerTestInterface;
 import com.eoi.ejemplospringboot.entities.Empleado;
 import com.eoi.ejemplospringboot.errorcontrol.exceptions.MiEntidadNoEncontradaException;
+import com.eoi.ejemplospringboot.services.EmpleadoService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -39,6 +39,7 @@ public class Usuario {
     /**
      * Apellido del Usuario.
      */
+    @Column(name = "Apellidos")
     private String apellido;
 
     private String email;
@@ -75,8 +76,8 @@ public class Usuario {
     /**
      * Empleado asociado al Usuario (opcional).
      */
-    @OneToOne(optional = true)
-    private Empleado empleado;
+//    @OneToOne(optional = true)
+//    private Empleado empleado;
 
 }
 
