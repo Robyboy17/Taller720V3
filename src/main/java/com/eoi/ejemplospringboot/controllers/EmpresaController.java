@@ -60,6 +60,6 @@ public class EmpresaController {
     @PostMapping("/{id}")
     public String updateEmpresa(@ModelAttribute Empresa empresa) {
         empresaService.updateEmpresa(empresa);
-        return "redirect:/usuarios/all";
+        return "redirect:/empresas/all";
     }
 }
