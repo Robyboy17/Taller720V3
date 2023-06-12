@@ -39,11 +39,11 @@ https://www.baeldung.com/spring-security-csrf
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.formLogin(form -> form
-                        .loginPage("/usuarios/login")
-                        .failureUrl("/login-error")
-                        .defaultSuccessUrl("/",true)
-                        .permitAll()
-                );
+                .loginPage("/usuarios/login")
+                .failureUrl("/login-error")
+                .defaultSuccessUrl("/",true)
+                .permitAll()
+        );
         http.logout(logout -> logout
                         .logoutUrl("/usuarios/logout")
                         .logoutSuccessUrl("/")
@@ -51,15 +51,13 @@ https://www.baeldung.com/spring-security-csrf
                         .invalidateHttpSession(true)
                         .addLogoutHandler(logoutHandler)
                         .deleteCookies(cookieNamesToClear)*/
-                );
+        );
         http.authorizeHttpRequests()
                 .requestMatchers("/js/**").permitAll()
                 .requestMatchers("/img/**").permitAll()
                 .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/fonts/**").permitAll()
                 .requestMatchers("/*").permitAll()
-                .requestMatchers("/reparaciones/**").permitAll()
-                .requestMatchers("/reparaciones/**").permitAll()
                 .requestMatchers( HttpMethod.POST,"/**").permitAll()
                 .anyRequest().authenticated()
 

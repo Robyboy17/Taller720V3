@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Todas las entidades</title>
+    <title>Reparaciones</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
+<div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
 <div class="container">
-    <h1>Todas las entidades</h1>
+    <h1>Reparaciones</h1>
     <a th:href="@{/reparaciones/new}" class="btn btn-primary mb-2">Añadir reparación</a>
     <table class="table table-striped">
         <thead>

@@ -1,4 +1,5 @@
 package com.eoi.ejemplospringboot.entities;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,9 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Set;
-
 
 @Getter
 @Setter
@@ -46,11 +46,10 @@ public class Reparacion {
 
     @Column(name = "fecha_inicio")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDateTime fechaDeInicio;
-
+    private LocalDate fechaDeInicio;
 
     @Column(name = "fecha_fin")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDateTime fechaDeFin;
+    private LocalDate fechaDeFin;
 
 }
