@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 @Controller
-@RequestMapping("/empresa")
+@RequestMapping("/empresas")
 public class EmpresaController {
     private final EmpresaService empresaService;
 
@@ -23,7 +23,7 @@ public class EmpresaController {
     public String getAllEmpresas(
             Model model) {
         model.addAttribute("entities",empresaService.findAll());
-        return "empresa/all-empresas";
+        return "empresas/all-empresas";
     }
 
     // Delete
@@ -31,14 +31,14 @@ public class EmpresaController {
     public String deleteEmpresaById(
             @PathVariable("id") Integer id) {
         empresaService.deleteEmpresaById(id);
-        return "redirect:/empresa/all";
+        return "redirect:/empresas/all";
     }
 
     // Create
     @GetMapping("new")
     public String addEmpresaForm(Model model) {
         model.addAttribute("empresa", new Empresa());
-        return "empresa/empresas-create";
+        return "empresas/empresa-create";
     }
 
     @PostMapping("/create")
@@ -55,7 +55,7 @@ public class EmpresaController {
         model.addAttribute("entity", empresaService.findById(id));
         Optional<Empresa> empresa = empresaService.findById(id);
         empresa.ifPresent(value -> model.addAttribute("empresa", value));
-        return "empresa/empresas-update";
+        return "empresas/empresa-update";
     }
     @PostMapping("/{id}")
     public String updateEmpresa(@ModelAttribute Empresa empresa) {

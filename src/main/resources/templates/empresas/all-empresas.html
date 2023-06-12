@@ -8,7 +8,7 @@
 <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
 <div class="container">
     <h1>Empresas</h1>
-    <a th:href="@{/empresa/new}" class="btn btn-primary mb-2">Añadir empresa</a>
+    <a th:href="@{/empresas/new}" class="btn btn-primary mb-2">Añadir empresa</a>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -26,17 +26,17 @@
         <tbody>
         <tr th:each="empresa : ${entities}">
             <td th:text="${empresa.id}"></td>
-            <td th:text="${empresa.nombre}"></td>
+            <td th:text="${empresa.name}"></td>
             <td th:text="${empresa.sociedad}"></td>
             <td th:text="${empresa.direccion}"></td>
-            <td th:text="${empresa.codigoPostal}"></td>
+            <td th:text="${empresa.codigo_postal}"></td>
             <td th:text="${empresa.telefono}"></td>
             <td th:text="${empresa.email}"></td>
             <td th:text="${empresa.web}"></td>
 
             <td>
-                <a th:href="@{/empresa/{id}(id=${empresa.id})}" class="btn btn-primary">Editar</a>
-                <a th:href="@{/empresa/{id}/delete(id=${empresa.id})}" class="btn btn-danger">Eliminar</a>
+                <a th:href="@{/empresas/{id}(id=${empresa.id})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/empresas/{id}/delete(id=${empresa.id})}" class="btn btn-danger">Eliminar</a>
             </td> <!-- Columna para los botones de edición y eliminación -->
         </tr>
         </tbody>

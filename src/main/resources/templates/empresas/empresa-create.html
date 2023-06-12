@@ -8,10 +8,10 @@
 <body>
 <div class="container">
     <h1>Crear Empresa</h1>
-    <form th:object="${empresa}" th:action="@{/empresa/create}" method="POST" th:method="POST">
+    <form th:object="${empresa}" th:action="@{/empresas/create}" method="POST" th:method="POST">
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}">
+            <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{name}">
         </div>
         <div class="mb-3">
             <label for="sociedad" class="form-label">Sociedad</label>
@@ -23,7 +23,7 @@
         </div>
         <div class="mb-3">
             <label for="codigoPostal" class="form-label">Código Postal</label>
-            <input type="text" class="form-control" id="codigoPostal" name="codigoPostal" th:field="*{{codigoPostal}}">
+            <input type="text" class="form-control" id="codigoPostal" name="codigoPostal" th:field="*{{codigo_postal}}">
         </div>
         <div class="mb-3">
             <label for="telefono" class="form-label">Teléfono</label>
