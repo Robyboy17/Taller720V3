@@ -5,8 +5,9 @@
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
+<div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
 <div class="container">
-    <h1>Todas las entidades</h1>
+    <h1>Modelos</h1>
     <a th:href="@{/modelos/new}" class="btn btn-primary mb-2">Añadir modelo</a>
     <table class="table table-striped">
         <thead>

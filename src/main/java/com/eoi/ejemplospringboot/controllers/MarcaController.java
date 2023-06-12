@@ -45,7 +45,8 @@ public class MarcaController {
     }
 
     @PostMapping("/create")
-    public String createMarca(@ModelAttribute("marca") Marca marca) {
+    public String createMarca(
+            @ModelAttribute("marca") Marca marca) {
         marcaService.createMarca(marca);
         return "redirect:/marcas/all";
     }
@@ -57,7 +58,7 @@ public class MarcaController {
         model.addAttribute("entity", marcaService.findById(id));
         Optional<Marca> marca = marcaService.findById(id);
         marca.ifPresent(value -> model.addAttribute("marca", value));
-        return "marca/marca-update";
+        return "marcas/marca-update";
     }
     @PostMapping("/{id}")
     public String updateMarca(@ModelAttribute Marca marca){

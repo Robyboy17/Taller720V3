@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
+<div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
+
 <div class="container">
     <h1>Todas las entidades</h1>
     <a th:href="@{/marcas/new}" class="btn btn-primary mb-2">Añadir marca</a>
@@ -18,6 +20,7 @@
         </thead>
         <tbody>
         <tr th:each="marca : ${entities}">
+            <td th:text="${marca.id}"></td>
             <td th:text="${marca.nombre}"></td>
             <td>
                 <a th:href="@{/marcas/{id}(id=${marca.id})}" class="btn btn-primary">Editar</a>
