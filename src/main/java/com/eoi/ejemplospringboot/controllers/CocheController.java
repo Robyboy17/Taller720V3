@@ -70,13 +70,6 @@ public class CocheController {
         return "coches/coche-create";
     }
 
-    @GetMapping("/modelos")
-    @ResponseBody
-    public List<Modelo> getModelos(Long marcaId){
-        return modeloRepository.findByMarcaId(marcaId);
-    }
-
-
     @PostMapping("/create")
     public String createCoche(
             @ModelAttribute("coche") Coche coche) {
@@ -85,6 +78,12 @@ public class CocheController {
     }
 
     // Update & Show
+
+    @GetMapping("/modelos")
+    @ResponseBody
+    public List<Modelo> getModelos(Long marcaId){
+        return modeloRepository.findByMarcaId(marcaId);
+    }
 
     private List<Integer> getYears() {
         int currentYear = Year.now().getValue();

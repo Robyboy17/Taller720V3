@@ -14,13 +14,15 @@
         <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <!-- Nueva columna para las acciones -->
+            <th>Marca</th>
+            <th>Acciones</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="modelo : ${entities}">
             <td th:text="${modelo.id}"></td>
             <td th:text="${modelo.nombre}"></td>
+            <td th:text="${modelo.marca.nombre}"></td>
             <td>
                 <a th:href="@{/modelos/{id}(id=${modelo.id})}" class="btn btn-primary">Editar</a>
                 <a th:href="@{/modelos/{id}/delete(id=${modelo.id})}" class="btn btn-danger">Eliminar</a>
