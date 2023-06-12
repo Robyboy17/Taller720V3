@@ -22,7 +22,7 @@ public class EmpleadoController {
     @GetMapping("/all")
     public String getAllEmpleados(Model model) {
         model.addAttribute("entities",empleadoService.findAll());
-        return "empleados";
+        return "empleado";
     }
 
     // Delete
@@ -42,7 +42,7 @@ public class EmpleadoController {
     @PostMapping("/create")
     public String createEmpleado(@ModelAttribute("empleado") Empleado empleado) {
         empleadoService.createEmpleado(empleado);
-        return "redirect:/empleados/all";
+        return "redirect:/empleados/all-empleados";
     }
 
     // Update & Show

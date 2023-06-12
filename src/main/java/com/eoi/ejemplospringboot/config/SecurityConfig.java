@@ -26,6 +26,7 @@ public class SecurityConfig {
     @Autowired
     private UserDetailsService userDetailsService;
 
+
     /*
 
     https://stackoverflow.com/questions/75080739/spring-security-6-post-requests-are-unauthorised-with-permitall
@@ -56,6 +57,7 @@ https://www.baeldung.com/spring-security-csrf
                 .requestMatchers("/js/**").permitAll()
                 .requestMatchers("/img/**").permitAll()
                 .requestMatchers("/css/**").permitAll()
+                .requestMatchers("/empleados/**").permitAll()
                 .requestMatchers("/fonts/**").permitAll()
                 .requestMatchers("/*").permitAll()
                 .requestMatchers( HttpMethod.POST,"/**").permitAll()
@@ -69,6 +71,7 @@ https://www.baeldung.com/spring-security-csrf
                 .csrf().disable()
                 .cors().disable()
                 .authenticationProvider(authenticationProvider());
+
 
         return http.build();
 
@@ -85,6 +88,4 @@ https://www.baeldung.com/spring-security-csrf
     static GrantedAuthorityDefaults grantedAuthorityDefaults() {
         return new GrantedAuthorityDefaults("ROLE_");
     }
-
-
 }
