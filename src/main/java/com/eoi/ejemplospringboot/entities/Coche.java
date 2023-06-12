@@ -17,10 +17,15 @@ public class Coche {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String marca;
+    @OneToOne
+    private Marca marca;
 
-    private String modelo;
+    @OneToOne
+    private Modelo modelo;
 
-    private String anio;
+    @OneToOne
+    private Combustible combustible;
+
+    private int anio;
 
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todas las entidades</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
+<div class="container">
+  <h1>Coches</h1>
+  <a th:href="@{/coches/new}" class="btn btn-primary mb-2">Añadir coche</a>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Combustible</th>
+      <th>Año</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="coche : ${entities}">
+      <td th:text="${coche.id}"></td>
+      <td th:text="${coche.marca}"></td>
+      <td th:text="${coche.modelo}"></td>
+      <td th:text="${coche.combustible}"></td>
+      <td th:text="${coche.anio}"></td>
+      <td>
+        <a th:href="@{/coches/{id}(id=${coche.id})}" class="btn btn-primary">Editar</a>
+        <a th:href="@{/coches/{id}/delete(id=${coche.id})}" class="btn btn-danger">Eliminar</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

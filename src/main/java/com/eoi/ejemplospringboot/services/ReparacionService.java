@@ -33,7 +33,8 @@ public class ReparacionService {
     public void deleteReparacionById(Integer reparacionId) {
         boolean exists = repository.existsById(reparacionId);
         if (!exists) {
-            throw new IllegalStateException("La reparacion con el " + reparacionId + " no existe");
+            throw new IllegalStateException("La reparacion con el " +
+                    reparacionId + " no existe");
         }
         repository.deleteById(reparacionId);
     }

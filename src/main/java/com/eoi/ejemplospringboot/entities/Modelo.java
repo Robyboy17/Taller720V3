@@ -21,10 +21,13 @@ public class Modelo {
     @Column
     private String nombre;
 
-//    @Column
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    private Marca marca;
+    @ManyToOne
+    private Marca marca;
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
 
 }
 

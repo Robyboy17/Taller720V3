@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script th:inline="javascript">
+        $(document).ready(function() {
+            $('#marca').on('change', function() {
+                var marcaId = $(this).val();
+                if (marcaId) {
+                    $.ajax({
+                        url: '/coches/modelos',
+                        data: {
+                            'marcaId': marcaId
+                        },
+                        success: function(data) {
+                            $('#modelo').html('');
+                            $.each(data, function(index, modelo) {
+                                $('#modelo').append('<option value="' + modelo.id + '">' + modelo.nombre + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('#modelo').html('<option value="">Selecciona primero una marca</option>');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>Editar coche</h1>
+    <form th:object="${coche}" th:action="@{/coches/{id}(id=${coche.id})}" method="post">
+        <div class="mb-3">
+            <label>Marca:</label>
+            <select id="marca" th:field="*{marca.id}">
+                <option th:each="marca : ${marcas}" th:value="${marca.id}" th:text="${marca.nombre}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label>Modelo:</label>
+            <select id="modelo" th:field="*{modelo.id}">
+                <option value="">Selecciona primero una marca</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label>Combustible:</label>
+            <select th:field="*{combustible}">
+                <option th:each="combustible : ${combustibles}" th:value="${combustible.id}" th:text="${combustible.nombre}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="anio" class="form-label">Año</label>
+            <input type="text" class="form-control" id="anio" name="anio" th:field="*{anio}">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Título</title>-->
+<!--    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />-->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+<!--    <script th:inline="javascript">-->
+<!--        $(document).ready(function() {-->
+<!--            $('#marca').on('change', function() {-->
+<!--                var marcaId = $(this).val();-->
+<!--                if (marcaId) {-->
+<!--                    $.ajax({-->
+<!--                        url: '/coches/modelos',-->
+<!--                        data: {-->
+<!--                            'marcaId': marcaId-->
+<!--                        },-->
+<!--                        success: function(data) {-->
+<!--                            $('#modelo').html('');-->
+<!--                            $.each(data, function(index, modelo) {-->
+<!--                                $('#modelo').append('<option value="' + modelo.id + '">' + modelo.nombre + '</option>');-->
+<!--                            });-->
+<!--                        }-->
+<!--                    });-->
+<!--                } else {-->
+<!--                    $('#modelo').html('<option value="">Selecciona primero una marca</option>');-->
+<!--                }-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container">-->
+<!--    <h1>Editar coche</h1>-->
+<!--    <form th:object="${coche}" th:action="@{/coches/{id}(id=${coche.id})}" method="post">-->
+<!--        <div class="mb-3">-->
+<!--            <label>Marca:</label>-->
+<!--            <select id="marca" th:field="*{marca.id}">-->
+<!--                <option th:each="marca : ${marcas}" th:value="${marca.id}" th:text="${marca.nombre}"></option>-->
+<!--            </select>-->
+<!--        </div>-->
+<!--        <div class="mb-3">-->
+<!--            <label>Modelo:</label>-->
+<!--            <select id="modelo" th:field="*{modelo.id}">-->
+<!--                <option value="">Selecciona primero una marca</option>-->
+<!--            </select>-->
+<!--        </div>-->
+<!--        <div class="mb-3">-->
+<!--            <label>Combustible:</label>-->
+<!--            <select th:field="*{combustible}">-->
+<!--                <option th:each="combustible : ${combustibles}" th:value="${combustible.id}" th:text="${combustible.nombre}"></option>-->
+<!--            </select>-->
+<!--        </div>-->
+<!--        <div class="mb-3">-->
+<!--            <label for="anio" class="form-label">Año:</label>-->
+<!--            <input type="text" class="form-control" id="anio" name="anio" th:field="*{anio}" />-->
+<!--        </div>-->
+<!--        <button type="submit" class="btn btn-primary">-->
