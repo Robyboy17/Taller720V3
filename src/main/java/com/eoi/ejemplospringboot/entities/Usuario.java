@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.checkerframework.checker.units.qual.C;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -39,6 +40,7 @@ public class Usuario {
     /**
      * Apellido del Usuario.
      */
+    @Column(name = "Apellidos")
     private String apellido;
 
     private String email;
@@ -75,8 +77,8 @@ public class Usuario {
     /**
      * Empleado asociado al Usuario (opcional).
      */
-    @OneToOne(optional = true)
-    private Empleado empleado;
+//    @OneToOne(optional = true)
+//    private Empleado empleado;
 
 }
 
