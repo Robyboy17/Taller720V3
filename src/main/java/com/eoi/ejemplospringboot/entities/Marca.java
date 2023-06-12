@@ -20,5 +20,10 @@ public class Marca {
     @Column
     private String nombre;
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
 }
 
