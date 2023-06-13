@@ -6,16 +6,19 @@
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script th:inline="javascript">
+        // se ejecuta cuando el html esté listo
         $(document).ready(function() {
+            // está pendiente de cambios en el elemento con el id "marca"
             $('#marca').on('change', function() {
+                // recuperamos el elemento con el id marcaId
                 var marcaId = $(this).val();
                 if (marcaId) {
                     $.ajax({
-                        url: '/coches/modelos',
+                        url: '/coches/modelos', // hacemos petición al controlador
                         data: {
                             'marcaId': marcaId
                         },
-                        success: function(data) {
+                        success: function(data) { // select vacío
                             $('#modelo').html('');
                             $.each(data, function(index, modelo) {
                                 $('#modelo').append('<option value="' + modelo.id + '">' + modelo.nombre + '</option>');
@@ -56,11 +59,11 @@
         </div>
         <div class="mb-3">
             <label for="anio" class="form-label">Año:</label>
-            <select class="form-select" id="anio" name="anio" th:field="*{anio}">
+            <select class="form-select h-25 w-25" id="anio" name="anio" th:field="*{anio}">
                 <option value="">Selecciona un año</option>
                 <script>
                     var fechaActual = new Date().getFullYear();
-                    var fechaInicial = 1900; // establecer el año de inicio que desees
+                    var fechaInicial = 1971; // establecer el año de inicio xDD
 
                     for (var i = fechaActual; i >= fechaInicial; i--) {
                         document.write('<option value="' + i + '">' + i + '</option>');
