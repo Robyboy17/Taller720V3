@@ -1,6 +1,5 @@
 package com.eoi.ejemplospringboot.controllers;
 
-import com.eoi.ejemplospringboot.entities.Empresa;
 import com.eoi.ejemplospringboot.entities.Rol;
 import com.eoi.ejemplospringboot.services.RolService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,7 @@ public class RolController {
     // Delete
     @GetMapping("{id}/delete")
     public String deleteRolById(
-            @PathVariable("id") Integer id) {
+            @PathVariable("id") String id) {
         rolService.deleteRolById(id);
         return "redirect:/roles/all";
     }
@@ -41,7 +40,7 @@ public class RolController {
     @GetMapping("new")
     public String addRolForm(Model model) {
         model.addAttribute("rol", new Rol());
-        return "roles/roles-create";
+        return "roles/rol-create";
     }
 
     @PostMapping("/create")
@@ -54,11 +53,11 @@ public class RolController {
     // Update & Show
     @GetMapping("/{id}")
     public String updateRolForm(
-            @PathVariable("id") Integer id, Model model) {
+            @PathVariable("id") String id, Model model) {
         model.addAttribute("entity", rolService.findById(id));
         Optional<Rol> rol = rolService.findById(id);
         rol.ifPresent(value -> model.addAttribute("rol", value));
-        return "roles/roles-update";
+        return "roles/rol-update";
     }
     @PostMapping("/{id}")
     public String updateRol(@ModelAttribute Rol rol) {

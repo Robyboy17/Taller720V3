@@ -23,11 +23,11 @@ public class RolService {
         return repository.findAll();
     }
 
-    public Optional<Rol> findById(Integer id) {
+    public Optional<Rol> findById(String id) {
         return repository.findById(id);
     }
 
-    public void deleteRolById(Integer rolId) {
+    public void deleteRolById(String rolId) {
         boolean exists = repository.existsById(rolId);
         if (!exists) {
             throw new IllegalStateException("El rol con el " + rolId + " no existe");
@@ -40,7 +40,7 @@ public class RolService {
     }
 
     public void updateRol(Rol rol) {
-        Rol rolDb = repository.findById((int) rol.getId())
+        Rol rolDb = repository.findById( rol.getId())
                 .orElseThrow(() -> new IllegalStateException(
                         "El rol con el " + rol.getId() + " no existe"));
 
