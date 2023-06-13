@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/Rol")
+@RequestMapping("/roles")
 public class RolController {
 
     private final RolService rolService;
