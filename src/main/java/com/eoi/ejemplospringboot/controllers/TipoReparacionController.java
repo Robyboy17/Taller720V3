@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/tipo-reparaciones")
+@RequestMapping("/reparaciones/tipos")
 public class TipoReparacionController {
+
     private final TipoReparacionService tipoReparacionService;
 
     @Autowired
@@ -25,7 +26,7 @@ public class TipoReparacionController {
     public String getAllTipoReparaciones(
             Model model) {
         model.addAttribute("entities",tipoReparacionService.findAll());
-        return "tipo-reparaciones/all-tipo-reparaciones";
+        return "tipoReparaciones/all-tipoReparaciones";
     }
 
     // Delete
@@ -33,21 +34,21 @@ public class TipoReparacionController {
     public String deleteTipoReparacionById(
             @PathVariable("id") Integer id) {
         tipoReparacionService.deleteTipoReparacionById(id);
-        return "redirect:/tipo-reparaciones/all";
+        return "redirect:/reparaciones/tipos/all";
     }
 
     // Create
     @GetMapping("new")
     public String addTipoReparacionForm(Model model) {
         model.addAttribute("tipoReparacion", new TipoReparacion());
-        return "tipo-reparaciones/tipo-reparacion-create";
+        return "tipoReparaciones/tipoReparacion-create";
     }
 
     @PostMapping("/create")
     public String createTipoReparacion(
             @ModelAttribute("tipoReparacion") TipoReparacion tipoReparacion) {
         tipoReparacionService.createTipoReparacion(tipoReparacion);
-        return "redirect:/tipo-reparaciones/all";
+        return "redirect:/reparaciones/tipos/all";
     }
 
     // Update & Show
@@ -57,11 +58,13 @@ public class TipoReparacionController {
         model.addAttribute("entity", tipoReparacionService.findById(id));
         Optional<TipoReparacion> tipoReparacion = tipoReparacionService.findById(id);
         tipoReparacion.ifPresent(value -> model.addAttribute("tipoReparacion", value));
-        return "tipo-reparaciones/tipo-reparacion-update";
+        return "tipoReparaciones/tipoReparacion-update";
     }
+
     @PostMapping("/{id}")
     public String updateTipoReparacion(@ModelAttribute TipoReparacion tipoReparacion) {
         tipoReparacionService.updateTipoReparacion(tipoReparacion);
-        return "redirect:/tipo-reparaciones/all";
+        return "redirect:/reparaciones/tipos/all";
     }
+
 }

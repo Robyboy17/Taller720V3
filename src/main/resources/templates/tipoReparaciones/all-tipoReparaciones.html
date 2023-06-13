@@ -8,7 +8,7 @@
 <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
 <div class="container">
     <h1>Tipo de Reparaciones</h1>
-    <a th:href="@{/tipo-reparaciones/new}" class="btn btn-primary mb-2">Añadir Tipo de Reparación</a>
+    <a th:href="@{/reparaciones/tipos/new}" class="btn btn-primary mb-2">Añadir Tipo de Reparación</a>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -22,9 +22,9 @@
             <td th:text="${tiporeparacion.id}"></td>
             <td th:text="${tiporeparacion.nombre}"></td>
             <td>
-                <a th:href="@{/tiporeparaciones/{id}(id=${tiporeparacion.id})}" class="btn btn-primary">Editar</a>
-                <a th:href="@{/tiporeparaciones/{id}/delete(id=${tiporeparacion.id})}" class="btn btn-danger">Eliminar</a>
-            </td> <!-- Columna para los botones de edición y eliminación -->
+                <a th:href="@{/reparaciones/tipos/{id}(id=${tiporeparacion.id})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/reparaciones/tipos/{id}/delete(id=${tiporeparacion.id})}" class="btn btn-danger">Eliminar</a>
+            </td>
         </tr>
         </tbody>
     </table>
