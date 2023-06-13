@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Todas las entidades</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
+<div class="container">
+    <h1>Tipo de Reparaciones</h1>
+    <a th:href="@{/tipo-reparaciones/new}" class="btn btn-primary mb-2">Añadir Tipo de Reparación</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Acciones</th> <!-- Nueva columna para las acciones -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tiporeparacion : ${entities}">
+            <td th:text="${tiporeparacion.id}"></td>
+            <td th:text="${tiporeparacion.nombre}"></td>
+            <td>
+                <a th:href="@{/tiporeparaciones/{id}(id=${tiporeparacion.id})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/tiporeparaciones/{id}/delete(id=${tiporeparacion.id})}" class="btn btn-danger">Eliminar</a>
+            </td> <!-- Columna para los botones de edición y eliminación -->
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
