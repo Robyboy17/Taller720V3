@@ -22,6 +22,7 @@ public class Rol {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
+
     private String name;
 
     @OneToMany(mappedBy = "role")
