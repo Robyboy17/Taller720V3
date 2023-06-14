@@ -26,8 +26,8 @@
             <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" th:field="*{{fechaNacimiento}}">
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
+        <a th:href="@{/usuarios/all}" class="btn btn-danger">Cancelar</a>
     </form>
-
 </div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>

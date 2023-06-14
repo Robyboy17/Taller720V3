@@ -12,13 +12,11 @@
     <link href="/static/css/style.css" rel="stylesheet">
 </head>
 <body>
+<div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
 <div class="container">
-    <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
     <div th:replace="~{fragments/__${nombreVista}__ :: __${nombreVista}__}">Main</div>
-    <div th:replace="~{fragments/footer :: footer}">Footer</div>
 </div>
+<div th:replace="~{fragments/footer :: footer}">Footer</div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-

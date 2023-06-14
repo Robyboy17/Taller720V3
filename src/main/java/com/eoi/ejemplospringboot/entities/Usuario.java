@@ -8,8 +8,6 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.Set;
 
 /**
  * Clase que representa a un Usuario en el sistema.
@@ -41,6 +39,7 @@ public class Usuario {
     /**
      * Apellido del Usuario.
      */
+    @Column(name = "Apellidos")
     private String apellido;
 
     private String email;
@@ -77,8 +76,8 @@ public class Usuario {
     /**
      * Empleado asociado al Usuario (opcional).
      */
-    @OneToOne(optional = true)
-    private Empleado empleado;
+//    @OneToOne(optional = true)
+//    private Empleado empleado;
 
 }
 
