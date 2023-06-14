@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar reparación</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container">
+    <h1>Editar Reparacion</h1>
+    <form th:object="${reparacion}" method="POST" th:method="POST">
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <input type="text" class="form-control" id="descripcion" name="descripcion" th:field="*{descripcion}">
+        </div>
+        <div class="mb-3">
+            <label for="duracion" class="form-label">Duración</label>
+            <input type="text" class="form-control" id="duracion" name="duracion" th:field="*{duracion}">
+        </div>
+        <div class="mb-3">
+            <label for="fechaDeInicio" class="form-label">Fecha de Inicio</label>
+            <input type="date" class="form-control" id="fechaDeInicio" name="fechaDeInicio" th:field="*{fechaDeInicio}">
+        </div>
+        <div class="mb-3">
+            <label for="fechaDeFin" class="form-label">Fecha de Finalización</label>
+            <input type="date" class="form-control" id="fechaDeFin" name="fechaDeFin" th:field="*{{fechaDeFin}}">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a th:href="@{/reparaciones/all}" class="btn btn-danger">Cancelar</a>
+    </form>
+
+</div>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

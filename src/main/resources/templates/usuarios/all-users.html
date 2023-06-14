@@ -5,8 +5,9 @@
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
+<div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
 <div class="container">
-    <h1>Todas las entidades</h1>
+    <h1>Usuarios</h1>
     <a th:href="@{/usuarios/new}" class="btn btn-primary mb-2">Añadir usuario</a>
     <table class="table table-striped">
         <thead>

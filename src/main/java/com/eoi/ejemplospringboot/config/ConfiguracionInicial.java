@@ -12,11 +12,6 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-
-
 /**
  * La clase {@code ConfiguracionInicial} es un componente de Spring que implementa la interfaz {@code
  * ApplicationListener<ContextRefreshedEvent>}. Se utiliza para realizar la configuración inicial de permisos, roles y
@@ -41,10 +36,11 @@ import java.util.List;
 @Component
 public class ConfiguracionInicial implements ApplicationListener<ContextRefreshedEvent> {
 
-
     boolean configuracionRealizada = false;
+
     @Autowired
     private UsuarioRepository repositorioUsuario;
+
     @Autowired
     private RolRepository repositorioRol;
 
