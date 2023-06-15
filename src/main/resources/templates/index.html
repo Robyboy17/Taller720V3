@@ -14,7 +14,12 @@
 <body>
 <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
 <div class="container">
-    <div th:replace="~{fragments/__${nombreVista}__ :: __${nombreVista}__}">Main</div>
+    <div>
+        <h2>Clientes</h2>
+        <a th:href="@{/clientes/new}" class="btn btn-primary mb-2">Añadir un cliente</a><br>
+        <a th:href="@{/clientes/all}" class="btn btn-primary mb-2">Ver clientes</a><br>
+        <a th:href="@{/clientes/asignar-coche}" class="btn btn-primary">Asignar coche a cliente</a><br>
+    </div>
 </div>
 <div th:replace="~{fragments/footer :: footer}">Footer</div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>

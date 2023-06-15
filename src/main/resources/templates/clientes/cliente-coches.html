@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalles del Cliente</title>
+  <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container">
+  <h2>Detalles del Cliente</h2>
+  <div>
+    <h3>Información del Cliente</h3>
+    <p>Nombre: <span th:text="${cliente.nombre}"></span></p>
+  </div>
+
+  <div>
+    <h3>Coches del Cliente</h3>
+    <ul>
+      <li th:each="coche : ${cliente.coches}">
+        <p>Marca: <span th:text="${coche.marca}"></span></p>
+        <p>Modelo: <span th:text="${coche.modelo}"></span></p>
+        <!-- Agrega aquí más campos de información del coche -->
+      </li>
+    </ul>
+  </div>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
