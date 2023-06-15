@@ -53,7 +53,7 @@ public class MyErrorController implements org.springframework.boot.web.servlet.e
             // Maneja el error de URL no encontrada
             model.addAttribute("error", "Url no encontrada");
             model.addAttribute("mensaje", "La página que buscas no está disponible en esta aplicación");
-            return "/error";
+            return "/notFound";
 
 
         }
@@ -61,7 +61,7 @@ public class MyErrorController implements org.springframework.boot.web.servlet.e
             // Maneja el error de URL no encontrada
             model.addAttribute("error", "Acceso restringido");
             model.addAttribute("mensaje", "No tienes permitido el acceso a esta URL");
-            return "/error";
+            return "/notFound";
         }
         {
 
@@ -79,7 +79,7 @@ public class MyErrorController implements org.springframework.boot.web.servlet.e
                 model.addAttribute("error", "Error en la carga de la plantilla");
                 model.addAttribute("causas", causes);
 
-                return "/error";
+                return "/notFound";
             }
             else {
                 // Obtener la lista de mensajes de las causas encadenadas
@@ -88,7 +88,7 @@ public class MyErrorController implements org.springframework.boot.web.servlet.e
                 // Maneja otros errores de manera genérica
                 model.addAttribute("error", "Error desconocido");
                 model.addAttribute("mensaje", "Se ha producido un error desconocido.");
-                return "/error"; // Vista para el manejo genérico de errores
+                return "/notFound"; // Vista para el manejo genérico de errores
 
             }
 
