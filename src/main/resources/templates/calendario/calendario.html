@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+      layout:decorate="~{layout/layout}">
 <head>
     <title th:text="#{titulo.index}"></title>
-    <script src="usuarios-script.js"></script>
+
 </head>
 <body>
 <div layout:fragment="content">
@@ -23,8 +23,9 @@
             </tr>
             </tbody>
         </table>
-        <a class="btn btn-primary" th:href="@{?month={month}(month=${month+1})}"> Siguente mes</a>
-        <a class="btn btn-primary" th:href="@{?month={month}(month=${month-1})}"> Mes anterior</a>
+        <a class="btn btn-primary" th:href="@{?month=${month}(month=${month+1})}"> Siguente mes</a>
+        <a class="btn btn-primary" th:href="@{?month=${month}(month=${month-1})}"> Mes anterior</a>
     </div>
+</div>
 </body>
 </html>
