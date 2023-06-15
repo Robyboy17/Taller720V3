@@ -30,6 +30,7 @@
             <td th:text="${cliente.telefono}"></td>
             <td th:text="${cliente.email}"></td>
             <td>
+                <a th:href="@{/clientes/{id}/coches(id=${cliente.id})}" class="btn btn-primary">Ver coches</a>
                 <a th:href="@{/clientes/{id}(id=${cliente.id})}" class="btn btn-primary">Editar</a>
                 <a th:href="@{/clientes/{id}/delete(id=${cliente.id})}" class="btn btn-danger">Eliminar</a>
             </td> <!-- Columna para los botones de edición y eliminación -->
