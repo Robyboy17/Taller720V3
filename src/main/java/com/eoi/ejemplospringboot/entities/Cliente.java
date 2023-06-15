@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
 
 @Getter
 @Setter
@@ -34,6 +35,8 @@ public class Cliente {
     @Column(name = "Email")
     private String email;
 
-
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private Set<Coche> coches;
 
 }

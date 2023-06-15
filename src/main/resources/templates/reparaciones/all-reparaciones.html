@@ -14,7 +14,9 @@
         <tr>
             <th>ID</th>
             <th>Descripción</th>
+            <th>Empleado</th>
             <th>Duración</th>
+            <th>Tipo Reparación</th>
             <th>Fecha de inicio</th>
             <th>Fecha de finalización</th>
             <!-- Nueva columna para las acciones -->
@@ -24,7 +26,9 @@
         <tr th:each="reparacion : ${entities}">
             <td th:text="${reparacion.id}"></td>
             <td th:text="${reparacion.descripcion}"></td>
+            <td th:text="${reparacion.empleado.nombre}"></td>
             <td th:text="${reparacion.duracion}"></td>
+            <td th:text="${reparacion.tipoReparacion.nombre}"></td>
             <td th:text="${reparacion.fechaDeInicio}"></td>
             <td th:text="${reparacion.fechaDeFin}"></td>
             <td>

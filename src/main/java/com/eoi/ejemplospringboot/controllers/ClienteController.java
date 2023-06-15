@@ -20,7 +20,6 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
-
     // Index
     @GetMapping("all")
     public String getAllClientes(
@@ -60,6 +59,7 @@ public class ClienteController {
         cliente.ifPresent(value -> model.addAttribute("cliente", value));
         return "clientes/cliente-update";
     }
+
     @PostMapping("/{id}")
     public String updateCliente(@ModelAttribute Cliente cliente) {
         clienteService.updateCliente(cliente);

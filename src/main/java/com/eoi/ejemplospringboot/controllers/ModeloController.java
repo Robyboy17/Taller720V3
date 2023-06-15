@@ -33,8 +33,6 @@ public class ModeloController {
         return "modelos/all-modelos";
     }
 
-    // Show
-
     // Delete
     @GetMapping("/{id}/delete")
     public String deleteModeloById(@PathVariable("id") Integer id) {
