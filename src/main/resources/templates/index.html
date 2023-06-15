@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>landing</title>
@@ -13,12 +13,26 @@
 </head>
 <body>
 <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
-<div class="container">
-    <div>
-        <h2>Clientes</h2>
+<div class="container d-flex gap-2" sec:authorize="isAuthenticated()">
+    <div class="bg-secondary rounded-2 p-2 mt-3 w-auto">
+        <h2 class="fw-bold">Clientes</h2>
         <a th:href="@{/clientes/new}" class="btn btn-primary mb-2">Añadir un cliente</a><br>
         <a th:href="@{/clientes/all}" class="btn btn-primary mb-2">Ver clientes</a><br>
         <a th:href="@{/clientes/asignar-coche}" class="btn btn-primary">Asignar coche a cliente</a><br>
+    </div>
+    <div class="bg-secondary rounded-2 p-2 mt-3 w-auto">
+        <h2 class="fw-bold">Reparaciones</h2>
+        <a th:href="@{/reparaciones/new}" class="btn btn-primary mb-2">Añadir una reparación</a><br>
+        <a th:href="@{/reparaciones/all}" class="btn btn-primary mb-2">Ver reparaciones</a><br>
+        <a th:href="@{/reparaciones/tipos/new}" class="btn btn-primary">Añadir tipo de reparación</a><br>
+    </div>
+    <div class="bg-secondary rounded-2 p-2 mt-3 w-auto">
+        <h2 class="fw-bold">Coches</h2>
+        <a th:href="@{/coches/new}" class="btn btn-primary mb-2">Añadir un coche</a><br>
+        <a th:href="@{/marcas/new}" class="btn btn-primary mb-2">Añadir una marca</a><br>
+        <a th:href="@{/modelos/new}" class="btn btn-primary mb-2">Añadir un modelo</a><br>
+        <a th:href="@{/combustibles/new}" class="btn btn-primary mb-2">Añadir un combustible</a><br>
+        <a th:href="@{/coches/all}" class="btn btn-primary mb-2">Ver coches</a><br>
     </div>
 </div>
 <div th:replace="~{fragments/footer :: footer}">Footer</div>
