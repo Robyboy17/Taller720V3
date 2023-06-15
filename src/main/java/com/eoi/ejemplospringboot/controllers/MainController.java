@@ -33,4 +33,8 @@ public class MainController {
         return "usuarios/login";
     }
 
+    @GetMapping(value={"/usuarios/register","/register"})
+    public String register(Model model) {
+        return "usuarios/register";
+    }
 }

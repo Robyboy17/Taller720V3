@@ -4,15 +4,14 @@
       layout:decorate="~{/layout/layoutsinlogin}">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Register</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 
 </head>
 <body>
-
-
     <div layout:fragment="cabecera">
-        <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Inicio de sesión</p>
+        <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Regístrese</p>
     </div>
     <div layout:fragment="contenido">
 
@@ -24,19 +23,30 @@
         </div>
 
         <div class=" container w-25 bg-white p-4 mt-4 rounded shadow">
-
             <h2 class="text-center bold">Bienvenido :)</h2>
-            <form class="pt-lg-5" th:action="@{/usuarios/login}" method="post">
+            <form class="pt-lg-5" th:action="@{/usuarios/register}" method="post">
+
+                <!-- User input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="form2Example1" name="username" class="form-control" placeholder="Nombre de usuario"/>
+                    <label class="form-label" for="form2Example1"></label>
+                </div>
+
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                    <input type="text" id="form2Example1" name="username" class="form-control" placeholder="Dirección de correo"/>
-                    <label class="form-label" for="form2Example1"></label>
+                    <input type="text" id="form2Example2" name="email" class="form-control" placeholder="Dirección de correo"/>
+                    <label class="form-label" for="form2Example2"></label>
                 </div>
 
                 <!-- Password input -->
                 <div class="form-outline mb-4">
-                    <input type="password" id="form2Example2" name="password" class="form-control" placeholder="Contraseña" />
-                    <label class="form-label" for="form2Example2"></label>
+                    <input type="password" id="form2Example3" name="password" class="form-control" placeholder="Contraseña"/>
+                    <label class="form-label" for="form2Example3"></label>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <input type="password" id="form2Example4" name="password" class="form-control" placeholder="Repita la contraseña"/>
+                    <label class="form-label" for="form2Example4"></label>
                 </div>
 
                 <!-- 2 column grid layout for inline styling -->
@@ -45,7 +55,7 @@
                         <!-- Checkbox -->
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                            <label class="form-check-label" for="form2Example31"> Recuérdame </label>
+                            <label class="form-check-label" for="form2Example31"> Recordarme </label>
                         </div>
                     </div>
 
@@ -60,7 +70,7 @@
 
                 <!-- Register buttons -->
                 <div class="text-center">
-                    <p>¿Aún no es miembro? <a th:href="@{/usuarios/register}">Regístrese</a></p>
+                    <p>¿Aún no es miembro? <a href="#!">Registrarse</a></p>
                     <p>o inicie sesión con:</p>
                     <button type="button" class="btn btn-link btn-floating mx-1">
                         <i class="fab fa-facebook-f"></i>
