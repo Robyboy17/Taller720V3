@@ -14,9 +14,12 @@
             <input type="text" class="form-control" id="descripcion" name="descripcion" th:field="*{descripcion}">
         </div>
         <div class="form-group mb-3">
-            <label for="empleado">Empleado:</label>
-            <select id="empleado" class="form-control" th:field="*{empleado}">
-                <option th:each="empleado : ${empleados}" th:value="${empleado.id}" th:text="${empleado.nombre}"></option>
+            <label for="empleadoId">Empleado:</label>
+            <select class="form-control" id="empleadoId" name="empleadoId">
+                <option value="">Seleccionar empleado</option>
+                <th:block th:each="empleado : ${empleados}">
+                    <option th:value="${empleado.id}" th:text="${empleado.nombre} + ' ' + ${empleado.apellido}"></option>
+                </th:block>
             </select>
         </div>
         <div class="mb-3">
@@ -30,13 +33,25 @@
             </div>
             <div class="mb-3">
                 <label for="fechaDeFin" class="form-label">Fecha de Finalización</label>
-                <input type="date" class="form-control" id="fechaDeFin" name="fechaDeFin" th:field="*{{fechaDeFin}}">
+                <input type="date" class="form-control" id="fechaDeFin" name="fechaDeFin" th:field="*{fechaDeFin}">
             </div>
         </div>
         <div class="form-group mb-3">
-            <label for="tipoReparacion">Tipo reparación:</label>
-            <select id="tipoReparacion" class="form-control" th:field="*{tipoReparacion}">
-                <option th:each="tipoReparacion : ${tiposReparaciones}" th:value="${tipoReparacion.id}" th:text="${tipoReparacion.nombre}"></option>
+            <label for="tipoReparacionId">Tipo de reparación:</label>
+            <select class="form-control" id="tipoReparacionId" name="tipoReparacionId">
+                <option value="">Seleccionar tipo de reparación</option>
+                <th:block th:each="tipoReparacion : ${tiposReparaciones}">
+                    <option th:value="${tipoReparacion.id}" th:text="${tipoReparacion.nombre}"></option>
+                </th:block>
+            </select>
+        </div>
+        <div class="form-group mb-3">
+            <label for="clienteId">Cliente:</label>
+            <select class="form-control" id="clienteId" name="clienteId">
+                <option value="">Seleccionar cliente</option>
+                <th:block th:each="cliente : ${clientes}">
+                    <option th:value="${cliente.id}" th:text="${cliente.nombre} + ' ' + ${cliente.apellido}"></option>
+                </th:block>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>

@@ -77,6 +77,9 @@ public class ClienteService {
                 !Objects.equals(clienteDb.getEmail(), cliente.getEmail())) {
             cliente.setEmail(cliente.getEmail());
         }
-        repository.save(cliente);
+    }
+
+    public List<Cliente> getAllClientes() {
+        return repository.findAll();
     }
 }
