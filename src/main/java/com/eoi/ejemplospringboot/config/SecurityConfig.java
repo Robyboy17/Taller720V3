@@ -57,6 +57,7 @@ https://www.baeldung.com/spring-security-csrf
                 .requestMatchers("/img/**").permitAll()
                 .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/fonts/**").permitAll()
+                .requestMatchers("/images/**").permitAll()
                 .requestMatchers("/*").permitAll()
                 .requestMatchers( HttpMethod.POST,"/**").permitAll()
                 .anyRequest().authenticated()
