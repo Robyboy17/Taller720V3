@@ -23,13 +23,15 @@
             <label for="duracion" class="form-label">Duración</label>
             <input type="text" class="form-control" id="duracion" name="duracion" th:field="*{duracion}">
         </div>
-        <div class="mb-3">
-            <label for="fechaDeInicio" class="form-label">Fecha de Inicio</label>
-            <input type="date" class="form-control" id="fechaDeInicio" name="fechaDeInicio" th:field="*{fechaDeInicio}">
-        </div>
-        <div class="mb-3">
-            <label for="fechaDeFin" class="form-label">Fecha de Finalización</label>
-            <input type="date" class="form-control" id="fechaDeFin" name="fechaDeFin" th:field="*{{fechaDeFin}}">
+        <div class="mb-3 d-flex gap-2">
+            <div class="mb-3">
+                <label for="fechaDeInicio" class="form-label">Fecha de Inicio</label>
+                <input type="date" class="form-control" id="fechaDeInicio" name="fechaDeInicio" th:field="*{fechaDeInicio}">
+            </div>
+            <div class="mb-3">
+                <label for="fechaDeFin" class="form-label">Fecha de Finalización</label>
+                <input type="date" class="form-control" id="fechaDeFin" name="fechaDeFin" th:field="*{{fechaDeFin}}">
+            </div>
         </div>
         <div class="form-group mb-3">
             <label for="tipoReparacion">Tipo reparación:</label>
