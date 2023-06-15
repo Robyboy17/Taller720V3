@@ -14,7 +14,8 @@
       <select class="form-control" id="clienteId" name="clienteId">
         <option value="">Seleccionar cliente</option>
         <th:block th:each="cliente : ${clientes}">
-          <option th:value="${cliente.id}" th:text="${cliente.nombre}"></option>
+          <option th:value="${cliente.id}" th:text="${cliente.nombre} + ' ' +
+          ${cliente.apellido}"></option>
         </th:block>
       </select>
     </div>
@@ -23,7 +24,8 @@
       <select class="form-control" id="cocheId" name="cocheId">
         <option value="">Seleccionar coche</option>
         <th:block th:each="coche : ${coches}">
-          <option th:value="${coche.id}" th:text="${coche.modelo}"></option>
+          <option th:value="${coche.id}" th:text="${coche.marca} + ' ' +${coche.modelo} + ' '
+          + ${coche.anio}"></option>
         </th:block>
       </select>
     </div>
