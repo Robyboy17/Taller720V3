@@ -39,4 +39,14 @@ public class Cliente {
             orphanRemoval = true)
     private Set<Coche> coches;
 
+    public void addCoche(Coche coche) {
+        coches.add(coche);
+        coche.setCliente(this);
+    }
+
+    public void removeCoche(Coche coche) {
+        coches.remove(coche);
+        coche.setCliente(null);
+    }
+
 }

@@ -87,12 +87,28 @@ public class ClienteController {
         Coche coche = cocheService.findById(cocheId).orElse(null);
 
         if (cliente != null && coche != null) {
-            Set<Coche> cochesCliente = cliente.getCoches();
-            cochesCliente.add(coche);
+            cliente.addCoche(coche);
             clienteService.updateCliente(cliente);
         }
 
         return "redirect:/clientes/all";
+    }
+
+    // Ver coches del cliente
+    @GetMapping("/{id}/coches")
+    public String viewClienteCoches(@PathVariable("id") Integer id, Model model) {
+        Cliente cliente = clienteService.findById(id).orElse(null);
+
+        if (cliente != null) {
+            Set<Coche> cochesCliente = cliente.getCoches();
+            model.addAttribute("cliente", cliente);
+            model.addAttribute("coches", cochesCliente);
+            return "clientes/cliente-coches";
+        } else {
+            // Manejar el caso en el que el cliente no existe si eso
+            // TODO pantalla not found
+            return "redirect:/clientes/all";
+        }
     }
 
 }
