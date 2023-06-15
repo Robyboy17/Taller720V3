@@ -1,23 +1,29 @@
 package com.eoi.ejemplospringboot.controllers;
 
 import com.eoi.ejemplospringboot.entities.Cliente;
+import com.eoi.ejemplospringboot.entities.Coche;
 import com.eoi.ejemplospringboot.services.ClienteService;
+import com.eoi.ejemplospringboot.services.CocheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/clientes")
 public class ClienteController {
 
     private final ClienteService clienteService;
+    private final CocheService cocheService;
 
     @Autowired
-    public ClienteController(ClienteService clienteService) {
+    public ClienteController(ClienteService clienteService, CocheService cocheService) {
         this.clienteService = clienteService;
+        this.cocheService = cocheService;
     }
 
     // Index
@@ -63,6 +69,29 @@ public class ClienteController {
     @PostMapping("/{id}")
     public String updateCliente(@ModelAttribute Cliente cliente) {
         clienteService.updateCliente(cliente);
+        return "redirect:/clientes/all";
+    }
+
+    // Añadir coche
+    @GetMapping("/asignar-coche")
+    public String mostrarFormularioAsignarCoche(Model model) {
+        model.addAttribute("clientes", clienteService.findAll());
+        model.addAttribute("coches", cocheService.findAll());
+        return "clientes/asignar-coche-form";
+    }
+    @PostMapping("/asignar-coche")
+    public String asignarCocheACliente(
+            @RequestParam("clienteId") Integer clienteId,
+            @RequestParam("cocheId") Long cocheId) {
+        Cliente cliente = clienteService.findById(clienteId).orElse(null);
+        Coche coche = cocheService.findById(cocheId).orElse(null);
+
+        if (cliente != null && coche != null) {
+            Set<Coche> cochesCliente = cliente.getCoches();
+            cochesCliente.add(coche);
+            clienteService.updateCliente(cliente);
+        }
+
         return "redirect:/clientes/all";
     }
 

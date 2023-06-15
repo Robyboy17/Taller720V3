@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Nuevo cliente</title>
+  <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container">
+  <h1>Nuevo cliente</h1>
+  <form method="POST" action="/clientes/asignar-coche">
+    <div class="form-group mb-3">
+      <label for="clienteId">Cliente:</label>
+      <select class="form-control" id="clienteId" name="clienteId">
+        <option value="">Seleccionar cliente</option>
+        <th:block th:each="cliente : ${clientes}">
+          <option th:value="${cliente.id}" th:text="${cliente.nombre}"></option>
+        </th:block>
+      </select>
+    </div>
+    <div class="form-group mb-3">
+      <label for="cocheId">Coche:</label>
+      <select class="form-control" id="cocheId" name="cocheId">
+        <option value="">Seleccionar coche</option>
+        <th:block th:each="coche : ${coches}">
+          <option th:value="${coche.id}" th:text="${coche.modelo}"></option>
+        </th:block>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Asignar Coche</button>
+    <a th:href="@{/clientes/all}" class="btn btn-danger">Cancelar</a>
+  </form>
+</div>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
