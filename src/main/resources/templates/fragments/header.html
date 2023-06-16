@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="">
+<html lang="en" xmlns:th="" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -13,30 +13,25 @@
 <body>
 
 <header th:fragment="header">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Taller 720</a>
+      <a class="navbar-brand" href="/">Taller 720</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Características</a>
+          <li class="nav-item" sec:authorize="!isAuthenticated()">
+            <a th:href="@{/login}">
+              <div><span class="btn btn-primary" type="submit" value="Sign In">Sign In</span></div>
+            </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Precios</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contacto</a>
-          </li>
-          <li class="nav-item">
-            <button class="btn btn-outline-primary mx-2" type="button">Iniciar Sesión</button>
+          <li class="nav-item" sec:authorize="isAuthenticated()">
+            <a th:href="@{/usuarios/logout}">
+              <div><span class="btn btn-primary" type="submit" value="Sign out">Sign out</span></div>
+            </a>
           </li>
         </ul>
-      </div>
-    </div>
-  </nav>
 </header>
 
 </body>

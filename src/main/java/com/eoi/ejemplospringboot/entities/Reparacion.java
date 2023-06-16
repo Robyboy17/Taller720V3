@@ -18,7 +18,6 @@ import java.util.Set;
 @Table(name ="reparacion")
 public class Reparacion {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -34,9 +33,12 @@ public class Reparacion {
 
 //    @ManyToOne
 //    private Coche coche;
-//
-//    @ManyToOne
-//    private Tipo tipo;
+
+    @OneToOne
+    private Empleado empleado;
+
+    @OneToOne
+    private TipoReparacion tipoReparacion;
 
     @Column
     private String descripcion;

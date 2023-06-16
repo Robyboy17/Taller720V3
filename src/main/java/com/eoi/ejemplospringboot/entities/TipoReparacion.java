@@ -11,25 +11,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Coche {
+public class TipoReparacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
-    @OneToOne
-    private Marca marca;
+    private String nombre;
 
-    @ManyToOne
-    private Modelo modelo;
-
-    @OneToOne
-    private Combustible combustible;
-
-    private Integer anio;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
-
+    public TipoReparacion(String nombre) {
+        this.nombre = nombre;
+    }
 }
