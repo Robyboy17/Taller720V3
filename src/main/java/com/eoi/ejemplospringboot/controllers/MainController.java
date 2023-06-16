@@ -15,18 +15,11 @@ public class MainController {
     @GetMapping(value={"","/"})
     public String mostrarIndex(Model model)
     {
-        model.addAttribute("nombreVista", "principal");
+        //model.addAttribute("nombreVista", "principal");
         log.trace("Entrando en el metodo del index");
         return "home";
     }
 
-    @GetMapping("/holamundo")
-    public String holaMundo(Model model)
-    {
-        log.trace("Entrando en el método del holamundo");
-        model.addAttribute("saludo", "Hola qué tal");
-        return "holamundo.html";
-    }
 
     @GetMapping(value={"/usuarios/login","/login"})
     public String login(Model model) {
