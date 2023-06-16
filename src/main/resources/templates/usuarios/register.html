@@ -5,11 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
+    <link rel="stylesheet" href="../../static/css/styles.css">
 
 </head>
-<body>
+<body id="login">
     <div layout:fragment="cabecera">
         <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Regístrese</p>
     </div>
@@ -59,19 +59,16 @@
                         </div>
                     </div>
 
-                    <div class="col">
-                        <!-- Simple link -->
-                        <a href="#!">¿Olvidó la contraseña?</a>
-                    </div>
+
                 </div>
 
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4">Iniciar sesión</button>
+                <button type="submit" class="btn w-100 btn-primary btn-block mb-4">Registrarse</button>
 
                 <!-- Register buttons -->
                 <div class="text-center">
-                    <p>¿Aún no es miembro? <a href="#!">Registrarse</a></p>
-                    <p>o inicie sesión con:</p>
+                    <p>¿Ya es miembro? <a href="#!">Inicie sesión</a></p>
+                    <p>o hágalo con:</p>
                     <button type="button" class="btn btn-link btn-floating mx-1">
                         <i class="fab fa-facebook-f"></i>
                     </button>
