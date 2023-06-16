@@ -7,46 +7,13 @@
     <!-- Link a Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Estilos personalizados -->
-    <style>
-        body {
-            background-color: #f5f5f5;
-        }
-        .container {
-            margin-top: 50px;
-            margin-bottom: 50px;
-        }
-        h2 {
-            margin-bottom: 30px;
-        }
-    </style>
+    <link rel="stylesheet" href="../static/css/styles.css">
 </head>
 <body>
-    <!-- Navegación -->
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
-        <a class="navbar-brand" href="#">Gestión de Talleres</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Servicios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Precios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Aviso Legal</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<div th:replace="~{fragments/header :: header}">Header</div>
     
     <!-- Contenido -->
-    <div class="container">
+    <div id="avisoLegal" class="container">
         <h2>Aviso Legal</h2>
         <p>En cumplimiento con el deber de información recogido en artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico a continuación se declara <www class="taller720"></www>.com como un sitio web.</p>
 
@@ -104,6 +71,8 @@
         <h1>Ley Aplicable y Jurisdicción</h1>
         <p>Para la resolución de todas las controversias o cuestiones relacionadas con el presente sitio web o de las actividades en él desarrolladas, será de aplicación la legislación española, a la que se someten expresamente las partes.</p>
     </div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
 
     <!-- Scripts de Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

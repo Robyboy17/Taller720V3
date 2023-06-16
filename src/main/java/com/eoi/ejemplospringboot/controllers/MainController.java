@@ -17,7 +17,7 @@ public class MainController {
     {
         model.addAttribute("nombreVista", "principal");
         log.trace("Entrando en el metodo del index");
-        return "index";
+        return "home";
     }
 
     @GetMapping("/holamundo")
@@ -36,5 +36,20 @@ public class MainController {
     @GetMapping(value={"/usuarios/register","/register"})
     public String register(Model model) {
         return "usuarios/register";
+    }
+
+    @GetMapping(value={"/FAQs"})
+    public String FAQs(Model model) {
+        return "/FAQs";
+    }
+
+    @GetMapping(value={"/avisoLegal"})
+    public String avisoLegal(Model model) {
+        return "/avisoLegal";
+    }
+
+    @GetMapping(value={"/sobreNosotros"})
+    public String sobreNosotros(Model model) {
+        return "/sobreNosotros";
     }
 }

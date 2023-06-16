@@ -20,12 +20,16 @@ public class Coche {
     @OneToOne
     private Marca marca;
 
-    @OneToOne
+    @ManyToOne
     private Modelo modelo;
 
     @OneToOne
     private Combustible combustible;
 
     private Integer anio;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
 }

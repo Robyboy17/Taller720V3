@@ -1,25 +1,29 @@
 package com.eoi.ejemplospringboot.controllers;
 
 import com.eoi.ejemplospringboot.entities.Cliente;
+import com.eoi.ejemplospringboot.entities.Coche;
 import com.eoi.ejemplospringboot.services.ClienteService;
+import com.eoi.ejemplospringboot.services.CocheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/clientes")
 public class ClienteController {
 
     private final ClienteService clienteService;
+    private final CocheService cocheService;
 
     @Autowired
-    public ClienteController(ClienteService clienteService) {
+    public ClienteController(ClienteService clienteService, CocheService cocheService) {
         this.clienteService = clienteService;
+        this.cocheService = cocheService;
     }
-
 
     // Index
     @GetMapping("all")
@@ -60,10 +64,50 @@ public class ClienteController {
         cliente.ifPresent(value -> model.addAttribute("cliente", value));
         return "clientes/cliente-update";
     }
+
     @PostMapping("/{id}")
     public String updateCliente(@ModelAttribute Cliente cliente) {
         clienteService.updateCliente(cliente);
         return "redirect:/clientes/all";
+    }
+
+    // Añadir coche
+    @GetMapping("/asignar-coche")
+    public String mostrarFormularioAsignarCoche(Model model) {
+        model.addAttribute("clientes", clienteService.findAll());
+        model.addAttribute("coches", cocheService.findAll());
+        return "clientes/asignar-coche-form";
+    }
+    @PostMapping("/asignar-coche")
+    public String asignarCocheACliente(
+            @RequestParam("clienteId") Integer clienteId,
+            @RequestParam("cocheId") Long cocheId) {
+        Cliente cliente = clienteService.findById(clienteId).orElse(null);
+        Coche coche = cocheService.findById(cocheId).orElse(null);
+
+        if (cliente != null && coche != null) {
+            cliente.addCoche(coche);
+            clienteService.updateCliente(cliente);
+        }
+
+        return "redirect:/clientes/all";
+    }
+
+    // Ver coches del cliente
+    @GetMapping("/{id}/coches")
+    public String viewClienteCoches(@PathVariable("id") Integer id, Model model) {
+        Cliente cliente = clienteService.findById(id).orElse(null);
+
+        if (cliente != null) {
+            Set<Coche> cochesCliente = cliente.getCoches();
+            model.addAttribute("cliente", cliente);
+            model.addAttribute("coches", cochesCliente);
+            return "clientes/cliente-coches";
+        } else {
+            // Manejar el caso en el que el cliente no existe si eso
+            // TODO pantalla not found
+            return "redirect:/clientes/all";
+        }
     }
 
 }
