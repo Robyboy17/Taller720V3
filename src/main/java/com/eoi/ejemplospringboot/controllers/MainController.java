@@ -33,6 +33,11 @@ public class MainController {
         return "usuarios/login";
     }
 
+    @GetMapping(value={"/usuarios/register","/register"})
+    public String register(Model model) {
+        return "usuarios/register";
+    }
+
     @GetMapping(value={"/FAQs"})
     public String FAQs(Model model) {
         return "/FAQs";
@@ -47,5 +52,4 @@ public class MainController {
     public String sobreNosotros(Model model) {
         return "/sobreNosotros";
     }
-
 }
