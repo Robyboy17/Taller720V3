@@ -43,4 +43,9 @@ public class MainController {
         return "/avisoLegal";
     }
 
+    @GetMapping(value={"/sobreNosotros"})
+    public String sobreNosotros(Model model) {
+        return "/sobreNosotros";
+    }
+
 }
