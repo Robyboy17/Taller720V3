@@ -39,11 +39,11 @@ public class CalendarioController {
         //Si nos han dado un mes 13, sumamos uno al año y ponemos mes 1
         if (month == 13) {
             year += 1;
-            month = 1;
+            return "redirect:calendario?month=1" + "&year=" + year;
         }
         if (month == 0) {
             year -= 1;
-            month = 12;
+            return "redirect:calendario?month=12" + "&year=" + year;
         }
 
         //Primero calculo un objeto de fecha de la fecha que obtengo de las variables
