@@ -21,8 +21,8 @@ public class UsuarioService {
         this.repository = repository;
     }
 
-    public Page<Usuario> findAll(Pageable pageable) {
-        return (Page<Usuario>) repository.findAll();
+    public List<Usuario> findAll() {
+        return repository.findAll();
     }
 
     public Optional<Usuario> findById(Integer id) {
@@ -69,5 +69,9 @@ public class UsuarioService {
             usuario.setFechaNacimiento(usuario.getFechaNacimiento());
         }
         repository.save(usuario);
+    }
+
+    public Page<Usuario> getAllUsuarios(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 }

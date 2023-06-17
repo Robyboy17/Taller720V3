@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml">
 <head>
     <title>Todas las entidades</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
@@ -34,11 +34,22 @@
         </tr>
         </tbody>
     </table>
-    <!-- Mostrar la paginación -->
-    <div>
-        <a th:if="${usuarioPage.hasPrevious()}" th:href="@{/usuarios(page=${usuarioPage.previousPageable().pageNumber})}">Anterior</a>
-        <span th:text="${usuarioPage.number + 1}"></span>
-        <a th:if="${usuarioPage.hasNext()}" th:href="@{/usuarios(page=${usuarioPage.nextPageable().pageNumber})}">Siguiente</a>
+    <!-- preparamos el div para poner los numeros de pagina-->
+    <div  th:if="${entities!=null and !entities.empty}" >
+        <div class="text-center">
+            <nav>
+                <ul class="pagination" sd:pagination="full">
+                    <!--  si hay menos del numero minimo de registos no muestro la barra-->
+                    <div  th:if="${entities.totalPages > 0}" class="pagination"
+                          th:each="pageNumber : ${pageNumbers}">
+                        <li th:class="${pageNumber==entities.number + 1} ? active">
+                            <a href="#" th:href="@{/empresas/entitiesusuario(size=${entities.size}, page=${pageNumber})}"
+                               th:text=${pageNumber}></a>
+                        </li>
+                    </div>
+                </ul>
+            </nav>
+        </div>
     </div>
 </div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
