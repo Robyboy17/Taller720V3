@@ -51,4 +51,8 @@ public class TipoReparacionService {
 
         repository.save(tipoReparacion);
     }
+
+    public List<TipoReparacion> getAllTiposReparaciones() {
+        return repository.findAll();
+    }
 }

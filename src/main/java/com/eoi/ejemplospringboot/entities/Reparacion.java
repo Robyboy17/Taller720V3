@@ -28,11 +28,11 @@ public class Reparacion {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Usuario> usuarios;
 
-//    @ManyToOne
-//    private Cliente cliente;
+    @ManyToOne
+    private Cliente cliente;
 
-//    @ManyToOne
-//    private Coche coche;
+    @ManyToOne
+    private Coche coche;
 
     @OneToOne
     private Empleado empleado;
