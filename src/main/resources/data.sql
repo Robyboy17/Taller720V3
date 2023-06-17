@@ -6,4 +6,3 @@ insert into modelo values (1, 'SERIE 1', 1), (2,'A5', 4 ),
 insert into combustible values (1, 'GASOLINA'), (2,'DIESEL' ), (3,'GPL' ),(4,'MAGIA');
 
 
-

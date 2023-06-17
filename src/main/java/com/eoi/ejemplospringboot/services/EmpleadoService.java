@@ -62,4 +62,8 @@ public class EmpleadoService {
         }
         repository.save(empleado);
     }
+
+    public List<Empleado> getAllEmpleados() {
+        return repository.findAll();
+    }
 }

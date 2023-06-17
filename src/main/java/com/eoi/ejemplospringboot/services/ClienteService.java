@@ -43,40 +43,36 @@ public class ClienteService {
         repository.save(cliente);
     }
 
-    //UPDATE
+    // UPDATE
     public void updateCliente(Cliente cliente) {
         Cliente clienteDb = repository.findById(cliente.getId())
                 .orElseThrow(() -> new IllegalStateException(
-                        "El cliente con el " + cliente.getId() + " no existe"));
+                        "El cliente con el ID " + cliente.getId() + " no existe"));
 
-        if (cliente.getTelefono() != null &&
-                !Objects.equals(clienteDb.getTelefono(), cliente.getTelefono())) {
-            cliente.setTelefono(cliente.getTelefono());
+        if (cliente.getTelefono() != null) {
+            clienteDb.setTelefono(cliente.getTelefono());
         }
 
-        if (cliente.getApellido() != null &&
-                cliente.getApellido().length() > 0 &&
-                !Objects.equals(clienteDb.getApellido(), cliente.getApellido())) {
-            cliente.setApellido(cliente.getApellido());
+        if (cliente.getApellido() != null && !cliente.getApellido().isEmpty()) {
+            clienteDb.setApellido(cliente.getApellido());
         }
 
-        if (cliente.getNombre() != null &&
-                cliente.getNombre().length() > 0 &&
-                !Objects.equals(clienteDb.getNombre(), cliente.getNombre())) {
-            cliente.setNombre(cliente.getNombre());
+        if (cliente.getNombre() != null && !cliente.getNombre().isEmpty()) {
+            clienteDb.setNombre(cliente.getNombre());
         }
 
-        if (cliente.getDNI() != null &&
-                cliente.getDNI().length() > 0 &&
-                !Objects.equals(clienteDb.getDNI(), cliente.getDNI())) {
-            cliente.setDNI(cliente.getDNI());
+        if (cliente.getDNI() != null && !cliente.getDNI().isEmpty()) {
+            clienteDb.setDNI(cliente.getDNI());
         }
 
-        if (cliente.getEmail() != null &&
-                cliente.getEmail().length() > 0 &&
-                !Objects.equals(clienteDb.getEmail(), cliente.getEmail())) {
-            cliente.setEmail(cliente.getEmail());
+        if (cliente.getEmail() != null && !cliente.getEmail().isEmpty()) {
+            clienteDb.setEmail(cliente.getEmail());
         }
-        repository.save(cliente);
+
+        repository.save(clienteDb);
+    }
+
+    public List<Cliente> getAllClientes() {
+        return repository.findAll();
     }
 }
