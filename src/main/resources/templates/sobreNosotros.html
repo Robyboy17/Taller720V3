@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html th:lang="#{principal.lang}">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Sobre nosotros</title>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}">Header</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 mt-3">
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img th:src="@{/images/Pablo.png}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Pablo Laz Ruiz</h5><br>
+              <p class="card-text">Sé distinguir el talento de los demás y potenciarlo, pero siempre buscando aprender de ellos.</p><br> <br>
+              <a th:href="@{https://www.linkedin.com/in/pablo-laz-ruiz/}">
+                <div><span class="btn btn-primary" type="submit" >Linkedin</span></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img th:src="@{/images/Robert.png}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Robert Lungu</h5><br>
+              <p class="card-text">Siempre he tenido claro que quería crecer y desarrollarme como programador, mi auténtica pasión.</p><br><br>
+              <a th:href="@{https://www.linkedin.com/in/robert-lungu/}">
+                <div><span class="btn btn-primary" type="submit" >Linkedin</span></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img th:src="@{/images/Daniel.png}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Daniel Bilbao Fornell</h5><br>
+              <p class="card-text">Disciplinado y detallista, resolutivo, intento reparar lo que no funciona, haciendo un diagnóstico.</p><br><br>
+              <a th:href="@{https://www.linkedin.com/in/daniel-bilbao-fornell/}">
+                <div><span class="btn btn-primary" type="submit" >Linkedin</span></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img th:src="@{/images/Ivan.jpg}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Iván Mañas Gutiérrez</h5><br>
+              <p class="card-text">Soy responsable y comprometido con las personas y proyectos, intento aprender y mejorar continuamente</p><br><br>
+              <a th:href="@{https://www.linkedin.com/in/iv%C3%A1n-ma%C3%B1as-guti%C3%A9rrez/}">
+                <div><span class="btn btn-primary" type="submit" >Linkedin</span></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
