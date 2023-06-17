@@ -1,10 +1,7 @@
 package com.eoi.ejemplospringboot.controllers;
 
 
-import com.eoi.ejemplospringboot.entities.Cliente;
-import com.eoi.ejemplospringboot.entities.Empleado;
-import com.eoi.ejemplospringboot.entities.Reparacion;
-import com.eoi.ejemplospringboot.entities.TipoReparacion;
+import com.eoi.ejemplospringboot.entities.*;
 import com.eoi.ejemplospringboot.repositories.ClienteRepository;
 import com.eoi.ejemplospringboot.repositories.EmpleadoRepository;
 import com.eoi.ejemplospringboot.repositories.TipoReparacionRepository;
@@ -66,11 +63,21 @@ public class ReparacionController {
             model.addAttribute("clientes", clienteService.getAllClientes());
             model.addAttribute("empleados", empleadoService.getAllEmpleados());
             model.addAttribute("tiposReparaciones", tipoReparacionService.getAllTiposReparaciones());
+
+            // Obtener el cliente de la reparación
+            Cliente cliente = reparacion.get().getCliente();
+            if (cliente != null) {
+                // Obtener los coches del cliente
+                List<Coche> coches = cocheService.getCochesByClienteId(cliente.getId());
+                model.addAttribute("coches", coches);
+            }
+
             return "reparaciones/reparacion-update";
         } else {
             return "redirect:/reparaciones/all";
         }
     }
+
 
     @PostMapping("/{id}")
     public String updateReparacion(@PathVariable("id") Integer id, @ModelAttribute Reparacion reparacion) {
@@ -92,21 +99,30 @@ public class ReparacionController {
         return "reparaciones/reparacion-create";
     }
 
+    @GetMapping("/coches/cliente/{clienteId}")
+    @ResponseBody
+    public List<Coche> getCochesByClienteId(@PathVariable("clienteId") Integer clienteId) {
+        return cocheService.getCochesByClienteId(clienteId);
+    }
+
     @PostMapping("/create")
     public String createReparacion(
             @ModelAttribute("reparacion") Reparacion reparacion,
             @RequestParam("empleadoId") Integer empleadoId,
             @RequestParam("clienteId") Integer clienteId,
-            @RequestParam("tipoReparacionId") Integer tipoReparacionId) {
+            @RequestParam("tipoReparacionId") Integer tipoReparacionId,
+            @RequestParam("cocheId") Long cocheId) {
 
         Cliente cliente = clienteService.findById(clienteId).orElse(null);
         Empleado empleado = empleadoService.findById(empleadoId).orElse(null);
         TipoReparacion tipoReparacion = tipoReparacionService.findById(tipoReparacionId).orElse(null);
+        Coche coche = cocheService.findById(cocheId).orElse(null);
 
-        if (cliente != null && empleado != null && tipoReparacion != null) {
+        if (cliente != null && empleado != null && tipoReparacion != null && coche != null) {
             reparacion.setCliente(cliente);
             reparacion.setEmpleado(empleado);
             reparacion.setTipoReparacion(tipoReparacion);
+            reparacion.setCoche(coche);
             reparacionService.createReparacion(reparacion);
         }
 
