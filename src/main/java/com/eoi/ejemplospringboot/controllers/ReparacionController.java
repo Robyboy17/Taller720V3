@@ -69,7 +69,7 @@ public class ReparacionController {
             if (cliente != null) {
                 // Obtener los coches del cliente
                 List<Coche> coches = cocheService.getCochesByClienteId(cliente.getId());
-                model.addAttribute("coches", coches);
+                model.addAttribute("cocheList", coches); // Cambio aquí
             }
 
             return "reparaciones/reparacion-update";
@@ -77,7 +77,6 @@ public class ReparacionController {
             return "redirect:/reparaciones/all";
         }
     }
-
 
     @PostMapping("/{id}")
     public String updateReparacion(@PathVariable("id") Integer id, @ModelAttribute Reparacion reparacion) {

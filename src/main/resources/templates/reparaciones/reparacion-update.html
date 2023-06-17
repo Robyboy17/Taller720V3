@@ -17,9 +17,7 @@
             <label for="empleadoId" class="form-label">Empleado</label>
             <select class="form-control" id="empleadoId" name="empleadoId" th:field="*{empleado.id}">
                 <option value="">Seleccionar empleado</option>
-                <th:block th:each="empleado : ${empleados}">
-                    <option th:value="${empleado.id}" th:text="${empleado.nombre} + ' ' + ${empleado.apellido}"></option>
-                </th:block>
+                <option th:each="empleado : ${empleados}" th:value="${empleado.id}" th:text="${empleado.nombre} + ' ' + ${empleado.apellido}"></option>
             </select>
         </div>
         <div class="mb-3">
@@ -39,9 +37,7 @@
             <label for="tipoReparacionId" class="form-label">Tipo de Reparación</label>
             <select class="form-control" id="tipoReparacionId" name="tipoReparacionId" th:field="*{tipoReparacion.id}">
                 <option value="">Seleccionar tipo de reparación</option>
-                <th:block th:each="tipoReparacion : ${tiposReparaciones}">
-                    <option th:value="${tipoReparacion.id}" th:text="${tipoReparacion.nombre}"></option>
-                </th:block>
+                <option th:each="tipoReparacion : ${tiposReparaciones}" th:value="${tipoReparacion.id}" th:text="${tipoReparacion.nombre}"></option>
             </select>
         </div>
         <div class="mb-3">
@@ -51,6 +47,14 @@
                 <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nombre} + ' ' + ${cliente.apellido}"></option>
             </select>
         </div>
+        <div class="mb-3">
+            <label for="cocheId" class="form-label">Coche del Cliente</label>
+            <select class="form-select" id="cocheId" name="cocheId" th:field="*{coche.id}">
+                <option value="">Seleccionar coche</option>
+                <option th:each="coche : ${cocheList}" th:value="${coche.id}" th:text="${coche.marca.nombre} + ' ' + ${coche.modelo.nombre} + ' ' + ${coche.anio}"></option>
+            </select>
+        </div>
+
         <button type="submit" class="btn btn-primary">Guardar</button>
         <a th:href="@{/reparaciones/all}" class="btn btn-danger">Cancelar</a>
     </form>
