@@ -13,22 +13,37 @@
             <label for="descripcion" class="form-label">Descripción</label>
             <input type="text" class="form-control" id="descripcion" name="descripcion" th:field="*{descripcion}">
         </div>
+        <div class="form-group mb-3">
+            <label for="empleado">Empleado:</label>
+            <select id="empleado" class="form-control" th:field="*{empleado}">
+                <option th:each="empleado : ${empleados}" th:value="${empleado.id}" th:text="${empleado.nombre}"></option>
+            </select>
+        </div>
         <div class="mb-3">
             <label for="duracion" class="form-label">Duración</label>
             <input type="text" class="form-control" id="duracion" name="duracion" th:field="*{duracion}">
         </div>
-        <div class="mb-3">
-            <label for="fechaDeInicio" class="form-label">Fecha de Inicio</label>
-            <input type="date" class="form-control" id="fechaDeInicio" name="fechaDeInicio" th:field="*{fechaDeInicio}">
+        <div class="mb-3 d-flex gap-2">
+            <div class="mb-3">
+                <label for="fechaDeInicio" class="form-label">Fecha de Inicio</label>
+                <input type="date" class="form-control" id="fechaDeInicio" name="fechaDeInicio" th:field="*{fechaDeInicio}">
+            </div>
+            <div class="mb-3">
+                <label for="fechaDeFin" class="form-label">Fecha de Finalización</label>
+                <input type="date" class="form-control" id="fechaDeFin" name="fechaDeFin" th:field="*{{fechaDeFin}}">
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="fechaDeFin" class="form-label">Fecha de Finalización</label>
-            <input type="date" class="form-control" id="fechaDeFin" name="fechaDeFin" th:field="*{{fechaDeFin}}">
+        <div class="form-group mb-3">
+            <label for="tipoReparacion">Tipo reparación:</label>
+            <select id="tipoReparacion" class="form-control" th:field="*{tipoReparacion}">
+                <option th:each="tipoReparacion : ${tiposReparaciones}" th:value="${tipoReparacion.id}" th:text="${tipoReparacion.nombre}"></option>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
+        <a th:href="@{/reparaciones/all}" class="btn btn-danger">Cancelar</a>
     </form>
-
 </div>
+// JS
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

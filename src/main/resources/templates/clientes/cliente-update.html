@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar cliente</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container">
+    <h1>Editar Cliente</h1>
+    <form th:object="${cliente}" method="POST" th:method="POST">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}">
+        </div>
+        <div class="mb-3">
+            <label for="apellido" class="form-label">Apellidos</label>
+            <input type="text" class="form-control" id="apellido" name="apellido" th:field="*{apellido}">
+        </div>
+        <div class="mb-3">
+            <label for="DNI" class="form-label">DNI</label>
+            <input type="text" class="form-control" id="DNI" name="DNI" th:field="*{DNI}">
+        </div>
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="text" class="form-control" id="telefono" name="telefono" th:field="*{{telefono}}">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" th:field="*{{email}}">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a th:href="@{/clientes/all}" class="btn btn-danger">Cancelar</a>
+    </form>
+
+</div>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

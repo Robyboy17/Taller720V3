@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
+<div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
 <div class="container">
     <h1>Todas las entidades</h1>
     <table class="table table-striped">
@@ -20,7 +21,7 @@
             <td th:text="${rol.name}"></td>
             <td>
                 <a th:href="@{/roles/{id}(id=${rol.id})}" class="btn btn-primary">Editar</a>
-                <a th:href="@{/roles/delete/{id}(id=${rol.id})}" class="btn btn-danger">Eliminar</a>
+                <a th:href="@{/roles/{id}/delete(id=${rol.id})}" class="btn btn-danger">Eliminar</a>
             </td> <!-- Columna para los botones de edición y eliminación -->
         </tr>
         </tbody>

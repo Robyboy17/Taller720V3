@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container">
+    <h1>Crear Empleado</h1>
+    <form th:object="${empleado}" th:action="@{/empleados/create}" th:method="post">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}">
+        </div>
+        <div class="mb-3">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="apellido" name="apellido" th:field="*{apellido}">
+        </div>
+        <div class="mb-3">
+            <label for="cargo" class="form-label">Cargo</label>
+            <input type="text" class="form-control" id="cargo" name="cargo" th:field="*{cargo}">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a th:href="@{/empleados/all}" class="btn btn-danger">Cancelar</a>
+    </form>
+</div>
+
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

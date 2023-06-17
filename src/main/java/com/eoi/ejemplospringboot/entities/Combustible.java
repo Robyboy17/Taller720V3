@@ -17,6 +17,13 @@ public class Combustible {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private String nombre;
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
 
 }

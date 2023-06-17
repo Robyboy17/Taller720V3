@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container">
+    <h1>Editar Empresa</h1>
+    <form th:object="${empresa}"  method="POST" th:method="POST">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}">
+        </div>
+        <div class="mb-3">
+            <label for="sociedad" class="form-label">Sociedad</label>
+            <input type="text" class="form-control" id="sociedad" name="sociedad" th:field="*{sociedad}">
+        </div>
+        <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="direccion" name="direccion" th:field="*{{direccion}}">
+        </div>
+        <div class="mb-3">
+            <label for="codigoPostal" class="form-label">Código Postal</label>
+            <input type="text" class="form-control" id="codigoPostal" name="codigoPostal" th:field="*{{codigoPostal}}">
+        </div>
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="text" class="form-control" id="telefono" name="telefono" th:field="*{{telefono}}">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control" id="email" name="email" th:field="*{{email}}">
+        </div>
+        <div class="mb-3">
+            <label for="web" class="form-label">Web</label>
+            <input type="text" class="form-control" id="web" name="web" th:field="*{{web}}">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a th:href="@{/empresas/all}" class="btn btn-danger">Cancelar</a>
+    </form>
+
+</div>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

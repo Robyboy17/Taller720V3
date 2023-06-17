@@ -17,10 +17,19 @@ public class Coche {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String marca;
+    @OneToOne
+    private Marca marca;
 
-    private String modelo;
+    @ManyToOne
+    private Modelo modelo;
 
-    private String anio;
+    @OneToOne
+    private Combustible combustible;
+
+    private Integer anio;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
 }

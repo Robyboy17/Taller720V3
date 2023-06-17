@@ -23,11 +23,11 @@ public class Empleado {
 
     private String cargo;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Usuario usuario;
-
-    @ManyToOne
-    private Empresa empresa;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    private Usuario usuario;
+//
+//    @ManyToOne
+//    private Empresa empresa;
 
 
     public Empleado(String nombre) {

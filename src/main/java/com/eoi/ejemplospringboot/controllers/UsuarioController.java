@@ -20,6 +20,12 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
+
+    @GetMapping("prueba")
+    public String prueba(
+            Model model) {
+        return "prueba";
+    }
     // Index
     @GetMapping("all")
     public String getAllUsers(

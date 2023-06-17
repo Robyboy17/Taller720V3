@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
+<div class="container">
+    <h1>Empresas</h1>
+    <a th:href="@{/empresas/new}" class="btn btn-primary mb-2">Añadir empresa</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Sociedad</th>
+            <th>Dirección</th>
+            <th>Código Postal</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th>Web</th>
+            <th>Acciones</th> <!-- Nueva columna para las acciones -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="empresa : ${entities}">
+            <td th:text="${empresa.id}"></td>
+            <td th:text="${empresa.name}"></td>
+            <td th:text="${empresa.sociedad}"></td>
+            <td th:text="${empresa.direccion}"></td>
+            <td th:text="${empresa.codigo_postal}"></td>
+            <td th:text="${empresa.telefono}"></td>
+            <td th:text="${empresa.email}"></td>
+            <td th:text="${empresa.web}"></td>
+
+            <td>
+                <a th:href="@{/empresas/{id}(id=${empresa.id})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/empresas/{id}/delete(id=${empresa.id})}" class="btn btn-danger">Eliminar</a>
+            </td> <!-- Columna para los botones de edición y eliminación -->
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

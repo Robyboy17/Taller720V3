@@ -13,15 +13,28 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "empresa")
 public class Empresa {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    private String nombre;
-
+    private long id;
+    @Column (name ="nombre",length = 50)
+    private String name;
+    @Column (name ="codigo_postal",length = 10)
+    private String codigo_postal;
+    @Column (name ="telefono",length = 20)
+    private String telefono	;
+    @Column (name ="Direccion",length = 50)
     private String direccion;
+    @Column (name ="sociedad",length = 45)
+    private String sociedad;
+    @Column (name ="web",length = 45)
+    private String web;
+
+    @Column (name ="email",length = 45)
+    private String email;
 
     /**
      * Lista de clientes asociados a la Empresa.

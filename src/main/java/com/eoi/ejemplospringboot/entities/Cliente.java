@@ -6,37 +6,47 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
+import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-//@Table(name="cliente")
+@Table(name="cliente")
 public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "Nombre")
     private String nombre;
 
+    @Column(name = "Apellidos")
     private String apellido;
 
-    private String direccion;
+    @Column
+    private String DNI;
 
-    /**
-     * Usuario asociado al Cliente.
-     */
-    @OneToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "usuario_id", referencedColumnName = "id")
-    private Usuario usuario;
+    @Column(name = "Teléfono")
+    private Integer telefono;
 
+    @Column(name = "Email")
+    private String email;
 
-    @ManyToMany
-    @JoinColumn(name = "empresa_id")
-    private List<Empresa> empresas;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private Set<Coche> coches;
+
+    public void addCoche(Coche coche) {
+        coches.add(coche);
+        coche.setCliente(this);
+    }
+
+    public void removeCoche(Coche coche) {
+        coches.remove(coche);
+        coche.setCliente(null);
+    }
 
 }
