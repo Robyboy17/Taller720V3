@@ -1,6 +1,5 @@
 package com.eoi.ejemplospringboot.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,7 +37,6 @@ public class Cliente {
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL,
             orphanRemoval = true)
-    @JsonManagedReference
     private Set<Coche> coches;
 
     public void addCoche(Coche coche) {
