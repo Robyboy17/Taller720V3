@@ -39,11 +39,11 @@ public class CalendarioController {
         //Si nos han dado un mes 13, sumamos uno al año y ponemos mes 1
         if (month == 13) {
             year += 1;
-            month = 1;
+            return "redirect:calendario?month=1" + "&year=" + year;
         }
         if (month == 0) {
             year -= 1;
-            month = 12;
+            return "redirect:calendario?month=12" + "&year=" + year;
         }
 
         //Primero calculo un objeto de fecha de la fecha que obtengo de las variables
@@ -83,8 +83,8 @@ public class CalendarioController {
                 //Actualizo el numero de la semana una vez he rellenado lo necesario en la primera
                 semanaActual += 1;
             }
-            DiaDelCalendario diaDelCalendario = new DiaDelCalendario();
-            diaDelCalendario.setFecha(fechaEnUso);
+                DiaDelCalendario diaDelCalendario = new DiaDelCalendario();
+                diaDelCalendario.setFecha(fechaEnUso);
 
             //Yo aqui creo una lista de eventos, siempre la misma para todos los dias.
             //Aqui cada uno deberia rellenar la lista de eventos del dia segun considere.
@@ -94,6 +94,8 @@ public class CalendarioController {
 
 
             List<Evento> eventos = new ArrayList<>();
+
+
             Evento evento1 = new Evento();
             evento1.setFechaInicio(LocalDateTime.of(2023, 5, 29, 15, 50));
             evento1.setNombre("EVENTO1");
@@ -106,6 +108,8 @@ public class CalendarioController {
             diaDelCalendario.setEventos(eventos);
             semana.add(diaDelCalendario);
 
+
+
         }
 
         model.addAttribute("year", year);
@@ -116,6 +120,5 @@ public class CalendarioController {
         return "calendario/calendario";
 
     }
-
 
 }
