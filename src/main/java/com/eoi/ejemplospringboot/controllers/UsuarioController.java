@@ -3,6 +3,9 @@ package com.eoi.ejemplospringboot.controllers;
 import com.eoi.ejemplospringboot.entities.Usuario;
 import com.eoi.ejemplospringboot.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,13 +29,13 @@ public class UsuarioController {
             Model model) {
         return "prueba";
     }
-    // Index
-    @GetMapping("all")
-    public String getAllUsers(
-            Model model) {
-        model.addAttribute("entities",usuarioService.findAll());
-        return "usuarios/all-users";
-    }
+    // Index AHORA ESTÁN PAGINADOS, USAMOS LA DEL FINAL
+//    @GetMapping("all")
+//    public String getAllUsers(
+//            Model model) {
+//        model.addAttribute("entities",usuarioService.findAll());
+//        return "usuarios/all-users";
+//    }
 
     // Delete
     @GetMapping("{id}/delete")
@@ -70,5 +73,17 @@ public class UsuarioController {
         usuarioService.updateUsuario(usuario);
         return "redirect:/usuarios/all";
     }
+    @GetMapping("all")
+    public String getAllUsers(@RequestParam(defaultValue = "0") int page,
+                              @RequestParam(defaultValue = "10") int size,
+                              Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Usuario> usuarioPage = usuarioService.findAll(pageable);
 
+        model.addAttribute("entities", usuarioPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", usuarioPage.getTotalPages());
+
+        return "usuarios/all-users";
+    }
 }
