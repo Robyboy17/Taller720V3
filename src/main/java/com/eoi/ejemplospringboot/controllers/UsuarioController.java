@@ -73,6 +73,8 @@ public class UsuarioController {
         usuarioService.updateUsuario(usuario);
         return "redirect:/usuarios/all";
     }
+
+    //PAGEABLE
     @GetMapping("all")
     public String getAllUsers(@RequestParam(defaultValue = "0") int page,
                               @RequestParam(defaultValue = "10") int size,
