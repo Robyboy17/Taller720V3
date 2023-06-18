@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html th:lang="#{principal.lang}">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <title>Error</title>
+    <link href="/css/notFound.css" rel="stylesheet">
+
+</head>
+<body>
+
+    </header>
+    <!--dust particel-->
+    <div>
+        <div class="starsec"></div>
+        <div class="starthird"></div>
+        <div class="starfourth"></div>
+        <div class="starfifth"></div>
+    </div>
+    <!--Dust particle end--->
+
+    <div class="lamp__wrap">
+        <div class="lamp">
+            <div class="cable"></div>
+            <div class="cover"></div>
+            <div class="in-cover">
+                <div class="bulb"></div>
+            </div>
+            <div class="light"></div>
+        </div>
+    </div>
+    <!-- END Lamp -->
+    <section class="error">
+        <!-- Content -->
+        <div class="error__content">
+            <div class="error__message message">
+                <h1 class="message__title">¡ERROR!</h1>
+                <p class="message__text">Parece que no encontramos la página que busca ...</p>
+            </div>
+            <div class="error__nav e-nav">
+                <a th:href="@{/}" target="_blanck" class="e-nav__link"></a>
+<!-- Te envía de nuevo al home, pero habría que contemplar si debería llevar a otro sitio-->
+            </div>
+        </div>
+        <!-- END Content -->
+    </section>
+
+</body>
+</html>
