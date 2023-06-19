@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layoutConSidebar}">
 <head>
     <title>Todas las entidades</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
@@ -7,31 +7,42 @@
 <body>
 <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
 <div class="container">
-    <h1>Empleados</h1>
-    <a th:href="@{/empleados/new}" class="btn btn-primary mb-2">Añadir Empleado</a>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Cargo</th>
-            <th>Acciones</th> <!-- Nueva columna para las acciones -->
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="empleado : ${entities}">
-            <td th:text="${empleado.id}"></td>
-            <td th:text="${empleado.nombre}"></td>
-            <td th:text="${empleado.apellido}"></td>
-            <td th:text="${empleado.cargo}"></td>
-            <td>
-                <a th:href="@{/empleados/{id}(id=${empleado.id})}" class="btn btn-primary">Editar</a>
-                <a th:href="@{/empleados/{id}/delete(id=${empleado.id})}" class="btn btn-danger">Eliminar</a>
-            </td> <!-- Columna para los botones de edición y eliminación -->
-        </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-md-3">
+            <div layout:fragment="sidebar">
+                <div th:replace="fragments/sidebar :: sidebar"></div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div layout:fragment="contenido">
+                <h1>Empleados</h1>
+                <a th:href="@{/empleados/new}" class="btn btn-primary mb-2">Añadir Empleado</a>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Cargo</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="empleado : ${entities}">
+                        <td th:text="${empleado.id}"></td>
+                        <td th:text="${empleado.nombre}"></td>
+                        <td th:text="${empleado.apellido}"></td>
+                        <td th:text="${empleado.cargo}"></td>
+                        <td>
+                            <a th:href="@{/empleados/{id}(id=${empleado.id})}" class="btn btn-primary">Editar</a>
+                            <a th:href="@{/empleados/{id}/delete(id=${empleado.id})}" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>

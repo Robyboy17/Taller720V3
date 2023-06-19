@@ -1,47 +1,64 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layoutConSidebar}">
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+
 </head>
 <body>
-<div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
-<div class="container">
-    <h1>Empresas</h1>
-    <a th:href="@{/empresas/new}" class="btn btn-primary mb-2">Añadir empresa</a>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Sociedad</th>
-            <th>Dirección</th>
-            <th>Código Postal</th>
-            <th>Teléfono</th>
-            <th>Email</th>
-            <th>Web</th>
-            <th>Acciones</th> <!-- Nueva columna para las acciones -->
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="empresa : ${entities}">
-            <td th:text="${empresa.id}"></td>
-            <td th:text="${empresa.name}"></td>
-            <td th:text="${empresa.sociedad}"></td>
-            <td th:text="${empresa.direccion}"></td>
-            <td th:text="${empresa.codigo_postal}"></td>
-            <td th:text="${empresa.telefono}"></td>
-            <td th:text="${empresa.email}"></td>
-            <td th:text="${empresa.web}"></td>
-
-            <td>
-                <a th:href="@{/empresas/{id}(id=${empresa.id})}" class="btn btn-primary">Editar</a>
-                <a th:href="@{/empresas/{id}/delete(id=${empresa.id})}" class="btn btn-danger">Eliminar</a>
-            </td> <!-- Columna para los botones de edición y eliminación -->
-        </tr>
-        </tbody>
-    </table>
+<div layout:fragment="navbar">
+    <div th:replace="fragments/navbar :: navbar"></div>
 </div>
+
+<div class="container">
+    <div class="flexbox-container">
+        <div class="flexbox-sidebar">
+            <div layout:fragment="sidebar">
+                <div th:replace="fragments/sidebar :: sidebar"></div>
+            </div>
+        </div>
+        <div class="flexbox-content">
+            <div layout:fragment="contenido">
+                <h1>Empresas</h1>
+                <a th:href="@{/empresas/new}" class="btn btn-primary mb-2">Añadir empresa</a>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Sociedad</th>
+                        <th>Dirección</th>
+                        <th>Código Postal</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th>Web</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="empresa : ${entities}">
+                        <td th:text="${empresa.id}"></td>
+                        <td th:text="${empresa.name}"></td>
+                        <td th:text="${empresa.sociedad}"></td>
+                        <td th:text="${empresa.direccion}"></td>
+                        <td th:text="${empresa.codigo_postal}"></td>
+                        <td th:text="${empresa.telefono}"></td>
+                        <td th:text="${empresa.email}"></td>
+                        <td th:text="${empresa.web}"></td>
+                        <td>
+                            <a th:href="@{/empresas/{id}(id=${empresa.id})}" class="btn btn-primary">Editar</a>
+                            <a th:href="@{/empresas/{id}/delete(id=${empresa.id})}" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+

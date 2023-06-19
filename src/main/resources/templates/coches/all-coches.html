@@ -1,39 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layoutConSidebar}">
 <head>
-    <meta charset="UTF-8">
-    <title>Todas las entidades</title>
-    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+  <meta charset="UTF-8">
+  <title>Todas las entidades</title>
+  <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
 <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
 <div class="container">
-  <h1>Coches</h1>
-  <a th:href="@{/coches/new}" class="btn btn-primary mb-2">Añadir coche</a>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Marca</th>
-      <th>Modelo</th>
-      <th>Combustible</th>
-      <th>Año</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="coche : ${entities}">
-      <td th:text="${coche.id}"></td>
-      <td th:text="${coche.marca}"></td>
-      <td th:text="${coche.modelo}"></td>
-      <td th:text="${coche.combustible}"></td>
-      <td th:text="${coche.anio}"></td>
-      <td>
-        <a th:href="@{/coches/{id}(id=${coche.id})}" class="btn btn-primary">Editar</a>
-        <a th:href="@{/coches/{id}/delete(id=${coche.id})}" class="btn btn-danger">Eliminar</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-md-3">
+      <div layout:fragment="sidebar">
+        <div th:replace="fragments/sidebar :: sidebar"></div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div layout:fragment="contenido">
+        <h1>Coches</h1>
+        <a th:href="@{/coches/new}" class="btn btn-primary mb-2">Añadir coche</a>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Combustible</th>
+            <th>Año</th>
+            <th>Acciones</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="coche : ${entities}">
+            <td th:text="${coche.id}"></td>
+            <td th:text="${coche.marca}"></td>
+            <td th:text="${coche.modelo}"></td>
+            <td th:text="${coche.combustible}"></td>
+            <td th:text="${coche.anio}"></td>
+            <td>
+              <a th:href="@{/coches/{id}(id=${coche.id})}" class="btn btn-primary">Editar</a>
+              <a th:href="@{/coches/{id}/delete(id=${coche.id})}" class="btn btn-danger">Eliminar</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>

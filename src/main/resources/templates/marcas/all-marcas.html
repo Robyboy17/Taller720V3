@@ -1,35 +1,46 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layoutConSidebar}">
 <head>
     <title>Todas las entidades</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
 <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
-
 <div class="container">
-    <h1>Marcas</h1>
-    <a th:href="@{/marcas/new}" class="btn btn-primary mb-2">Añadir marca</a>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <!-- Nueva columna para las acciones -->
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="marca : ${entities}">
-            <td th:text="${marca.id}"></td>
-            <td th:text="${marca.nombre}"></td>
-            <td>
-                <a th:href="@{/marcas/{id}(id=${marca.id})}" class="btn btn-primary">Editar</a>
-                <a th:href="@{/marcas/{id}/delete(id=${marca.id})}" class="btn btn-danger">Eliminar</a>
-            </td> <!-- Columna para los botones de edición y eliminación -->
-        </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-md-3">
+            <div layout:fragment="sidebar">
+                <div th:replace="fragments/sidebar :: sidebar"></div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div layout:fragment="contenido">
+                <h1>Marcas</h1>
+                <a th:href="@{/marcas/new}" class="btn btn-primary mb-2">Añadir marca</a>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="marca : ${entities}">
+                        <td th:text="${marca.id}"></td>
+                        <td th:text="${marca.nombre}"></td>
+                        <td>
+                            <a th:href="@{/marcas/{id}(id=${marca.id})}" class="btn btn-primary">Editar</a>
+                            <a th:href="@{/marcas/{id}/delete(id=${marca.id})}" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
+
