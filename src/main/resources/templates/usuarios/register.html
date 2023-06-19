@@ -1,96 +1,93 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sd="http://www.w3.org/1999/xhtml"
-      layout:decorate="~{/layout/layoutsinlogin}">
+      layout:decorate="~{/layout/layout}">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
+    <link rel="stylesheet" href="../../static/css/styles.css">
 
 </head>
-<body>
-    <div layout:fragment="cabecera">
-        <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Regístrese</p>
+<body id="login">
+<div layout:fragment="cabecera">
+    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Regístrese</p>
+</div>
+<div layout:fragment="contenido">
+
+    <div class="alert alert-danger"  th:if="${param.error}">
+        Usuario o contraseña no válidas.
     </div>
-    <div layout:fragment="contenido">
+    <div class="alert alert-success" th:if="${param.logout}">
+        Has cerrado sesión.
+    </div>
 
-        <div class="alert alert-danger"  th:if="${param.error}">
-            Usuario o contraseña no válidas.
-        </div>
-        <div class="alert alert-success" th:if="${param.logout}">
-            Has cerrado sesión.
-        </div>
+    <div class=" container w-25 bg-white p-4 mt-4 rounded shadow">
+        <h2 class="text-center bold">Bienvenido :)</h2>
+        <form class="pt-lg-5" th:action="@{/usuarios/register}" method="post">
 
-        <div class=" container w-25 bg-white p-4 mt-4 rounded shadow">
-            <h2 class="text-center bold">Bienvenido :)</h2>
-            <form class="pt-lg-5" th:action="@{/usuarios/register}" method="post">
+            <!-- User input -->
+            <div class="form-outline mb-4">
+                <input type="text" id="form2Example1" name="username" class="form-control" placeholder="Nombre de usuario"/>
+                <label class="form-label" for="form2Example1"></label>
+            </div>
 
-                <!-- User input -->
-                <div class="form-outline mb-4">
-                    <input type="text" id="form2Example1" name="username" class="form-control" placeholder="Nombre de usuario"/>
-                    <label class="form-label" for="form2Example1"></label>
-                </div>
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input type="text" id="form2Example2" name="email" class="form-control" placeholder="Dirección de correo"/>
+                <label class="form-label" for="form2Example2"></label>
+            </div>
 
-                <!-- Email input -->
-                <div class="form-outline mb-4">
-                    <input type="text" id="form2Example2" name="email" class="form-control" placeholder="Dirección de correo"/>
-                    <label class="form-label" for="form2Example2"></label>
-                </div>
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <input type="password" id="form2Example3" name="password" class="form-control" placeholder="Contraseña"/>
+                <label class="form-label" for="form2Example3"></label>
+            </div>
 
-                <!-- Password input -->
-                <div class="form-outline mb-4">
-                    <input type="password" id="form2Example3" name="password" class="form-control" placeholder="Contraseña"/>
-                    <label class="form-label" for="form2Example3"></label>
-                </div>
+            <div class="form-outline mb-4">
+                <input type="password" id="form2Example4" name="password" class="form-control" placeholder="Repita la contraseña"/>
+                <label class="form-label" for="form2Example4"></label>
+            </div>
 
-                <div class="form-outline mb-4">
-                    <input type="password" id="form2Example4" name="password" class="form-control" placeholder="Repita la contraseña"/>
-                    <label class="form-label" for="form2Example4"></label>
-                </div>
-
-                <!-- 2 column grid layout for inline styling -->
-                <div class="row mb-4">
-                    <div class="col d-flex justify-content-center">
-                        <!-- Checkbox -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                            <label class="form-check-label" for="form2Example31"> Recordarme </label>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <!-- Simple link -->
-                        <a href="#!">¿Olvidó la contraseña?</a>
+            <!-- 2 column grid layout for inline styling -->
+            <div class="row mb-4">
+                <div class="col d-flex justify-content-center">
+                    <!-- Checkbox -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                        <label class="form-check-label" for="form2Example31"> Recordarme </label>
                     </div>
                 </div>
 
-                <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4">Iniciar sesión</button>
 
-                <!-- Register buttons -->
-                <div class="text-center">
-                    <p>¿Aún no es miembro? <a href="#!">Registrarse</a></p>
-                    <p>o inicie sesión con:</p>
-                    <button type="button" class="btn btn-link btn-floating mx-1">
-                        <i class="fab fa-facebook-f"></i>
-                    </button>
+            </div>
 
-                    <button type="button" class="btn btn-link btn-floating mx-1">
-                        <i class="fab fa-google"></i>
-                    </button>
+            <!-- Submit button -->
+            <button type="submit" class="btn w-100 btn-primary btn-block mb-4">Registrarse</button>
 
-                    <button type="button" class="btn btn-link btn-floating mx-1">
-                        <i class="fab fa-twitter"></i>
-                    </button>
+            <!-- Register buttons -->
+            <div class="text-center">
+                <p>¿Ya es miembro? <a th:href="@{/usuarios/login}">Inicie sesión</a></p>
+                <p>o hágalo con:</p>
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
 
-                    <button type="button" class="btn btn-link btn-floating mx-1">
-                        <i class="fab fa-github"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-google"></i>
+                </button>
+
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-twitter"></i>
+                </button>
+
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-github"></i>
+                </button>
+            </div>
+        </form>
     </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
