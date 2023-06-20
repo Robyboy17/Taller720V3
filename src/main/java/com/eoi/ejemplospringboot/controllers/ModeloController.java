@@ -1,10 +1,14 @@
 package com.eoi.ejemplospringboot.controllers;
 
+import com.eoi.ejemplospringboot.entities.Cliente;
 import com.eoi.ejemplospringboot.entities.Marca;
 import com.eoi.ejemplospringboot.entities.Modelo;
 import com.eoi.ejemplospringboot.repositories.MarcaRepository;
 import com.eoi.ejemplospringboot.services.ModeloService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +30,12 @@ public class ModeloController {
         this.marcaRepository = marcaRepository;
     }
 
-    // Index
-    @GetMapping("all")
-    public String getAllModelos(Model model) {
-        model.addAttribute("entities", modeloService.findAll());
-        return "modelos/all-modelos";
-    }
+    // Index AHORA ESTÁN PAGINADOS, USAMOS LA DEL FINAL
+//    @GetMapping("all")
+//    public String getAllModelos(Model model) {
+//        model.addAttribute("entities", modeloService.findAll());
+//        return "modelos/all-modelos";
+//    }
 
     // Delete
     @GetMapping("/{id}/delete")
@@ -70,5 +74,19 @@ public class ModeloController {
     public String updateModelo(@ModelAttribute("modelo") Modelo modelo) {
         modeloService.updateModelo(modelo);
         return "redirect:/modelos/all";
+    }
+    //PAGEABLE
+    @GetMapping("all")
+    public String getAllModelosPageable(@RequestParam(defaultValue = "0") int page,
+                                         @RequestParam(defaultValue = "10") int size,
+                                         Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Modelo> modeloPage = modeloService.getAllModelosPageable(pageable);
+
+        model.addAttribute("entities", modeloPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", modeloPage.getTotalPages());
+
+        return "modelos/all-modelos";
     }
 }

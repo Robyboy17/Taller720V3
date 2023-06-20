@@ -3,6 +3,7 @@
 <head>
     <title>Clientes</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/paginacion.css">
 </head>
 <body>
 <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
@@ -47,6 +48,51 @@
                 </table>
             </div>
         </div>
+    <h1>Clientes</h1>
+    <a th:href="@{/clientes/new}" class="btn btn-primary mb-2">Añadir cliente</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>DNI</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <!-- Nueva columna para las acciones -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cliente : ${entities}">
+            <td th:text="${cliente.id}"></td>
+            <td th:text="${cliente.nombre}"></td>
+            <td th:text="${cliente.apellido}"></td>
+            <td th:text="${cliente.DNI}"></td>
+            <td th:text="${cliente.telefono}"></td>
+            <td th:text="${cliente.email}"></td>
+            <td>
+                <a th:href="@{/clientes/{id}/coches(id=${cliente.id})}" class="btn btn-primary">Ver coches</a>
+                <a th:href="@{/clientes/{id}(id=${cliente.id})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/clientes/{id}/delete(id=${cliente.id})}" class="btn btn-danger">Eliminar</a>
+            </td> <!-- Columna para los botones de edición y eliminación -->
+        </tr>
+        </tbody>
+    </table>
+    <!-- Mostrar la paginación -->
+    <div class="paginacion">
+        <ul class="pagination">
+            <li th:classappend="${currentPage == 0 ? 'disabled' : ''}">
+                <a th:attr="href=@{/clientes/all(page=__${currentPage - 1}__,size=__${size}__)}">&laquo;</a>
+            </li>
+            <li th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}"
+                th:classappend="${pageNumber == currentPage ? 'active' : ''}">
+                <a th:attr="href=@{/clientes/all(page=__${pageNumber}__,size=__${size}__)}"
+                   th:text="${pageNumber + 1}"></a>
+            </li>
+            <li th:classappend="${currentPage == totalPages - 1 ? 'disabled' : ''}">
+                <a th:attr="href=@{/clientes/all(page=__${currentPage + 1}__,size=__${size}__)}">&raquo;</a>
+            </li>
+        </ul>
     </div>
 </div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>

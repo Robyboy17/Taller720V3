@@ -14,21 +14,50 @@
             <input type="text" class="form-control" id="descripcion" name="descripcion" th:field="*{descripcion}">
         </div>
         <div class="mb-3">
+            <label for="empleadoId" class="form-label">Empleado</label>
+            <select class="form-control" id="empleadoId" name="empleadoId" th:field="*{empleado.id}">
+                <option value="">Seleccionar empleado</option>
+                <option th:each="empleado : ${empleados}" th:value="${empleado.id}" th:text="${empleado.nombre} + ' ' + ${empleado.apellido}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
             <label for="duracion" class="form-label">Duración</label>
             <input type="text" class="form-control" id="duracion" name="duracion" th:field="*{duracion}">
         </div>
+
         <div class="mb-3">
             <label for="fechaDeInicio" class="form-label">Fecha de Inicio</label>
             <input type="date" class="form-control" id="fechaDeInicio" name="fechaDeInicio" th:field="*{fechaDeInicio}">
         </div>
         <div class="mb-3">
             <label for="fechaDeFin" class="form-label">Fecha de Finalización</label>
-            <input type="date" class="form-control" id="fechaDeFin" name="fechaDeFin" th:field="*{{fechaDeFin}}">
+            <input type="date" class="form-control" id="fechaDeFin" name="fechaDeFin" th:field="*{fechaDeFin}">
         </div>
+        <div class="mb-3">
+            <label for="tipoReparacionId" class="form-label">Tipo de Reparación</label>
+            <select class="form-control" id="tipoReparacionId" name="tipoReparacionId" th:field="*{tipoReparacion.id}">
+                <option value="">Seleccionar tipo de reparación</option>
+                <option th:each="tipoReparacion : ${tiposReparaciones}" th:value="${tipoReparacion.id}" th:text="${tipoReparacion.nombre}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="clienteId" class="form-label">Cliente</label>
+            <select class="form-select" id="clienteId" name="clienteId" th:field="*{cliente.id}">
+                <option value="">Seleccionar cliente</option>
+                <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nombre} + ' ' + ${cliente.apellido}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="cocheId" class="form-label">Coche del Cliente</label>
+            <select class="form-select" id="cocheId" name="cocheId" th:field="*{coche.id}">
+                <option value="">Seleccionar coche</option>
+                <option th:each="coche : ${cocheList}" th:value="${coche.id}" th:text="${coche.marca.nombre} + ' ' + ${coche.modelo.nombre} + ' ' + ${coche.anio}"></option>
+            </select>
+        </div>
+
         <button type="submit" class="btn btn-primary">Guardar</button>
         <a th:href="@{/reparaciones/all}" class="btn btn-danger">Cancelar</a>
     </form>
-
 </div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>

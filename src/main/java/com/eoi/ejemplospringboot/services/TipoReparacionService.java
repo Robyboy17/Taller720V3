@@ -1,8 +1,11 @@
 package com.eoi.ejemplospringboot.services;
 
+import com.eoi.ejemplospringboot.entities.Cliente;
 import com.eoi.ejemplospringboot.entities.TipoReparacion;
 import com.eoi.ejemplospringboot.repositories.TipoReparacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
@@ -51,4 +54,12 @@ public class TipoReparacionService {
 
         repository.save(tipoReparacion);
     }
+
+    public List<TipoReparacion> getAllTiposReparaciones() {
+        return repository.findAll();
+    }
+    public Page<TipoReparacion> getAllTiposReparacionesPageable(Pageable pageable) {
+        return repository.findAll(pageable);
+    }
+
 }

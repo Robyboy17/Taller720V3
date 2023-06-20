@@ -13,76 +13,76 @@
 <body id="login">
 
 
-    <div layout:fragment="cabecera">
-        <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Inicio de sesión</p>
+<div layout:fragment="cabecera">
+    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Inicio de sesión</p>
+</div>
+<div layout:fragment="contenido">
+
+    <div class="alert alert-danger"  th:if="${param.error}">
+        Usuario o contraseña no válidas.
     </div>
-    <div layout:fragment="contenido">
+    <div class="alert alert-success" th:if="${param.logout}">
+        Has cerrado sesión.
+    </div>
 
-        <div class="alert alert-danger"  th:if="${param.error}">
-            Usuario o contraseña no válidas.
-        </div>
-        <div class="alert alert-success" th:if="${param.logout}">
-            Has cerrado sesión.
-        </div>
+    <div class=" container w-25 bg-white p-4 mt-4 rounded shadow">
 
-        <div class=" container w-25 bg-white p-4 mt-4 rounded shadow">
+        <h2 class="text-center bold">Bienvenido :)</h2>
+        <form class="pt-lg-5" th:action="@{/usuarios/login}" method="post">
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input type="text" id="form2Example1" name="username" class="form-control" placeholder="Dirección de correo"/>
+                <label class="form-label" for="form2Example1"></label>
+            </div>
 
-            <h2 class="text-center bold">Bienvenido :)</h2>
-            <form class="pt-lg-5" th:action="@{/usuarios/login}" method="post">
-                <!-- Email input -->
-                <div class="form-outline mb-4">
-                    <input type="text" id="form2Example1" name="username" class="form-control" placeholder="Dirección de correo"/>
-                    <label class="form-label" for="form2Example1"></label>
-                </div>
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <input type="password" id="form2Example2" name="password" class="form-control" placeholder="Contraseña" />
+                <label class="form-label" for="form2Example2"></label>
+            </div>
 
-                <!-- Password input -->
-                <div class="form-outline mb-4">
-                    <input type="password" id="form2Example2" name="password" class="form-control" placeholder="Contraseña" />
-                    <label class="form-label" for="form2Example2"></label>
-                </div>
-
-                <!-- 2 column grid layout for inline styling -->
-                <div class="row mb-4">
-                    <div class="col d-flex justify-content-center">
-                        <!-- Checkbox -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                            <label class="form-check-label" for="form2Example31"> Recuérdame </label>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <!-- Simple link -->
-                        <a href="#!">¿Olvidó la contraseña?</a>
+            <!-- 2 column grid layout for inline styling -->
+            <div class="row mb-4">
+                <div class="col d-flex justify-content-center">
+                    <!-- Checkbox -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                        <label class="form-check-label" for="form2Example31"> Recuérdame </label>
                     </div>
                 </div>
 
-                <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4">Iniciar sesión</button>
-
-                <!-- Register buttons -->
-                <div class="text-center">
-                    <p>¿Aún no es miembro? <a th:href="@{/usuarios/register}">Regístrese</a></p>
-                    <p>o inicie sesión con:</p>
-                    <button type="button" class="btn btn-link btn-floating mx-1">
-                        <i class="fab fa-facebook-f"></i>
-                    </button>
-
-                    <button type="button" class="btn btn-link btn-floating mx-1">
-                        <i class="fab fa-google"></i>
-                    </button>
-
-                    <button type="button" class="btn btn-link btn-floating mx-1">
-                        <i class="fab fa-twitter"></i>
-                    </button>
-
-                    <button type="button" class="btn btn-link btn-floating mx-1">
-                        <i class="fab fa-github"></i>
-                    </button>
+                <div class="col">
+                    <!-- Simple link -->
+                    <a href="#!">¿Olvidó la contraseña?</a>
                 </div>
-            </form>
-        </div>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn w-100 btn-primary btn-block mb-4">Iniciar sesión</button>
+
+            <!-- Register buttons -->
+            <div class="text-center">
+                <p>¿Aún no es miembro? <a th:href="@{/usuarios/register}">Regístrese</a></p>
+                <p>o inicie sesión con:</p>
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-google"></i>
+                </button>
+
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-twitter"></i>
+                </button>
+
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-github"></i>
+                </button>
+            </div>
+        </form>
     </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

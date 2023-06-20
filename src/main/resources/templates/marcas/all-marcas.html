@@ -3,41 +3,47 @@
 <head>
     <title>Todas las entidades</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/paginacion.css">
 </head>
 <body>
 <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
 <div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <div layout:fragment="sidebar">
-                <div th:replace="fragments/sidebar1 :: sidebar"></div>
-            </div>
-        </div>
-        <div class="col-md-9">
-            <div layout:fragment="contenido">
-                <h1>Marcas</h1>
-                <a th:href="@{/marcas/new}" class="btn btn-primary mb-2">Añadir marca</a>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Acciones</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="marca : ${entities}">
-                        <td th:text="${marca.id}"></td>
-                        <td th:text="${marca.nombre}"></td>
-                        <td>
-                            <a th:href="@{/marcas/{id}(id=${marca.id})}" class="btn btn-primary">Editar</a>
-                            <a th:href="@{/marcas/{id}/delete(id=${marca.id})}" class="btn btn-danger">Eliminar</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    <h1>Marcas</h1>
+    <a th:href="@{/marcas/new}" class="btn btn-primary mb-2">Añadir marca</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <!-- Nueva columna para las acciones -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="marca : ${entities}">
+            <td th:text="${marca.id}"></td>
+            <td th:text="${marca.nombre}"></td>
+            <td>
+                <a th:href="@{/marcas/{id}(id=${marca.id})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/marcas/{id}/delete(id=${marca.id})}" class="btn btn-danger">Eliminar</a>
+            </td> <!-- Columna para los botones de edición y eliminación -->
+        </tr>
+        </tbody>
+    </table>
+    <!-- Mostrar la paginación -->
+    <div class="paginacion">
+        <ul class="pagination">
+            <li th:classappend="${currentPage == 0 ? 'disabled' : ''}">
+                <a th:attr="href=@{/marcas/all(page=__${currentPage - 1}__,size=__${size}__)}">&laquo;</a>
+            </li>
+            <li th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}"
+                th:classappend="${pageNumber == currentPage ? 'active' : ''}">
+                <a th:attr="href=@{/marcas/all(page=__${pageNumber}__,size=__${size}__)}"
+                   th:text="${pageNumber + 1}"></a>
+            </li>
+            <li th:classappend="${currentPage == totalPages - 1 ? 'disabled' : ''}">
+                <a th:attr="href=@{/marcas/all(page=__${currentPage + 1}__,size=__${size}__)}">&raquo;</a>
+            </li>
+        </ul>
     </div>
 </div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>

@@ -3,57 +3,59 @@
 <head>
     <title>Reparaciones</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/paginacion.css">
 </head>
 <body>
 <div layout:fragment="navbar">
     <div th:replace="fragments/navbar :: navbar"></div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <div layout:fragment="sidebar">
-                <!-- Aquí está la barra lateral -->
-                <div class="sidebar">
-                    <h2>Sidebar</h2>
-                    <p>Contenido de la barra lateral</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-9">
-            <div layout:fragment="contenido">
-                <h1>Reparaciones</h1>
-                <a th:href="@{/reparaciones/new}" class="btn btn-primary mb-2">Añadir reparación</a>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Descripción</th>
-                        <th>Empleado</th>
-                        <th>Duración</th>
-                        <th>Tipo Reparación</th>
-                        <th>Fecha de inicio</th>
-                        <th>Fecha de finalización</th>
-                        <th>Acciones</th> <!-- Nueva columna para las acciones -->
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="reparacion : ${entities}">
-                        <td th:text="${reparacion.id}"></td>
-                        <td th:text="${reparacion.descripcion}"></td>
-                        <td th:text="${reparacion.empleado.nombre}"></td>
-                        <td th:text="${reparacion.duracion}"></td>
-                        <td th:text="${reparacion.tipoReparacion.nombre}"></td>
-                        <td th:text="${reparacion.fechaDeInicio}"></td>
-                        <td th:text="${reparacion.fechaDeFin}"></td>
-                        <td>
-                            <a th:href="@{/reparaciones/{id}(id=${reparacion.id})}" class="btn btn-primary">Editar</a>
-                            <a th:href="@{/reparaciones/{id}/delete(id=${reparacion.id})}" class="btn btn-danger">Eliminar</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    <h1>Reparaciones</h1>
+    <a th:href="@{/reparaciones/new}" class="btn btn-primary mb-2">Añadir reparación</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Descripción</th>
+            <th>Empleado</th>
+            <th>Duración</th>
+            <th>Tipo Reparación</th>
+            <th>Fecha de inicio</th>
+            <th>Fecha de finalización</th>
+            <!-- Nueva columna para las acciones -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="reparacion : ${entities}">
+            <td th:text="${reparacion.id}"></td>
+            <td th:text="${reparacion.descripcion}"></td>
+            <td th:text="${reparacion.empleado.nombre}"></td>
+            <td th:text="${reparacion.duracion}"></td>
+            <td th:text="${reparacion.tipoReparacion.nombre}"></td>
+            <td th:text="${reparacion.fechaDeInicio}"></td>
+            <td th:text="${reparacion.fechaDeFin}"></td>
+            <td>
+                <a th:href="@{/reparaciones/{id}(id=${reparacion.id})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/reparaciones/{id}/delete(id=${reparacion.id})}" class="btn btn-danger">Eliminar</a>
+            </td> <!-- Columna para los botones de edición y eliminación -->
+        </tr>
+        </tbody>
+    </table>
+    <!-- Mostrar la paginación -->
+    <div class="paginacion">
+        <ul class="pagination">
+            <li th:classappend="${currentPage == 0 ? 'disabled' : ''}">
+                <a th:attr="href=@{/reparaciones/all(page=__${currentPage - 1}__,size=__${size}__)}">&laquo;</a>
+            </li>
+            <li th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}"
+                th:classappend="${pageNumber == currentPage ? 'active' : ''}">
+                <a th:attr="href=@{/reparaciones/all(page=__${pageNumber}__,size=__${size}__)}"
+                   th:text="${pageNumber + 1}"></a>
+            </li>
+            <li th:classappend="${currentPage == totalPages - 1 ? 'disabled' : ''}">
+                <a th:attr="href=@{/reparaciones/all(page=__${currentPage + 1}__,size=__${size}__)}">&raquo;</a>
+            </li>
+        </ul>
     </div>
 </div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>

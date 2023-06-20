@@ -1,8 +1,12 @@
 package com.eoi.ejemplospringboot.controllers;
 
+import com.eoi.ejemplospringboot.entities.Cliente;
 import com.eoi.ejemplospringboot.entities.Empleado;
 import com.eoi.ejemplospringboot.services.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +23,13 @@ public class EmpleadoController {
         this.empleadoService = empleadoService;
     }
 
-    @GetMapping("/all")
-    public String getAllEmpleados(
-            Model model) {
-        model.addAttribute("entities",empleadoService.findAll());
-        return "empleados/all-empleados";
-    }
+    // INDEX AHORA ESTÁN PAGINADOS, USAMOS LA DEL FINAL
+//    @GetMapping("/all")
+//    public String getAllEmpleados(
+//            Model model) {
+//        model.addAttribute("entities",empleadoService.findAll());
+//        return "empleados/all-empleados";
+//    }
 
     // Delete
     @GetMapping("{id}/delete")
@@ -59,5 +64,19 @@ public class EmpleadoController {
     public String updateEmpleado(@ModelAttribute Empleado empleado){
         empleadoService.updateEmpleado(empleado);
         return "redirect:/empleados/all";
+    }
+    //PAGEABLE
+    @GetMapping("all")
+    public String getAllEmpleadosPageable(@RequestParam(defaultValue = "0") int page,
+                                         @RequestParam(defaultValue = "10") int size,
+                                         Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Empleado> empleadoPage = empleadoService.getAllEmpleadoPageable(pageable);
+
+        model.addAttribute("entities", empleadoPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", empleadoPage.getTotalPages());
+
+        return "empleados/all-empleados";
     }
 }

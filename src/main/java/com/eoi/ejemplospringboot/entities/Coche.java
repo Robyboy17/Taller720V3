@@ -1,5 +1,6 @@
 package com.eoi.ejemplospringboot.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,6 +31,7 @@ public class Coche {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cliente_id")
+    @JsonBackReference
     private Cliente cliente;
 
 }
