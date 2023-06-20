@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Todas las entidades</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/paginacion.css">
 </head>
 <body>
 <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
@@ -34,6 +35,22 @@
     </tr>
     </tbody>
   </table>
+  <!-- Mostrar la paginación -->
+  <div class="paginacion">
+    <ul class="pagination">
+      <li th:classappend="${currentPage == 0 ? 'disabled' : ''}">
+        <a th:attr="href=@{/coches/all(page=__${currentPage - 1}__,size=__${size}__)}">&laquo;</a>
+      </li>
+      <li th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}"
+          th:classappend="${pageNumber == currentPage ? 'active' : ''}">
+        <a th:attr="href=@{/coches/all(page=__${pageNumber}__,size=__${size}__)}"
+           th:text="${pageNumber + 1}"></a>
+      </li>
+      <li th:classappend="${currentPage == totalPages - 1 ? 'disabled' : ''}">
+        <a th:attr="href=@{/coches/all(page=__${currentPage + 1}__,size=__${size}__)}">&raquo;</a>
+      </li>
+    </ul>
+  </div>
 </div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>

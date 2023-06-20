@@ -7,6 +7,9 @@ import com.eoi.ejemplospringboot.repositories.EmpleadoRepository;
 import com.eoi.ejemplospringboot.repositories.TipoReparacionRepository;
 import com.eoi.ejemplospringboot.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -39,12 +42,12 @@ public class ReparacionController {
         this.cocheService = cocheService;
     }
 
-    // Index
-    @GetMapping("/all")
-    public String getAllReparaciones(Model model) {
-        model.addAttribute("entities",reparacionService.findAll());
-        return "reparaciones/all-reparaciones";
-    }
+    // Index AHORA ESTÁN PAGINADOS, USAMOS LA DEL FINAL
+//    @GetMapping("/all")
+//    public String getAllReparaciones(Model model) {
+//        model.addAttribute("entities",reparacionService.findAll());
+//        return "reparaciones/all-reparaciones";
+//    }
 
     // Delete
     @GetMapping("{id}/delete")
@@ -127,5 +130,18 @@ public class ReparacionController {
 
         return "redirect:/reparaciones/all";
     }
+    //PAGEABLE
+    @GetMapping("all")
+    public String getAllReparacionesPageable(@RequestParam(defaultValue = "0") int page,
+                                         @RequestParam(defaultValue = "10") int size,
+                                         Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Reparacion> reparacionPage = reparacionService.getAllReparacionesPageable(pageable);
 
+        model.addAttribute("entities", reparacionPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", reparacionPage.getTotalPages());
+
+        return "reparaciones/all-reparaciones";
+    }
 }

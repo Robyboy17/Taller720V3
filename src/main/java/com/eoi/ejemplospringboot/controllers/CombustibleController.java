@@ -1,8 +1,12 @@
 package com.eoi.ejemplospringboot.controllers;
 
+import com.eoi.ejemplospringboot.entities.Cliente;
 import com.eoi.ejemplospringboot.entities.Combustible;
 import com.eoi.ejemplospringboot.services.CombustibleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +24,13 @@ public class CombustibleController {
         this.combustibleService = combustibleService;
     }
 
-    // Index
-    @GetMapping("all")
-    public String getAllCombustibles(
-            Model model) {
-        model.addAttribute("entities", combustibleService.findAll());
-        return "combustibles/all-combustibles";
-    }
+    // Index AHORA ESTÁN PAGINADOS, USAMOS LA DEL FINAL
+//    @GetMapping("all")
+//    public String getAllCombustibles(
+//            Model model) {
+//        model.addAttribute("entities", combustibleService.findAll());
+//        return "combustibles/all-combustibles";
+//    }
 
     // Delete
     @GetMapping("{id}/delete")
@@ -65,6 +69,20 @@ public class CombustibleController {
     public String updateCombustible(@ModelAttribute Combustible combustible) {
         combustibleService.updateCombustible(combustible);
         return "redirect:/combustibles/all";
+    }
+    //PAGEABLE
+    @GetMapping("all")
+    public String getAllCombustiblesPageable(@RequestParam(defaultValue = "0") int page,
+                                         @RequestParam(defaultValue = "10") int size,
+                                         Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Combustible> combustiblePage = combustibleService.getAllCombustiblesPageable(pageable);
+
+        model.addAttribute("entities", combustiblePage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", combustiblePage.getTotalPages());
+
+        return "combustibles/all-combustibles";
     }
 
 }

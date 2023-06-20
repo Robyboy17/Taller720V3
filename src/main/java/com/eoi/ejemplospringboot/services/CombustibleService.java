@@ -3,6 +3,8 @@ package com.eoi.ejemplospringboot.services;
 import com.eoi.ejemplospringboot.entities.Combustible;
 import com.eoi.ejemplospringboot.repositories.CombustibleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -51,6 +53,9 @@ public class CombustibleService {
          combustible.setNombre(combustible.getNombre());
         }
         repository.save(combustible);
+    }
+    public Page<Combustible> getAllCombustiblesPageable(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
 

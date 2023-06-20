@@ -5,6 +5,8 @@ import com.eoi.ejemplospringboot.entities.Coche;
 import com.eoi.ejemplospringboot.repositories.ClienteRepository;
 import com.eoi.ejemplospringboot.repositories.CocheRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -60,4 +62,8 @@ public class CocheService {
             return new ArrayList<>();
         }
     }
+    public Page<Coche> getAllCochesPageable(Pageable pageable) {
+        return repository.findAll(pageable);
+    }
+
 }

@@ -3,6 +3,9 @@ package com.eoi.ejemplospringboot.controllers;
 import com.eoi.ejemplospringboot.entities.Empresa;
 import com.eoi.ejemplospringboot.services.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +21,13 @@ public class EmpresaController {
         this.empresaService = empresaService;
     }
 
-    // Index
-    @GetMapping("all")
-    public String getAllEmpresas(
-            Model model) {
-        model.addAttribute("entities",empresaService.findAll());
-        return "empresas/all-empresas";
-    }
+    // Index AHORA ESTÁN PAGINADOS, USAMOS LA DEL FINAL
+//    @GetMapping("all")
+//    public String getAllEmpresas(
+//            Model model) {
+//        model.addAttribute("entities",empresaService.findAll());
+//        return "empresas/all-empresas";
+//    }
 
     // Delete
     @GetMapping("{id}/delete")
@@ -61,5 +64,19 @@ public class EmpresaController {
     public String updateEmpresa(@ModelAttribute Empresa empresa) {
         empresaService.updateEmpresa(empresa);
         return "redirect:/empresas/all";
+    }
+    //PAGEABLE
+    @GetMapping("all")
+    public String getAllEmpresasPageable(@RequestParam(defaultValue = "0") int page,
+                                         @RequestParam(defaultValue = "10") int size,
+                                         Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Empresa> empresaPage = empresaService.getAllEmpresasPageable(pageable);
+
+        model.addAttribute("entities", empresaPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", empresaPage.getTotalPages());
+
+        return "empresas/all-empresas";
     }
 }

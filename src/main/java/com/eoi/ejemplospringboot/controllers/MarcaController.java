@@ -1,9 +1,13 @@
 package com.eoi.ejemplospringboot.controllers;
 
 
+import com.eoi.ejemplospringboot.entities.Cliente;
 import com.eoi.ejemplospringboot.entities.Marca;
 import com.eoi.ejemplospringboot.services.MarcaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,13 +25,13 @@ public class MarcaController {
         this.marcaService = marcaService;
     }
 
-    // Index
-    @GetMapping("all")
-    public String getAllMarcas(
-            Model model) {
-        model.addAttribute("entities",marcaService.findAll());
-        return "marcas/all-marcas";
-    }
+    // Index AHORA ESTÁN PAGINADOS, USAMOS LA DEL FINAL
+//    @GetMapping("all")
+//    public String getAllMarcas(
+//            Model model) {
+//        model.addAttribute("entities",marcaService.findAll());
+//        return "marcas/all-marcas";
+//    }
     // Show
 
     // Delete
@@ -65,5 +69,18 @@ public class MarcaController {
         marcaService.updateMarca(marca);
         return "redirect:/marcas/all";
     }
+    //PAGEABLE
+    @GetMapping("all")
+    public String getAllMarcasPageable(@RequestParam(defaultValue = "0") int page,
+                                         @RequestParam(defaultValue = "10") int size,
+                                         Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Marca> marcaPage = marcaService.getAllMarcasPageable(pageable);
 
+        model.addAttribute("entities", marcaPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", marcaPage.getTotalPages());
+
+        return "marcas/all-marcas";
+    }
 }
