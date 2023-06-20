@@ -1,8 +1,12 @@
 package com.eoi.ejemplospringboot.controllers;
 
+import com.eoi.ejemplospringboot.entities.Cliente;
 import com.eoi.ejemplospringboot.entities.Rol;
 import com.eoi.ejemplospringboot.services.RolService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +24,13 @@ public class RolController {
         this.rolService = rolService;
     }
 
-    // Index
-    @GetMapping("all")
-    public String getAllRoles(
-            Model model) {
-        model.addAttribute("entities",rolService.findAll());
-        return "roles/all-roles";
-    }
+    // Index AHORA ESTÁN PAGINADOS, USAMOS LA DEL FINAL
+//    @GetMapping("all")
+//    public String getAllRoles(
+//            Model model) {
+//        model.addAttribute("entities",rolService.findAll());
+//        return "roles/all-roles";
+//    }
 
     // Delete
     @GetMapping("{id}/delete")
@@ -63,5 +67,19 @@ public class RolController {
     public String updateRol(@ModelAttribute Rol rol) {
         rolService.updateRol(rol);
         return "redirect:/roles/all";
+    }
+    //PAGEABLE
+    @GetMapping("all")
+    public String getAllRolesPageable(@RequestParam(defaultValue = "0") int page,
+                                         @RequestParam(defaultValue = "10") int size,
+                                         Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Rol> rolPage = rolService.getAllRolesPageable(pageable);
+
+        model.addAttribute("entities", rolPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", rolPage.getTotalPages());
+
+        return "roles/all-roles";
     }
 }

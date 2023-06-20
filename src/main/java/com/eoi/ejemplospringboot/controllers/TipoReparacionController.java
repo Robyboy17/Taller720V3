@@ -1,9 +1,13 @@
 package com.eoi.ejemplospringboot.controllers;
 
 
+import com.eoi.ejemplospringboot.entities.Cliente;
 import com.eoi.ejemplospringboot.entities.TipoReparacion;
 import com.eoi.ejemplospringboot.services.TipoReparacionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,13 +25,13 @@ public class TipoReparacionController {
         this.tipoReparacionService = tipoReparacionService;
     }
 
-    // Index
-    @GetMapping("all")
-    public String getAllTipoReparaciones(
-            Model model) {
-        model.addAttribute("entities",tipoReparacionService.findAll());
-        return "tipoReparaciones/all-tipoReparaciones";
-    }
+    // Index AHORA ESTÁN PAGINADOS, USAMOS LA DEL FINAL
+//    @GetMapping("all")
+//    public String getAllTipoReparaciones(
+//            Model model) {
+//        model.addAttribute("entities",tipoReparacionService.findAll());
+//        return "tipoReparaciones/all-tipoReparaciones";
+//    }
 
     // Delete
     @GetMapping("{id}/delete")
@@ -66,5 +70,18 @@ public class TipoReparacionController {
         tipoReparacionService.updateTipoReparacion(tipoReparacion);
         return "redirect:/reparaciones/tipos/all";
     }
+    //PAGEABLE
+    @GetMapping("all")
+    public String getAllTiposReparacionesPageable(@RequestParam(defaultValue = "0") int page,
+                                         @RequestParam(defaultValue = "10") int size,
+                                         Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<TipoReparacion> tipoReparacionPage = tipoReparacionService.getAllTiposReparacionesPageable(pageable);
 
+        model.addAttribute("entities", tipoReparacionPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", tipoReparacionPage.getTotalPages());
+
+        return "tipoReparaciones/all-tipoReparaciones";
+    }
 }

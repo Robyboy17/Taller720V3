@@ -1,8 +1,64 @@
 insert into rol values (1, 'ROLE_ADMIN'), (2,'ROLE_EMPRESA' ), (3,'ROLE_USUARIO' ),(4,'ROLE_ANONIMO');
-insert into marca values (1, 'BMW'), (2,'MERCEDES'), (3,'FORD'),(4,'AUDI');
+insert into marca values (1, 'BMW'), (2,'MERCEDES'), (3,'FORD'),(4,'AUDI'),(5, 'VOLKSWAGEN'),
+(6, 'TOYOTA'),(7, 'HONDA'),(8, 'NISSAN'),(9, 'CHEVROLET'),(10, 'HYUNDAI'),(11, 'MAZDA'),
+(12, 'SUBARU'),(13, 'KIA'),(14, 'PEUGEOT'),(15, 'RENAULT'),(16, 'FIAT');
 insert into modelo values (1, 'SERIE 1', 1), (2,'A5', 4 ),
  (3,'FIESTA', 3),(4,'Clase G', 2),(5, 'SERIE 5', 1), (6,'A1', 4),
  (7,'FOCUS', 3),(8,'Clase S', 2);
-insert into combustible values (1, 'GASOLINA'), (2,'DIESEL' ), (3,'GPL' ),(4,'MAGIA');
-
+insert into combustible values (1, 'GASOLINA'), (2,'DIESEL' ), (3,'GPL' ),(4,'MAGIA'),(5, 'ETANOL'),
+(6, 'BIOGÁS'),(7, 'HIDRÓGENO'),(8, 'ELECTRICIDAD'),(9, 'METANO'),(10, 'PROPANO'),(11, 'GAS NATURAL'),
+(12, 'BIOETANOL'),(13, 'BUTANO'),(14, 'BIOCOMBUSTIBLE'),(15, 'PETRÓLEO'),(16, 'KEROSENE');
+insert into cliente values (1,'44065380W','Grant','lana@gmail.com','Elizabeth','682429355'),
+(2, '12345678X', 'Smith', 'smith@example.com', 'John', '682456789'),
+(3, '87654321Y', 'Johnson', 'johnson@example.com', 'Emily', '987654321'),
+(4, '98765432Z', 'Williams', 'williams@example.com', 'Michael', '682813579'),
+(5, '23456789A', 'Brown', 'brown@example.com', 'Olivia', '682258014'),
+(6, '56789012B', 'Davis', 'davis@example.com', 'Sophia', '956467135'),
+(7, '34567890C', 'Miller', 'miller@example.com', 'Aiden', '624879035'),
+(8, '78901234D', 'Wilson', 'wilson@example.com', 'Ethan', '682802469'),
+(9, '90123456E', 'Taylor', 'taylor@example.com', 'Isabella', '682024680'),
+(10, '43210987F', 'Anderson', 'anderson@example.com', 'Mia', '682357914'),
+(11, '65432109G', 'Thomas', 'thomas@example.com', 'James', '682135792'),
+(12, '21098765H', 'Moore', 'moore@example.com', 'Charlotte', '956802357');
+insert into empresa values (1, '12345', 'Calle Principal #123', 'info@tallerautomotrizvelocidadyprecision.com', 'Taller Automotriz Velocidad y Precisión', 'Mecánica y Servicios Automotrices S.A.', '+1 (555) 123-4567', 'www.tallerautomotrizvelocidadyprecision.com'),
+(2, '67890', 'Avenida de los Motores #456', 'info@automecanicamotorpower.com', 'Automecánica Motor Power', 'Mecánica y Reparación de Vehículos S.A.', '+1 (555) 987-6543', 'www.automecanicamotorpower.com'),
+(3, '54321', 'Calle de los Ingenieros #789', 'info@tallerautomotorlider.com', 'Taller Automotor Líder', 'Servicios de Mecánica S.A.', '+1 (555) 246-8135', 'www.tallerautomotorlider.com'),
+(4, '13579', 'Avenida de la Tecnología #987', 'info@tallermotorplus.com', 'Taller Motor Plus', 'Mecánica Especializada en Motores S.A.', '+1 (555) 369-2580', 'www.tallermotorplus.com'),
+(5, '24680', 'Calle de los Conductores #357', 'info@tallermecanicacarrace.com', 'Taller Mecánica Carrace', 'Servicios de Mecánica S.A.', '+1 (555) 802-4671', 'www.tallermecanicacarrace.com'),
+(6, '97531', 'Avenida de las Reparaciones #753', 'info@autotecnicaavanzada.com', 'Autotécnica Avanzada', 'Tecnología y Reparación Automotriz S.A.', '+1 (555) 624-8790', 'www.autotecnicaavanzada.com'),
+(7, '80246', 'Calle del Motorista #159', 'info@tallermeckingspeed.com', 'Taller MecKing Speed', 'Vehículos de Alta Velocidad S.A.', '+1 (555) 357-8024', 'www.tallermeckingspeed.com'),
+(8, '97531', 'Avenida del Automóvil #753', 'info@tallertuningmania.com', 'Taller Tuning Manía', 'Personalización de Vehículos S.A.', '+1 (555) 802-9753', 'www.tallertuningmania.com'),
+(9, '46802', 'Calle de los Aceites #159', 'info@tallerlubricarapido.com', 'Taller Lubrica Rápido', 'Mantenimiento de Lubricantes S.A.', '+1 (555) 624-4680', 'www.tallerlubricarapido.com'),
+(10, '35791', 'Avenida de los Frenos #357', 'info@tallermecanicabreakfast.com', 'Taller Mecánica Breakfast', 'Ajuste de Frenos S.A.', '+1 (555) 802-3579', 'www.tallermecanicabreakfast.com'),
+(11, '62480', 'Calle de los Neumáticos #802', 'info@tallersuperruedas.com', 'Taller Superruedas', 'Venta y Instalación de Neumáticos S.A.', '+1 (555) 468-6248', 'www.mecanicosrodriguez.com');
+insert into empleado values (1, 'Virués González', 'Mecánico Jefe', 'José Antonio'),(2, 'Gómez Rodríguez', 'Mecánico', 'María'),
+(3, 'López García', 'Recepcionista', 'Juan'),(4, 'Martínez Fernández', 'Pintor', 'Laura'),
+(5, 'Sánchez López', 'Electricista', 'Pedro'),(6, 'Hernández Torres', 'Asesor Técnico', 'Ana'),
+(7, 'García Martín', 'Mecánico', 'Carlos'),(8, 'Rodríguez Pérez', 'Técnico en Diagnóstico', 'Sara'),
+(9, 'Pérez Jiménez', 'Mecánico', 'Daniel'),(10, 'Fernández Ruiz', 'Auxiliar', 'Lucía'),
+(11, 'Torres Sánchez', 'Becario', 'Alejandro'),(12, 'González Martínez', 'Mecánico', 'Carmen');
+insert into coche values (1, '1992', '1', '2', '1', '3'),(2, '2010', '2', '1', '2', '2'),
+(3, '2015', '3', '3', '1', '2'),(4, '2005', '4', '4', '2', '1'),
+(5, '2018', '5', '2', '3', '3'),(6, '2008', '6', '4', '1', '1'),
+(7, '2019', '7', '1', '3', '2'),(8, '2006', '8', '2', '2', '1'),
+(9, '2014', '9', '3', '3', '2'),(10, '2009', '10', '4', '1', '3'),
+(11, '2014', '8', '3', '3', '2'),(12, '2009', '2', '4', '2', '3');
+insert into tipo_reparacion values (1, 'Pintura'), (2, 'Carrocería'),(3, 'Mecánica'),
+(4, 'Electricidad'),(5, 'Chapa y Pintura'),
+(6, 'Sistema de Escape'),(7, 'Transmisión'),
+(8, 'Frenos'),(9, 'Suspensión'),(10, 'Aire Acondicionado'),
+(11, 'Cambio de Aceite y Filtros'),(12, 'Sistema de Dirección'),
+(13, 'Reparación de Parabrisas'),(14, 'Sistema de Encendido'),
+(15, 'Sistema de Refrigeración'),(16, 'Embrague');
+insert into reparacion values (1,'Reparación de pintura para eliminar daños y aplicar capas de pintura y barniz para restaurar el acabado del coche.','3 días','2023-12-14','2023-12-11','1','1','1','1'),
+(2, 'Reparación de carrocería por abolladuras y aplicación de masilla y pintura para restaurar el aspecto original del coche.', '4 días', '2023-12-15', '2023-12-11', '2', '2', '2', '2'),
+(3, 'Reparación mecánica para solucionar problemas en el sistema de frenos y reemplazar las pastillas y discos desgastados.', '2 días', '2023-12-12', '2023-12-10', '3', '3', '3', '3'),
+(4, 'Reparación eléctrica para solucionar fallos en el sistema de luces y reemplazar los fusibles fundidos.', '1 día', '2023-12-11', '2023-12-11', '4', '4', '4', '4'),
+(5, 'Reparación de chapa y pintura por daños en la puerta del coche y aplicación de pintura y pulido para igualar el color.', '3 días', '2023-12-13', '2023-12-10', '1', '5', '1', '5'),
+(6, 'Reparación de sistema de escape para reemplazar el silenciador y los tubos deteriorados y asegurar un funcionamiento adecuado.', '2 días', '2023-12-14', '2023-12-12', '5', '6', '5', '6'),
+(7, 'Reparación de transmisión para solucionar problemas de cambio de marchas y reemplazar el embrague desgastado.', '5 días', '2023-12-16', '2023-12-11', '6', '7', '6', '7'),
+(8, 'Reparación de frenos para solucionar el desgaste excesivo de las pastillas y reemplazar el líquido de frenos contaminado.', '1 día', '2023-12-12', '2023-12-12', '7', '8', '7', '8'),
+(9, 'Reparación de suspensión para reemplazar los amortiguadores desgastados y mejorar la estabilidad y comodidad del coche.', '2 días', '2023-12-13', '2023-12-10', '8', '9', '8', '9'),
+(10, 'Reparación de aire acondicionado para solucionar fugas y recargar el sistema con refrigerante para un óptimo enfriamiento.', '1 día', '2023-12-11', '2023-12-11', '9', '10', '9', '10'),
+(11, 'Reparación de chapa y pintura por daños en la puerta del coche y aplicación de pintura y pulido para igualar el color.', '3 día', '2023-12-11', '2023-12-08', '9', '10', '9', '10');
 
