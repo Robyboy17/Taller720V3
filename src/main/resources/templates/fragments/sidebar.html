@@ -14,36 +14,31 @@
 <main class="container-fluid">
     <div class="row">
         <aside class="col-2">
-            <div th:fragment="sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
+            <div th:fragment="sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px; margin: 0 auto;">
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active" aria-current="page">
-                            <svg class="bi pe-none me-2" width="16" height="16"><use th:href="@{/}"/></svg>
-                            <i class="bi bi-house"></i>
-                            Home
-                        </a>
-                    </li>
 
 
                     <!-- Opciones de Clientes -->
                     <li class="mb-1">
                         <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                            <i class="bi bi-people-fill"></i>Clientes
+                            <i class="bi bi-people-fill"></i> Clientes
+
+
                         </button>
                         <div class="collapse" id="dashboard-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li>
-                                    <a class="bi bi-people-fill nav-link" th:href="@{/clientes/all}">Ver Clientes</a>
+                                    <a class="bi bi-people-fill nav-link" th:href="@{/clientes/all}"> Ver Clientes</a>
                                 </li>
                                 <li>
-                                    <a class="bi bi-people-fill nav-link" th:href="@{/clientes/new}">Crear Clientes</a>
+                                    <a class="bi bi-people-fill nav-link" th:href="@{/clientes/new}"> Crear Clientes</a>
                                 </li>
                                 <li>
-                                    <a class="bi bi-people-fill nav-link" th:href="@{/clientes/all}">Ver clientes y Coches</a>
+                                    <a class="bi bi-people-fill nav-link" th:href="@{/clientes/all}"> Ver clientes y Coches</a>
                                 </li>
                                 <li>
-                                    <a class="bi bi-people-fill nav-link" th:href="@{/clientes/asignar-coche}">Asignar coche a Cliente</a>
+                                    <a class="bi bi-people-fill nav-link" th:href="@{/clientes/asignar-coche}"> Asignar coche a Cliente</a>
                                 </li>
                             </ul>
                         </div>
@@ -52,21 +47,21 @@
                     <!-- Opciones de Reparacion -->
                     <li class="mb-1">
                         <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse0" aria-expanded="false">
-                            <i class="bi bi-gear-fill"></i>Reparacion
+                            <i class="bi bi-gear-fill"></i> Reparacion
                         </button>
                         <div class="collapse" id="dashboard-collapse0">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li>
-                                    <a class="bi bi-gear-fill nav-link" th:href="@{/reparaciones/all}">Ver Reparaciones</a>
+                                    <a class="bi bi-gear-fill nav-link" th:href="@{/reparaciones/all}"> Ver Reparaciones</a>
                                 </li>
                                 <li>
-                                    <a class="bi bi-gear-fill nav-link" th:href="@{/reparaciones/new}">Crear Reparaciones</a>
+                                    <a class="bi bi-gear-fill nav-link" th:href="@{/reparaciones/new}"> Crear Reparaciones</a>
                                 </li>
                                 <li>
-                                    <a class="bi bi-gear-fill nav-link" th:href="@{/reparaciones/tipos/all}">Ver tipos de reparacion</a>
+                                    <a class="bi bi-gear-fill nav-link" th:href="@{/reparaciones/tipos/all}"> Ver tipos de reparacion</a>
                                 </li>
                                 <li>
-                                    <a class="bi bi-gear-fill nav-link" th:href="@{/reparaciones/tipos/new}">Crear un tipo de reparacion</a>
+                                    <a class="bi bi-gear-fill nav-link" th:href="@{/reparaciones/tipos/new}"> Crear un tipo de reparacion</a>
                                 </li>
                             </ul>
                         </div>
@@ -75,7 +70,7 @@
                     <!-- Opciones de Usuarios -->
                     <li class="mb-1">
                         <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse1" aria-expanded="false">
-                            <i class="bi bi-people"></i>Usuarios
+                            <i class="bi bi-people"></i> Usuarios
                         </button>
                         <div class="collapse" id="dashboard-collapse1">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
@@ -83,13 +78,13 @@
                                     <a class="bi bi-people nav-link" th:href="@{/usuarios/all}"> Ver usuarios</a>
                                 </li>
                                 <li>
-                                    <a class="bi bi-people nav-link" th:href="@{/usuarios/new}">Crear usuario</a>
+                                    <a class="bi bi-people nav-link" th:href="@{/usuarios/new}"> Crear usuario</a>
                                 </li>
                                 <li>
-                                    <a class="bi bi-people nav-link" th:href="@{/roles/all}">Ver roles de usuario</a>
+                                    <a class="bi bi-people nav-link" th:href="@{/roles/all}"> Ver roles de usuario</a>
                                 </li>
                                 <li>
-                                    <a class="bi bi-people nav-link" th:href="@{/roles/new}">Crear un rol de usuario</a>
+                                    <a class="bi bi-people nav-link" th:href="@{/roles/new}"> Crear un rol de usuario</a>
                                 </li>
                             </ul>
                         </div>
@@ -97,48 +92,48 @@
                     <!-- Opciones de Coches -->
                     <li class="mb-1">
                         <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse2" aria-expanded="false">
-                            <i class="bi bi-car-front"></i>Coches
+                            <i class="bi bi-car-front"></i> Coches
                         </button>
                         <div class="collapse" id="dashboard-collapse2">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li>
                                     <a href="#" class="nav-link link-body-emphasis">
-                                        <a class="bi bi-car-front-fill nav-link" th:href="@{/coches/all}">Ver Coches</a>
+                                        <a class="bi bi-car-front-fill nav-link" th:href="@{/coches/all}"> Ver Coches</a>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link link-body-emphasis">
-                                        <a class="bi bi-car-front-fill nav-link" th:href="@{/coches/new}">Añadir Coches</a>
+                                        <a class="bi bi-car-front-fill nav-link" th:href="@{/coches/new}"> Añadir Coches</a>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link link-body-emphasis">
-                                        <a class="bi bi-fuel-pump nav-link" th:href="@{/combustibles/all}">Ver Combustible</a>
+                                        <a class="bi bi-fuel-pump nav-link" th:href="@{/combustibles/all}"> Ver Combustible</a>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link link-body-emphasis">
-                                        <a class="bi bi-fuel-pump nav-link" th:href="@{/combustibles/new}">Añadir Combustible</a>
+                                        <a class="bi bi-fuel-pump nav-link" th:href="@{/combustibles/new}"> Añadir Combustible</a>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link link-body-emphasis">
-                                        <a class="bi bi-car-front nav-link" th:href="@{/marcas/all}">Ver Marcas</a>
+                                        <a class="bi bi-car-front nav-link" th:href="@{/marcas/all}"> Ver Marcas</a>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link link-body-emphasis">
-                                        <a class="bi bi-car-front nav-link" th:href="@{/marcas/new}">Añadir Marca</a>
+                                        <a class="bi bi-car-front nav-link" th:href="@{/marcas/new}"> Añadir Marca</a>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link link-body-emphasis">
-                                        <a class="bi bi-card-list nav-link" th:href="@{/modelos/all}">Ver Modelos</a>
+                                        <a class="bi bi-card-list nav-link" th:href="@{/modelos/all}"> Ver Modelos</a>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link link-body-emphasis">
-                                        <a class="bi bi-card-list nav-link" th:href="@{/modelos/new}">Añadir Modelos</a>
+                                        <a class="bi bi-card-list nav-link" th:href="@{/modelos/new}"> Añadir Modelos</a>
                                     </a>
                                 </li>
                             </ul>
@@ -154,12 +149,12 @@
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li>
                                     <a href="#" class="nav-link link-body-emphasis">
-                                        <a class="bi bi-person-fill-gear nav-link" th:href="@{/empleados/all}">Ver Empleados</a>
+                                        <a class="bi bi-person-fill-gear nav-link" th:href="@{/empleados/all}"> Ver Empleados</a>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link link-body-emphasis">
-                                        <a class="bi bi-person-fill-gear nav-link" th:href="@{/empleados/new}">Añadir Empleados</a>
+                                        <a class="bi bi-person-fill-gear nav-link" th:href="@{/empleados/new}"> Añadir Empleados</a>
                                     </a>
                                 </li>
                             </ul>
@@ -169,25 +164,23 @@
                     <!-- Opciones de Empresas -->
                     <li class="mb-1">
                         <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse4" aria-expanded="false">
-                            <i class="bi bi-building"></i>Empresas
+                            <i class="bi bi-building"></i> Empresas
                         </button>
                         <div class="collapse" id="dashboard-collapse4">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li>
                                     <a href="#" class="nav-link link-body-emphasis">
-                                        <a class="bi bi-building nav-link" th:href="@{/empresas/all}">Ver Empresas</a>
+                                        <a class="bi bi-building nav-link" th:href="@{/empresas/all}"> Ver Empresas</a>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link link-body-emphasis">
-                                        <a class="bi bi-building nav-link" th:href="@{/empresas/new}">Añadir Empresa</a>
+                                        <a class="bi bi-building nav-link" th:href="@{/empresas/new}"> Añadir Empresa</a>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-
-
 
                 </ul>
                 <hr>
