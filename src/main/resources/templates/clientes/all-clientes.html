@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layoutConSidebar}">
 <head>
     <title>Clientes</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
@@ -8,6 +8,46 @@
 <body>
 <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
 <div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div layout:fragment="sidebar">
+                <div th:replace="fragments/sidebar1 :: sidebar"></div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div layout:fragment="contenido">
+                <h1>Clientes</h1>
+                <a th:href="@{/clientes/new}" class="btn btn-primary mb-2">Añadir cliente</a>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>DNI</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <!-- Nueva columna para las acciones -->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="cliente : ${entities}">
+                        <td th:text="${cliente.id}"></td>
+                        <td th:text="${cliente.nombre}"></td>
+                        <td th:text="${cliente.apellido}"></td>
+                        <td th:text="${cliente.DNI}"></td>
+                        <td th:text="${cliente.telefono}"></td>
+                        <td th:text="${cliente.email}"></td>
+                        <td>
+                            <a th:href="@{/clientes/{id}/coches(id=${cliente.id})}" class="btn btn-primary">Ver coches</a>
+                            <a th:href="@{/clientes/{id}(id=${cliente.id})}" class="btn btn-primary">Editar</a>
+                            <a th:href="@{/clientes/{id}/delete(id=${cliente.id})}" class="btn btn-danger">Eliminar</a>
+                        </td> <!-- Columna para los botones de edición y eliminación -->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     <h1>Clientes</h1>
     <a th:href="@{/clientes/new}" class="btn btn-primary mb-2">Añadir cliente</a>
     <table class="table table-striped">
@@ -58,3 +98,4 @@
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
+

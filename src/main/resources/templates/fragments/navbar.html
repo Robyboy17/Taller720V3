@@ -13,29 +13,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
+
         <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-          <a class="nav-link" th:href="@{/empresas/all}">Empresas</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-          <a class="nav-link" th:href="@{/usuarios/all}">Usuarios</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-          <a class="nav-link" th:href="@{/empleados/all}">Empleados</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-          <a class="nav-link" th:href="@{/roles/all}">Roles</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-          <a class="nav-link" th:href="@{/combustibles/all}">Combustibles</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-          <a class="nav-link" th:href="@{/coches/all}">Coches</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-          <a class="nav-link" th:href="@{/modelos/all}">Modelos</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-          <a class="nav-link" th:href="@{/marcas/all}">Marcas</a>
+            <a  class="nav-link" th:href="@{/calendario}"> Calendario</a>
         </li>
         <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
           <a class="nav-link" th:href="@{/reparaciones/all}">Reparaciones</a>

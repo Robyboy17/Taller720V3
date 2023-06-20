@@ -1,28 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layoutConSidebar}">
 <head>
   <meta charset="UTF-8">
   <title>Detalles del Cliente</title>
-  <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
+<div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
 <div class="container">
-  <h2>Detalles del Cliente</h2>
-  <div>
-    <h3>Información del Cliente</h3>
-    <p>Nombre: <span th:text="${cliente.nombre}"></span></p>
-  </div>
+  <div class="row">
+    <div class="col-md-3 sidebar">
+      <div layout:fragment="sidebar">
+        <div th:replace="fragments/sidebar :: sidebar"></div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div layout:fragment="contenido">
+        <h2>Detalles del Cliente</h2>
+        <div>
+          <h3>Información del Cliente</h3>
+          <p>Nombre: <span th:text="${cliente.nombre}"></span></p>
+        </div>
 
-  <div>
-    <h3>Coches del Cliente</h3>
-    <ul>
-      <li th:each="coche : ${cliente.coches}">
-        <p>Marca: <span th:text="${coche.marca}"></span></p>
-        <p>Modelo: <span th:text="${coche.modelo}"></span></p>
-        <!-- Agrega aquí más campos de información del coche -->
-      </li>
-    </ul>
+        <div>
+          <h3>Coches del Cliente</h3>
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Marca</th>
+              <th>Modelo</th>
+              <!-- Agrega aquí más encabezados de columna si es necesario -->
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="coche : ${cliente.coches}">
+              <td><span th:text="${coche.marca}"></span></td>
+              <td><span th:text="${coche.modelo}"></span></td>
+              <!-- Agrega aquí más celdas de información del coche si es necesario -->
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
-<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
+
