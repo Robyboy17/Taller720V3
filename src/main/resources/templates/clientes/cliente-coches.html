@@ -16,19 +16,17 @@
     </div>
     <div class="col-md-9">
       <div layout:fragment="contenido">
-        <h2>Detalles del Cliente</h2>
-        <div>
-          <h3>Información del Cliente</h3>
-          <p>Nombre: <span th:text="${cliente.nombre}"></span></p>
+        <div class="pb-3">
+          <h2>Coches de <span th:text="${cliente.nombre} + ' ' + ${cliente.apellido}"></span></h2>
         </div>
-
         <div>
-          <h3>Coches del Cliente</h3>
           <table class="table">
             <thead>
             <tr>
               <th>Marca</th>
               <th>Modelo</th>
+              <th>Año</th>
+              <th>Acciones</th>
               <!-- Agrega aquí más encabezados de columna si es necesario -->
             </tr>
             </thead>
@@ -36,6 +34,11 @@
             <tr th:each="coche : ${cliente.coches}">
               <td><span th:text="${coche.marca}"></span></td>
               <td><span th:text="${coche.modelo}"></span></td>
+              <td><span th:text="${coche.anio}"></span></td>
+              <td>
+                <a th:href="@{/coches/{id}(id=${coche.id})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/coches/{id}/delete(id=${coche.id})}" class="btn btn-danger">Eliminar</a>
+              </td>
               <!-- Agrega aquí más celdas de información del coche si es necesario -->
             </tr>
             </tbody>
