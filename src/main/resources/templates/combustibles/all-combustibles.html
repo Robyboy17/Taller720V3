@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layoutConSidebar}">
 <head>
     <meta charset="UTF-8">
     <title>Todas las entidades</title>
@@ -7,9 +7,10 @@
 </head>
 <body>
 <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
+<div layout:fragment="contenido">
 <div class="container">
   <h1>Combustibles</h1>
-  <a th:href="@{/combustibles/new}" class="btn btn-primary mb-2">Añadir combustible</a>
+  <a th:href="@{/combustibles/new}" class="btn btn-primary mb-2 w-25">Añadir combustible</a>
   <table class="table table-striped">
     <thead>
     <tr>
@@ -23,12 +24,29 @@
       <td th:text="${combustible.id}"></td>
       <td th:text="${combustible.nombre}"></td>
       <td>
-        <a th:href="@{/combustibles/{id}(id=${combustible.id})}" class="btn btn-primary">Editar</a>
-        <a th:href="@{/combustibles/{id}/delete(id=${combustible.id})}" class="btn btn-danger">Eliminar</a>
+        <a th:href="@{/combustibles/{id}(id=${combustible.id})}" class="btn btn-primary"><i class="bi bi-pencil"></i></a>
+        <a th:href="@{/combustibles/{id}/delete(id=${combustible.id})}" class="btn btn-danger"><i class="bi bi-trash3"></i></a>
       </td>
     </tr>
     </tbody>
   </table>
+  <!-- Mostrar la paginación -->
+  <div class="paginacion">
+    <ul class="pagination">
+      <li th:classappend="${currentPage == 0 ? 'disabled' : ''}">
+        <a class="page-link rounded-start" th:attr="href=@{/combustibles/all(page=__${currentPage - 1}__,size=__${size}__)}">&laquo;</a>
+      </li>
+      <li th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}"
+          th:classappend="${pageNumber == currentPage ? 'active' : ''}">
+        <a class="page-link" th:attr="href=@{/combustibles/all(page=__${pageNumber}__,size=__${size}__)}"
+           th:text="${pageNumber + 1}"></a>
+      </li>
+      <li class="page-link rounded-end" th:classappend="${currentPage == totalPages - 1 ? 'disabled' : ''}">
+        <a th:attr="href=@{/combustibles/all(page=__${currentPage + 1}__,size=__${size}__)}">&raquo;</a>
+      </li>
+    </ul>
+  </div>
+</div>
 </div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>

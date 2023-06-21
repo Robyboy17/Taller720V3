@@ -7,39 +7,21 @@
 <body>
 <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
+    <img src="/images/logo.png" alt="Logo" class="logo-img"/>
     <a class="navbar-brand" href="/">Taller 720</a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
+
         <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-          <a class="nav-link" th:href="@{/empresas/all}">Empresas</a>
+            <a  class="nav-link" th:href="@{/calendario}"> Calendario</a>
         </li>
-        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-          <a class="nav-link" th:href="@{/usuarios/all}">Usuarios</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-          <a class="nav-link" th:href="@{/empleados/all}">Empleados</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-          <a class="nav-link" th:href="@{/roles/all}">Roles</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-          <a class="nav-link" th:href="@{/combustibles/all}">Combustibles</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-          <a class="nav-link" th:href="@{/coches/all}">Coches</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-          <a class="nav-link" th:href="@{/modelos/all}">Modelos</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-          <a class="nav-link" th:href="@{/marcas/all}">Marcas</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-          <a class="nav-link" th:href="@{/reparaciones/all}">Reparaciones</a>
-        </li>
+<!--        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">-->
+<!--          <a class="nav-link" th:href="@{/reparaciones/all}">Reparaciones</a>-->
+<!--        </li>-->
         <li class="nav-item" sec:authorize="hasRole('ROLE_USUARIO')">
           <a class="nav-link" th:href="@{/roles/all}">Reparaciones</a>
         </li>

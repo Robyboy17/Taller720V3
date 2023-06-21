@@ -5,17 +5,18 @@ import com.eoi.ejemplospringboot.entities.Coche;
 import com.eoi.ejemplospringboot.services.ClienteService;
 import com.eoi.ejemplospringboot.services.CocheService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 import java.util.Set;
-
 @Controller
 @RequestMapping("/clientes")
 public class ClienteController {
-
     private final ClienteService clienteService;
     private final CocheService cocheService;
 
@@ -25,13 +26,13 @@ public class ClienteController {
         this.cocheService = cocheService;
     }
 
-    // Index
-    @GetMapping("all")
-    public String getAllClientes(
-            Model model) {
-        model.addAttribute("entities",clienteService.findAll());
-        return "clientes/all-clientes";
-    }
+    // Index AHORA ESTÁN PAGINADOS, USAMOS LA DEL FINAL
+//    @GetMapping("all")
+//    public String getAllClientes(
+//            Model model) {
+//        model.addAttribute("entities",clienteService.findAll());
+//        return "clientes/all-clientes";
+//    }
 
     // Delete
     @GetMapping("{id}/delete")
@@ -108,6 +109,20 @@ public class ClienteController {
             // TODO pantalla not found
             return "redirect:/clientes/all";
         }
+    }
+    //PAGEABLE
+    @GetMapping("all")
+    public String getAllClientesPageable(@RequestParam(defaultValue = "0") int page,
+                              @RequestParam(defaultValue = "10") int size,
+                              Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Cliente> clientePage = clienteService.getAllClientesPageable(pageable);
+
+        model.addAttribute("entities", clientePage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", clientePage.getTotalPages());
+
+        return "clientes/all-clientes";
     }
 
 }

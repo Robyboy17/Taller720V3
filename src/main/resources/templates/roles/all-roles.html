@@ -1,32 +1,52 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layoutConSidebar}">
 <head>
     <title>Todas las entidades</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
 <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
-<div class="container">
-    <h1>Todas las entidades</h1>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>name</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="rol : ${entities}">
-            <td th:text="${rol.id}"></td>
-            <td th:text="${rol.name}"></td>
-            <td>
-                <a th:href="@{/roles/{id}(id=${rol.id})}" class="btn btn-primary">Editar</a>
-                <a th:href="@{/roles/{id}/delete(id=${rol.id})}" class="btn btn-danger">Eliminar</a>
-            </td> <!-- Columna para los botones de edición y eliminación -->
-        </tr>
-        </tbody>
-    </table>
+<div layout:fragment="contenido">
+    <div class="container">
+        <h1>Roles</h1>
+        <a th:href="@{/roles/new}" class="btn btn-primary mb-2 w-25">Añadir rol</a>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="rol : ${entities}">
+                <td th:text="${rol.id}"></td>
+                <td th:text="${rol.name}"></td>
+                <td>
+                    <a th:href="@{/roles/{id}(id=${rol.id})}" class="btn btn-primary"><i class="bi bi-pencil"></i></a>
+                    <a th:href="@{/roles/{id}/delete(id=${rol.id})}" class="btn btn-danger"><i class="bi bi-trash3"></i></a>
+                </td> <!-- Columna para los botones de edición y eliminación -->
+            </tr>
+            </tbody>
+        </table>
+        <!-- Mostrar la paginación -->
+        <div class="paginacion">
+            <ul class="pagination">
+                <li th:classappend="${currentPage == 0 ? 'disabled' : ''}">
+                    <a class="page-link rounded-start" th:attr="href=@{/roles/all(page=__${currentPage - 1}__,size=__${size}__)}">&laquo;</a>
+                </li>
+                <li th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}"
+                    th:classappend="${pageNumber == currentPage ? 'active' : ''}">
+                    <a class="page-link" th:attr="href=@{/roles/all(page=__${pageNumber}__,size=__${size}__)}"
+                       th:text="${pageNumber + 1}"></a>
+                </li>
+                <li th:classappend="${currentPage == totalPages - 1 ? 'disabled' : ''}">
+                    <a class="page-link rounded-end" th:attr="href=@{/roles/all(page=__${currentPage + 1}__,size=__${size}__)}">&raquo;</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
+

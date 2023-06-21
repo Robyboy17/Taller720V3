@@ -3,6 +3,8 @@ package com.eoi.ejemplospringboot.services;
 import com.eoi.ejemplospringboot.entities.Usuario;
 import com.eoi.ejemplospringboot.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -67,5 +69,8 @@ public class UsuarioService {
             usuario.setFechaNacimiento(usuario.getFechaNacimiento());
         }
         repository.save(usuario);
+    }
+    public Page<Usuario> findAll(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 }

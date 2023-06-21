@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layoutConSidebar}">
 <head>
     <meta charset="UTF-8">
     <title>Todas las entidades</title>
@@ -8,32 +8,61 @@
 <body>
 <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
 <div class="container">
-  <h1>Coches</h1>
-  <a th:href="@{/coches/new}" class="btn btn-primary mb-2">Añadir coche</a>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Marca</th>
-      <th>Modelo</th>
-      <th>Combustible</th>
-      <th>Año</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="coche : ${entities}">
-      <td th:text="${coche.id}"></td>
-      <td th:text="${coche.marca}"></td>
-      <td th:text="${coche.modelo}"></td>
-      <td th:text="${coche.combustible}"></td>
-      <td th:text="${coche.anio}"></td>
-      <td>
-        <a th:href="@{/coches/{id}(id=${coche.id})}" class="btn btn-primary">Editar</a>
-        <a th:href="@{/coches/{id}/delete(id=${coche.id})}" class="btn btn-danger">Eliminar</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-md-3">
+      <div layout:fragment="sidebar">
+        <div th:replace="fragments/sidebar1 :: sidebar"></div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div layout:fragment="contenido">
+        <div class="container">
+        <h1>Coches</h1>
+        <a th:href="@{/coches/new}" class="btn btn-primary mb-2 w-25">Añadir coche</a>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Combustible</th>
+            <th>Año</th>
+            <th>Acciones</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="coche : ${entities}">
+            <td th:text="${coche.id}"></td>
+            <td th:text="${coche.marca}"></td>
+            <td th:text="${coche.modelo}"></td>
+            <td th:text="${coche.combustible}"></td>
+            <td th:text="${coche.anio}"></td>
+            <td>
+              <a th:href="@{/coches/{id}(id=${coche.id})}" class="btn btn-primary"><i class="bi bi-pencil"></i></a>
+              <a th:href="@{/coches/{id}/delete(id=${coche.id})}" class="btn btn-danger"><i class="bi bi-trash3"></i></a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+          <div class="paginacion">
+            <ul class="pagination">
+              <li th:classappend="${currentPage == 0 ? 'disabled' : ''}">
+                <a class="page-link rounded-start" th:attr="href=@{/coches/all(page=__${currentPage - 1}__,size=__${size}__)}">&laquo;</a>
+              </li>
+              <li th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}"
+                  th:classappend="${pageNumber == currentPage ? 'active' : ''}">
+                <a class="page-link" th:attr="href=@{/coches/all(page=__${pageNumber}__,size=__${size}__)}"
+                   th:text="${pageNumber + 1}"></a>
+              </li>
+              <li class="page-link rounded-end" th:classappend="${currentPage == totalPages - 1 ? 'disabled' : ''}">
+                <a th:attr="href=@{/coches/all(page=__${currentPage + 1}__,size=__${size}__)}">&raquo;</a>
+              </li>
+            </ul>
+          </div>
+      </div>
+      </div>
+    </div>
+  </div>
 </div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>

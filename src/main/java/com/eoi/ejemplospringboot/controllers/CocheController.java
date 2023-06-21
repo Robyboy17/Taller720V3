@@ -1,15 +1,15 @@
 package com.eoi.ejemplospringboot.controllers;
 
-import com.eoi.ejemplospringboot.entities.Coche;
-import com.eoi.ejemplospringboot.entities.Combustible;
-import com.eoi.ejemplospringboot.entities.Marca;
-import com.eoi.ejemplospringboot.entities.Modelo;
+import com.eoi.ejemplospringboot.entities.*;
 import com.eoi.ejemplospringboot.repositories.CombustibleRepository;
 import com.eoi.ejemplospringboot.repositories.MarcaRepository;
 import com.eoi.ejemplospringboot.repositories.ModeloRepository;
 import com.eoi.ejemplospringboot.services.CocheService;
 import com.eoi.ejemplospringboot.services.CombustibleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -40,13 +40,13 @@ public class CocheController {
         this.combustibleRepository = combustibleRepository;
     }
 
-    // Index
-    @GetMapping("all")
-    public String getAllCoches(
-            Model model) {
-        model.addAttribute("entities", cocheService.findAll());
-        return "coches/all-coches";
-    }
+    // Index AHORA ESTÁN PAGINADOS, USAMOS LA DEL FINAL
+//    @GetMapping("all")
+//    public String getAllCoches(
+//            Model model) {
+//        model.addAttribute("entities", cocheService.findAll());
+//        return "coches/all-coches";
+//    }
 
     // Delete
     @GetMapping("{id}/delete")
@@ -120,5 +120,20 @@ public class CocheController {
     public String updateCoche(@ModelAttribute Coche coche) {
         cocheService.updateCoche(coche);
         return "redirect:/coches/all";
+    }
+
+    //PAGEABLE
+    @GetMapping("all")
+    public String getAllCochesPageable(@RequestParam(defaultValue = "0") int page,
+                                         @RequestParam(defaultValue = "10") int size,
+                                         Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Coche> cochePage = cocheService.getAllCochesPageable(pageable);
+
+        model.addAttribute("entities", cochePage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", cochePage.getTotalPages());
+
+        return "coches/all-coches";
     }
 }

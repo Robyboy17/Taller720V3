@@ -1,8 +1,11 @@
 package com.eoi.ejemplospringboot.services;
 
 import com.eoi.ejemplospringboot.entities.Cliente;
+import com.eoi.ejemplospringboot.entities.Usuario;
 import com.eoi.ejemplospringboot.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -74,5 +77,8 @@ public class ClienteService {
 
     public List<Cliente> getAllClientes() {
         return repository.findAll();
+    }
+    public Page<Cliente> getAllClientesPageable(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 }
