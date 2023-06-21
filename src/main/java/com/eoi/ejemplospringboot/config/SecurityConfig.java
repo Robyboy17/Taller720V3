@@ -41,7 +41,7 @@ https://www.baeldung.com/spring-security-csrf
         http.formLogin(form -> form
                 .loginPage("/usuarios/login")
                 .failureUrl("/login-error")
-                .defaultSuccessUrl("/",true)
+                .defaultSuccessUrl("/reparaciones/all",true)
                 .permitAll()
         );
         http.logout(logout -> logout
