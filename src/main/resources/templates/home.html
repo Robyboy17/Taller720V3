@@ -10,9 +10,9 @@
 </head>
 <body>
 <main layout:fragment="contenido">
+    <h2>Bienvenido a Taller720</h2>
     <section class="py-5" sec:authorize="isAuthenticated()">
         <div class="container">
-            <h2>Bienvenido a Taller720</h2>
             <div class="row" id="cardRow">
                 <div class="col">
                     <div class="card d-flex flex-column">
@@ -47,6 +47,48 @@
                         </div>
                         <div class="mt-auto p-3">
                             <a class="btn btn-dark" th:href="@{/empleados/all}">Ver Empleados</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-5" sec:authorize="isAuthenticated()">
+        <div class="container">
+            <div class="row" id="cardRow">
+                <div class="col">
+                    <div class="card d-flex flex-column">
+                        <h5 class="card-header">Marcas <i class="bi bi-gear"></i></h5>
+                        <div class="card-body">
+                            <h5 class="card-title">Administra tus marcas</h5>
+                            <p class="card-text">Crea, edita, elimina tus marcas.</p>
+                        </div>
+                        <div class="mt-auto p-3">
+                            <a class="btn btn-dark" th:href="@{/marcas/all}">Ver Marcas</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card d-flex flex-column">
+                        <h5 class="card-header">Modelos <i class="bi bi-car-front"></i></h5>
+                        <div class="card-body">
+                            <h5 class="card-title">Administra tus modelos</h5>
+                            <p class="card-text">Crea, edita, elimina los modelos de los coches.</p>
+                        </div>
+                        <div class="mt-auto p-3">
+                            <a class="btn btn-dark" th:href="@{/modelos/all}">Ver Modelos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card d-flex flex-column">
+                        <h5 class="card-header">Usuarios <i class="bi bi-person"></i></h5>
+                        <div class="card-body">
+                            <h5 class="card-title">Administra tus usuarios</h5>
+                            <p class="card-text">Crea, edita, elimina tus usuarios.</p>
+                        </div>
+                        <div class="mt-auto p-3">
+                            <a class="btn btn-dark" th:href="@{/usuarios/all}">Ver Usurios</a>
                         </div>
                     </div>
                 </div>
