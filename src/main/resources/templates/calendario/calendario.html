@@ -23,8 +23,10 @@
             </tr>
             </tbody>
         </table>
-        <a class="btn btn-primary" th:href="@{/calendario(year=${year},month=${month -1})}"> Mes anterior</a>
-        <a class="btn btn-primary" th:href="@{/calendario(year=${year},month=${month+1})}"> Siguente mes</a>
+        <div class="d-flex gap-2">
+            <a class="btn btn-dark w-25" th:href="@{/calendario(year=${year},month=${month -1})}"> Mes anterior</a>
+            <a class="btn btn-dark w-25" th:href="@{/calendario(year=${year},month=${month+1})}"> Siguente mes</a>
+        </div>
     </div>
     </div>
 </body>
