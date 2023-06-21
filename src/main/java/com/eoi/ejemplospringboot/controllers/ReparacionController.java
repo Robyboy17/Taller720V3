@@ -130,6 +130,7 @@ public class ReparacionController {
 
         return "redirect:/reparaciones/all";
     }
+
     //PAGEABLE
     @GetMapping("all")
     public String getAllReparacionesPageable(@RequestParam(defaultValue = "0") int page,

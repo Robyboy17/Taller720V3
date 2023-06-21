@@ -7,52 +7,52 @@
 </head>
 <body>
 <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
-<div class="container">
-    <h1>Usuarios</h1>
-    <a th:href="@{/usuarios/new}" class="btn btn-primary mb-2">Añadir usuario</a>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Fecha de Nacimiento</th>
-            <th>Acciones</th> <!-- Nueva columna para las acciones -->
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="usuario : ${entities}">
-            <td th:text="${usuario.id}"></td>
-            <td th:text="${usuario.username}"></td>
-            <td th:text="${usuario.nombre}"></td>
-            <td th:text="${usuario.apellido}"></td>
-            <td th:text="${usuario.fechaNacimiento}"></td>
-            <td>
-                <a th:href="@{/usuarios/{id}(id=${usuario.id})}" class="btn btn-primary">Editar</a>
-                <a th:href="@{/usuarios/{id}/delete(id=${usuario.id})}" class="btn btn-danger">Eliminar</a>
-            </td> <!-- Columna para los botones de edición y eliminación -->
-        </tr>
-        </tbody>
-    </table>
-    <!-- Mostrar la paginación -->
-    <div class="paginacion">
-        <ul class="pagination">
-            <li th:classappend="${currentPage == 0 ? 'disabled' : ''}">
-                <a th:attr="href=@{/usuarios/all(page=__${currentPage - 1}__,size=__${size}__)}">&laquo;</a>
-            </li>
-            <li th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}"
-                th:classappend="${pageNumber == currentPage ? 'active' : ''}">
-                <a th:attr="href=@{/usuarios/all(page=__${pageNumber}__,size=__${size}__)}"
-                   th:text="${pageNumber + 1}"></a>
-            </li>
-            <li th:classappend="${currentPage == totalPages - 1 ? 'disabled' : ''}">
-                <a th:attr="href=@{/usuarios/all(page=__${currentPage + 1}__,size=__${size}__)}">&raquo;</a>
-            </li>
-        </ul>
+<div layout:fragment="contenido">
+    <div class="container">
+        <h1>Usuarios</h1>
+        <a th:href="@{/usuarios/new}" class="btn btn-primary mb-2 w-25">Añadir usuario</a>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Acciones</th> <!-- Nueva columna para las acciones -->
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="usuario : ${entities}">
+                <td th:text="${usuario.id}"></td>
+                <td th:text="${usuario.username}"></td>
+                <td th:text="${usuario.nombre}"></td>
+                <td th:text="${usuario.apellido}"></td>
+                <td th:text="${usuario.fechaNacimiento}"></td>
+                <td>
+                    <a th:href="@{/usuarios/{id}(id=${usuario.id})}" class="btn btn-primary">Editar</a>
+                    <a th:href="@{/usuarios/{id}/delete(id=${usuario.id})}" class="btn btn-danger">Eliminar</a>
+                </td> <!-- Columna para los botones de edición y eliminación -->
+            </tr>
+            </tbody>
+        </table>
+        <!-- Mostrar la paginación -->
+        <div class="paginacion">
+            <ul class="pagination">
+                <li th:classappend="${currentPage == 0 ? 'disabled' : ''}">
+                    <a th:attr="href=@{/usuarios/all(page=__${currentPage - 1}__,size=__${size}__)}">&laquo;</a>
+                </li>
+                <li th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}"
+                    th:classappend="${pageNumber == currentPage ? 'active' : ''}">
+                    <a th:attr="href=@{/usuarios/all(page=__${pageNumber}__,size=__${size}__)}"
+                       th:text="${pageNumber + 1}"></a>
+                </li>
+                <li th:classappend="${currentPage == totalPages - 1 ? 'disabled' : ''}">
+                    <a th:attr="href=@{/usuarios/all(page=__${currentPage + 1}__,size=__${size}__)}">&raquo;</a>
+                </li>
+            </ul>
+        </div>
     </div>
-
-
 </div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>

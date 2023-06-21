@@ -9,45 +9,47 @@
 <div layout:fragment="navbar">
     <div th:replace="fragments/navbar :: navbar"></div>
 </div>
-<div class="container">
-    <h1>Modelos</h1>
-    <a th:href="@{/modelos/new}" class="btn btn-primary mb-2">Añadir modelo</a>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Marca</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="modelo : ${entities}">
-            <td th:text="${modelo.id}"></td>
-            <td th:text="${modelo.nombre}"></td>
-            <td th:text="${modelo.marca.nombre}"></td>
-            <td>
-                <a th:href="@{/modelos/{id}(id=${modelo.id})}" class="btn btn-primary">Editar</a>
-                <a th:href="@{/modelos/{id}/delete(id=${modelo.id})}" class="btn btn-danger">Eliminar</a>
-            </td> <!-- Columna para los botones de edición y eliminación -->
-        </tr>
-        </tbody>
-    </table>
-    <!-- Mostrar la paginación -->
-    <div class="paginacion">
-        <ul class="pagination">
-            <li th:classappend="${currentPage == 0 ? 'disabled' : ''}">
-                <a th:attr="href=@{/modelos/all(page=__${currentPage - 1}__,size=__${size}__)}">&laquo;</a>
-            </li>
-            <li th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}"
-                th:classappend="${pageNumber == currentPage ? 'active' : ''}">
-                <a th:attr="href=@{/modelos/all(page=__${pageNumber}__,size=__${size}__)}"
-                   th:text="${pageNumber + 1}"></a>
-            </li>
-            <li th:classappend="${currentPage == totalPages - 1 ? 'disabled' : ''}">
-                <a th:attr="href=@{/modelos/all(page=__${currentPage + 1}__,size=__${size}__)}">&raquo;</a>
-            </li>
-        </ul>
+<div layout:fragment="contenido">
+    <div class="container">
+        <h1>Modelos</h1>
+        <a th:href="@{/modelos/new}" class="btn btn-primary mb-2 w-25">Añadir modelo</a>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Marca</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="modelo : ${entities}">
+                <td th:text="${modelo.id}"></td>
+                <td th:text="${modelo.nombre}"></td>
+                <td th:text="${modelo.marca.nombre}"></td>
+                <td>
+                    <a th:href="@{/modelos/{id}(id=${modelo.id})}" class="btn btn-primary">Editar</a>
+                    <a th:href="@{/modelos/{id}/delete(id=${modelo.id})}" class="btn btn-danger">Eliminar</a>
+                </td> <!-- Columna para los botones de edición y eliminación -->
+            </tr>
+            </tbody>
+        </table>
+        <!-- Mostrar la paginación -->
+        <div class="paginacion">
+            <ul class="pagination">
+                <li th:classappend="${currentPage == 0 ? 'disabled' : ''}">
+                    <a th:attr="href=@{/modelos/all(page=__${currentPage - 1}__,size=__${size}__)}">&laquo;</a>
+                </li>
+                <li th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}"
+                    th:classappend="${pageNumber == currentPage ? 'active' : ''}">
+                    <a th:attr="href=@{/modelos/all(page=__${pageNumber}__,size=__${size}__)}"
+                       th:text="${pageNumber + 1}"></a>
+                </li>
+                <li th:classappend="${currentPage == totalPages - 1 ? 'disabled' : ''}">
+                    <a th:attr="href=@{/modelos/all(page=__${currentPage + 1}__,size=__${size}__)}">&raquo;</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
