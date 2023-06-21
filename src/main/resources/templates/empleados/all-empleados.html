@@ -3,7 +3,6 @@
 <head>
     <title>Todas las entidades</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/paginacion.css">
 </head>
 <body>
 <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
@@ -38,14 +37,14 @@
         <div class="paginacion">
             <ul class="pagination">
                 <li th:classappend="${currentPage == 0 ? 'disabled' : ''}">
-                    <a th:attr="href=@{/empleados/all(page=__${currentPage - 1}__,size=__${size}__)}">&laquo;</a>
+                    <a class="page-link rounded-start" th:attr="href=@{/empleados/all(page=__${currentPage - 1}__,size=__${size}__)}">&laquo;</a>
                 </li>
                 <li th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}"
                     th:classappend="${pageNumber == currentPage ? 'active' : ''}">
-                    <a th:attr="href=@{/empleados/all(page=__${pageNumber}__,size=__${size}__)}"
+                    <a class="page-link" th:attr="href=@{/empleados/all(page=__${pageNumber}__,size=__${size}__)}"
                        th:text="${pageNumber + 1}"></a>
                 </li>
-                <li th:classappend="${currentPage == totalPages - 1 ? 'disabled' : ''}">
+                <li class="page-link rounded-end" th:classappend="${currentPage == totalPages - 1 ? 'disabled' : ''}">
                     <a th:attr="href=@{/empleados/all(page=__${currentPage + 1}__,size=__${size}__)}">&raquo;</a>
                 </li>
             </ul>
