@@ -8,9 +8,10 @@
 </head>
 <body>
 <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
+<div layout:fragment="contenido">
 <div class="container">
   <h1>Combustibles</h1>
-  <a th:href="@{/combustibles/new}" class="btn btn-primary mb-2">Añadir combustible</a>
+  <a th:href="@{/combustibles/new}" class="btn btn-primary mb-2 w-25">Añadir combustible</a>
   <table class="table table-striped">
     <thead>
     <tr>
@@ -46,6 +47,7 @@
       </li>
     </ul>
   </div>
+</div>
 </div>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>

@@ -17,8 +17,9 @@
     </div>
     <div class="col-md-9">
       <div layout:fragment="contenido">
+        <div class="container">
         <h1>Coches</h1>
-        <a th:href="@{/coches/new}" class="btn btn-primary mb-2">Añadir coche</a>
+        <a th:href="@{/coches/new}" class="btn btn-primary mb-2 w-25">Añadir coche</a>
         <table class="table table-striped">
           <thead>
           <tr>
@@ -44,6 +45,7 @@
           </tr>
           </tbody>
         </table>
+      </div>
       </div>
     </div>
   </div>
