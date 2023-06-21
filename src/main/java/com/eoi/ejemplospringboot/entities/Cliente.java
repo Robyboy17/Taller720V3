@@ -41,6 +41,9 @@ public class Cliente {
     @JsonManagedReference
     private Set<Coche> coches;
 
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Reparacion> reparaciones;
+
     public void addCoche(Coche coche) {
         coches.add(coche);
         coche.setCliente(this);
