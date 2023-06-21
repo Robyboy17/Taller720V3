@@ -39,8 +39,8 @@
                         <td th:text="${cliente.email}"></td>
                         <td>
                             <a th:href="@{/clientes/{id}/coches(id=${cliente.id})}" class="btn btn-primary">Ver coches</a>
-                            <a th:href="@{/clientes/{id}(id=${cliente.id})}" class="btn btn-primary">Editar</a>
-                            <a th:href="@{/clientes/{id}/delete(id=${cliente.id})}" class="btn btn-danger">Eliminar</a>
+                            <a th:href="@{/clientes/{id}(id=${cliente.id})}" class="btn btn-primary"><i class="bi bi-pencil"></i></a>
+                            <a th:href="@{/clientes/{id}/delete(id=${cliente.id})}" class="btn btn-danger"><i class="bi bi-trash3"></i></a>
                         </td> <!-- Columna para los botones de edición y eliminación -->
                     </tr>
                     </tbody>
